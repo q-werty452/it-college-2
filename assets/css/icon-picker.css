@@ -1,0 +1,84 @@
+.icon-picker-btn {
+    margin-left: 10px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.icon-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.icon-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.icon-grid i {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    transition: 0.2s;
+    color: #333;          /* ← ИСПРАВЛЕНИЕ: иконки тёмного цвета */
+    display: block;
+}
+
+.icon-grid i:hover {
+    background: #f0f0f0;
+    color: #0ea5e9;       /* ← при наведении — синий */
+}
+
+.icon-grid i.selected {
+    background: #e0f2fe;
+    color: #0ea5e9;
+    outline: 2px solid #0ea5e9;
+}
+
+.icon-search {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.icon-tabs {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.icon-tabs button {
+    padding: 5px 10px;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #333;          /* ← текст кнопок тоже тёмный */
+}
+
+.icon-tabs button.active {
+    background: #333;
+    color: white;
+}

@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<!-- ─── Content from kopiya (wrapped in .pgm-wrap for scoped CSS) ─── -->
+<div class="pgm-wrap">
+<main>
+
+  <!-- Page Hero -->
+
+
+
+
+
+
+<!-- ===== HERO / ГЛАВНЫЙ ЭКРАН ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="{% url 'home-url' %}" class="breadcrumb-item">Главная</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-item active" data-i18n="spec_breadcrumb">Программы</span>
+      </nav>
+      <h1 data-i18n="spec_hero_h1">Программы обучения</h1>
+      <p data-i18n="spec_hero_p">Современные специальности для карьеры в IT, экономике и дизайне</p>
+      <div style="margin-top:24px;">
+        <form method="get" class="search-bar" style="max-width:480px;">
+  <input
+    type="text"
+    name="search"
+    placeholder="Поиск программы..."
+    value="{{ request.GET.search }}"
+  />
+  <button type="submit">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Найти
+  </button>
+</form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+
+
+
+
+
+
+<!-- ===== ПРОГРАММЫ ОБУЧЕНИЯ ===== -->
+  <section class="section bg-light">
+    <div class="container">
+
+      <!-- Filter panel -->
+      <form method="get" class="filter-panel">
+
+  <!-- Направление -->
+    <div class="filter-group">
+      <label>Направление:</label>
+      <select class="filter-select" name="category" onchange="this.form.submit()">
+        <option value="">Все</option>
+        {% for item in categories %}
+        <option value="{{ item.id }}"
+        {% if request.GET.category == item.id|stringformat:"s" %}selected{% endif %}>
+          {{ item.title }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+  <!-- Сортировка -->
+  <div class="filter-group">
+    <label>Сортировка:</label>
+    <select class="filter-select" name="sort" onchange="this.form.submit()">
+      <option value="">По умолчанию</option>
+      <option value="popular" {% if request.GET.sort == "popular" %}selected{% endif %}>
+      По популярности
+      </option>
+      <option value="duration_asc" {% if request.GET.sort == "duration_asc" %}selected{% endif %}>
+      По сроку (возрастание)
+      </option>
+      <option value="duration_desc" {% if request.GET.sort == "duration_desc" %}selected{% endif %}>
+      По сроку (убывание)
+      </option>
+      <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>
+      По названию
+      </option>
+    </select>
+  </div>
+
+        <!-- Скрытые поля чтобы не терять поиск -->
+        <input type="hidden" name="search" value="{{ request.GET.search }}">
+      </form>
+
+      <!-- Filter tabs -->
+      <div class="filter-bar">
+
+  <!-- ВСЕ -->
+  <a href="?" class="filter-btn {% if request.GET.sort %}sort={{ request.GET.sort }}{% endif %}
+{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
+    Все программы
+  </a>
+
+  <!-- КАТЕГОРИИ -->
+  {% for item in categories %}
+    <a href="?category={{ item.id }}
+{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+       class="filter-btn {% if request.GET.category == item.id|stringformat:'s' %}active{% endif %}">
+       {{ item.title }}
+    </a>
+  {% endfor %}
+
+</div>
+
+      <!-- Programs grid -->
+      <div class="programs-grid">
+        {% for program in programs %}
+        <div class="program-card reveal reveal-up" data-category="{{ program.category.id }}">
+    <div class="program-icon">
+  <i class="{{ program.icon_class }}" style="font-size: 26px;" ></i>
+</div>
+
+    <div class="program-tag">{{ program.category.title }}</div>
+    <h3 class="program-name">{{ program.name }}</h3>
+
+    <div class="program-meta">
+      <div class="program-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        {{ program.duration_years }} г. {{ program.duration_months }} мес.
+      </div>
+
+      <div class="program-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+        </svg>
+        {{ program.get_study_form_display }}
+      </div>
+
+      <div class="program-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        {{ program.price_per_year }} сом/год
+      </div>
+
+      {% if program.has_budget %}
+        <span>Есть бюджет</span>
+      {% endif %}
+    </div>
+
+    <a href="{% url 'submit-document-url' %}" class="btn btn-blue btn-sm">Поступить</a>
+  </div>
+  {% endfor %}
+</div>
+
+      <!-- Pagination -->
+      {% if programs.has_other_pages %}
+<div class="pagination">
+
+  <!-- Кнопка "назад" -->
+  {% if programs.has_previous %}
+<a href="?page={{ programs.previous_page_number }}
+{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}
+{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+  <!-- Номера страниц -->
+  {% for num in programs.paginator.page_range %}
+  {% if programs.number == num %}
+    <button class="page-btn active">{{ num }}</button>
+  {% elif num == 1 or num == programs.paginator.num_pages %}
+    <a href="?page={{ num }}
+      {% if request.GET.category %}&category={{ request.GET.category }}{% endif %}
+      {% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+      {% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+      class="page-btn">{{ num }}</a>
+  {% elif num >= programs.number|add:"-2" and num <= programs.number|add:"2" %}
+    <a href="?page={{ num }}
+      {% if request.GET.category %}&category={{ request.GET.category }}{% endif %}
+      {% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+      {% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+      class="page-btn">{{ num }}</a>
+  {% elif num == programs.number|add:"-3" or num == programs.number|add:"3" %}
+    <span class="page-btn" style="pointer-events:none">…</span>
+  {% endif %}
+{% endfor %}
+
+  <!-- Кнопка "вперёд" -->
+  {% if programs.has_next %}
+    <a href="?page={{ programs.next_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}
+{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+</div>
+{% endif %}
+    </div>
+  </section>
+
+  <!-- CTA -->
+
+
+
+
+
+
+<!-- ===== CTA / ПРИЗЫВ К ДЕЙСТВИЮ ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 data-i18n="spec_cta_h2">Нашли свою программу?</h2>
+      <p data-i18n="spec_cta_p">Подайте документы онлайн и станьте студентом IT COLLEGE уже сегодня</p>
+      <div class="cta-btns">
+        <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-lg" data-i18n="spec_cta_btn1">Подать документы</a>
+        <a href="{% url 'faqs-url' %}" class="btn btn-secondary btn-lg" data-i18n="spec_cta_btn2">Часто задаваемые вопросы</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div><!-- end .pgm-wrap -->
+
+<!-- ─── v2 License & Accreditation ───────────────────────────────── -->
+
+
+
+
+
+
+<!-- ===== НАШИ ВЫПУСКНИКИ ===== -->
+<section class="section section-muted">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title reveal">Лицензия и аккредитация</h2>
+    </div>
+    <div class="cards-grid" style="grid-template-columns:repeat(auto-fill,minmax(340px,1fr))">
+      {% for item in licenses %}
+<a href="{% if item.document %}{{ item.document.url }}{% else %}#{% endif %}"
+   target="_blank"
+   class="adv-item reveal delay-{{ forloop.counter }}"
+   style="text-decoration:none; cursor:pointer;">
+    <div class="adv-icon">
+  <i class="{{ item.icon_class }}" style="font-size: 22px;"></i>
+</div>
+
+  <div>
+    <div class="adv-title">{{ item.title }}</div>
+    <div class="adv-text">{{ item.description }}</div>
+  </div>
+</a>
+{% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ─── v2 Footer ─────────────────────────────────────────────────── -->
+
+<script>
+
+// ── v2 Lang switcher ─────────────────────────────────────────────────────
+var ls = document.getElementById('lang-switcher');
+var lb = document.getElementById('lang-btn');
+if (lb) lb.onclick = function(e) { e.stopPropagation(); ls.classList.toggle('open'); };
+document.addEventListener('click', function() { if (ls) ls.classList.remove('open'); });
+
+// ── Reveal animations (kopiya style — .revealed) ─────────────────────────
+(function() {
+  var revealEls = document.querySelectorAll('.pgm-wrap .reveal, .pgm-wrap .reveal-up, .pgm-wrap .reveal-left, .pgm-wrap .reveal-right');
+  if (!revealEls.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(function(el) { observer.observe(el); });
+
+  // v2 license section reveal (.in-view)
+  var v2els = document.querySelectorAll('.section-muted .reveal');
+  var io2 = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io2.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  v2els.forEach(function(el) { io2.observe(el); });
+})();
+
+// ── Program filter tabs ──────────────────────────────────────────────────
+(function() {
+  var filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+  if (!filterBtns.length) return;
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      document.querySelectorAll('.program-card[data-category]').forEach(function(card) {
+        var show = filter === 'all' || card.dataset.category === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) {
+          card.classList.remove('revealed');
+          setTimeout(function() { card.classList.add('revealed'); }, 10);
+        }
+      });
+    });
+  });
+})();
+
+// ── Program search ───────────────────────────────────────────────────────
+(function() {
+  var searchInput = document.getElementById('programSearch');
+  if (!searchInput) return;
+  searchInput.addEventListener('input', function() {
+    var q = searchInput.value.toLowerCase().trim();
+    document.querySelectorAll('.program-card').forEach(function(card) {
+      var name = card.querySelector('.program-name') ? card.querySelector('.program-name').textContent.toLowerCase() : '';
+      card.style.display = (!q || name.includes(q)) ? '' : 'none';
+    });
+  });
+})();
+
+// ── View toggle (grid / list) ────────────────────────────────────────────
+(function() {
+  var btns = document.querySelectorAll('.view-btn');
+  var grid = document.querySelector('.programs-grid');
+  if (!btns.length || !grid) return;
+  btns[0].addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    grid.style.gridTemplateColumns = '';
+  });
+  btns[1].addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    grid.style.gridTemplateColumns = '1fr';
+  });
+})();
+
+// ── Translations handled by i18n.js ──────────────────────────────────────
+</script>
+
+{% endblock %}

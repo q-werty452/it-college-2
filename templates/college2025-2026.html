@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+
+
+
+<!-- ===== ЗАГОЛОВОК СТРАНИЦЫ ===== -->
+<div class="page-header">
+  <h1>{% trans "Приём 2025/2026" %}</h1>
+  <p>{% trans "Правила и условия приёма на 2025/2026 учебный год" %}</p>
+  <div class="breadcrumb"><a href="{% url 'home-url' %}">{% trans "Главная" %}</a> / <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a> / {% trans "Приём 2025/2026" %}</div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="overflow:auto;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+        <tr>
+          <th>{% trans "Специальность" %}</th>
+          <th style="text-align:center">{% trans "Бюджет" %}</th>
+          <th style="text-align:center">{% trans "Платно" %}</th>
+          <th style="text-align:center">{% trans "Срок" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in programs %}
+        <tr>
+          <td>
+            <strong>{{ item.name }}</strong>
+          </td>
+          <td style="text-align:center">{% if item.has_budget %}{{ item.budget_seats }}{% else %}—{% endif %}</td>
+          <td style="text-align:center">{{ item.paid_seats }}</td>
+          <td style="text-align:center">{{ item.duration_years }} {% trans "года" %} {{ item.duration_months }} {% trans "мес." %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div style="background:var(--light);border-radius:var(--radius);padding:32px" class="reveal">
+  <h3 style="margin-bottom:16px">{% trans "Сроки приёма документов" %}</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px">
+    {% for stage in stages %}
+    <div style="background:#fff;border-radius:10px;padding:16px">
+      <div style="font-weight:700;color:var(--primary);font-size:13px;
+                  text-transform:uppercase;letter-spacing:.05em">
+        {{ stage.title }}
+      </div>
+      <div style="font-weight:700;margin-top:4px">{{ stage.date_range }}</div>
+    </div>
+    {% empty %}
+    <p style="color:var(--gray)">{% trans "Сроки приёма будут объявлены позже" %}</p>
+    {% endfor %}
+  </div>
+</div>
+    <div class="flex-center mt-32">
+      <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-lg">{% trans "Подать документы" %}</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<script>
+
+// ── Scroll reveal ────────────────────────────────────────────────────────
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el) {
+  io.observe(el);
+});
+
+// ── FAQ ──────────────────────────────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(function(q) {
+  q.onclick = function() { q.closest('.faq-item').classList.toggle('open'); };
+});
+
+
+
+
+function setLang(lang) {
+  // Update switcher UI
+  var flagEl = document.getElementById('lang-flag');
+  var codeEl = document.getElementById('lang-code');
+  if (flagEl) flagEl.textContent = FLAGS[lang];
+  if (codeEl) codeEl.textContent = CODES[lang];
+  document.querySelectorAll('.lang-option').forEach(function(o) {
+    o.classList.toggle('active', o.dataset.lang === lang);
+  });
+  if (ls) ls.classList.remove('open');
+
+  // Animate: fade out main content
+  var sections = document.querySelectorAll('section, .page-header, .quick-bar, footer');
+  sections.forEach(function(s) { s.classList.add('lang-fade'); });
+
+  setTimeout(function() {
+    // Apply translations
+    var dict = T[lang] || T.ru;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    // Fade in
+    sections.forEach(function(s) {
+      s.classList.remove('lang-fade');
+      s.classList.add('lang-fade-in');
+      setTimeout(function() { s.classList.remove('lang-fade-in'); }, 400);
+    });
+    // Save
+    try { localStorage.setItem('itcollege_lang', lang); } catch(e){}
+  }, 250);
+}
+
+// Restore saved language
+(function() {
+  try {
+    var saved = localStorage.getItem('itcollege_lang');
+    if (saved && saved !== 'ru' && T[saved]) setLang(saved);
+  } catch(e) {}
+})();
+</script>
+
+{% endblock %}

@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<!-- ─── Kopiya content ─────────────────────────────────────────────── -->
+<div class="pgm-wrap">
+<main>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a>
+        <span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">{% trans "Выпускники" %}</span>
+      </nav>
+      <h1>{% trans "Наши выпускники" %}</h1>
+      <p>{% blocktrans count count=graduates_count %}
+Более {{ count }} специалист
+{% plural %}
+Более {{ count }} специалистов
+{% endblocktrans %}</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="stat-number">
+            <span data-counter="{{ graduates_count }}" data-suffix="+">
+              {{ graduates_count }}+
+            </span>
+          </div>
+          <div class="stat-label">{% trans "выпускников" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="stat-number">
+            <span data-counter="{{ stats.employment_percent }}" data-suffix="%">
+              {{ stats.employment_percent }}%
+            </span>
+          </div>
+          <div class="stat-label">{% trans "трудоустройство" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="stat-number">
+            <span data-counter="{{ stats.countries_count }}" data-suffix="+">
+              {{ stats.countries_count }}+
+            </span>
+          </div>
+          <div class="stat-label">{% trans "стран мира" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <div class="stat-number">
+            <span data-counter="{{ stats.partners_count }}" data-suffix="+">
+              {{ stats.partners_count }}+
+            </span>
+          </div>
+          <div class="stat-label">{% trans "компаний-партнёров" %}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Graduates Grid -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">{% trans "Истории успеха" %}</div>
+        <h2 class="section-title">{% trans "Наши выпускники" %}</h2>
+        <p class="section-subtitle">{% trans "Реальные люди, реальные истории успеха из IT COLLEGE" %}</p>
+      </div>
+      <div class="graduates-grid">
+        {% for item in graduates %}
+<div class="graduate-card reveal reveal-up"
+     style="cursor:pointer;"
+     data-id="{{ item.id }}"
+     data-name="{{ item.name }}"
+     data-release="{{ item.release }}"
+     data-program="{{ item.program.name }}"
+     data-story="{{ item.Story|escapejs }}"
+     data-description="{{ item.full_description|safe }}"
+     data-achievements="{{ item.Achievements }}"
+     data-image="{% if item.image %}{{ item.image.url }}{% endif %}"
+     data-gallery="{% for img in item.graduategallery_set.all %}{{ img.image.url }},{% endfor %}">
+
+
+  {% if item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.name }}"
+         class="grad-photo" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 14px;">
+  {% else %}
+    <div class="graduate-avatar avatar-blue">
+      {{ item.name|slice:":1" }}
+    </div>
+  {% endif %}
+  <div class="graduate-name">{{ item.name }}</div>
+  <div class="graduate-year">{{ item.release }}</div>
+  <div class="graduate-program">{{ item.program.name }}</div>
+  <p class="graduate-story">{{ item.short_description }}</p>
+</div>
+{% endfor %}
+      </div>
+    </div>
+    {% if graduates.has_other_pages %}
+<div class="pagination" style="margin-top:40px;">
+
+  {% if graduates.has_previous %}
+    <a href="?page={{ graduates.previous_page_number }}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+  {% for num in graduates.paginator.page_range %}
+    {% if graduates.number == num %}
+      <button class="page-btn active">{{ num }}</button>
+    {% elif num == 1 or num == graduates.paginator.num_pages %}
+      <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+    {% elif num >= graduates.number|add:"-2" and num <= graduates.number|add:"2" %}
+      <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+    {% elif num == graduates.number|add:"-3" or num == graduates.number|add:"3" %}
+      <span class="page-btn" style="pointer-events:none">…</span>
+    {% endif %}
+  {% endfor %}
+
+  {% if graduates.has_next %}
+    <a href="?page={{ graduates.next_page_number }}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+</div>
+{% endif %}
+  </section>
+
+
+  <!-- Partner Companies -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">{% trans "Партнёры" %}</div>
+        <h2 class="section-title">{% trans "Где работают наши выпускники" %}</h2>
+        <p class="section-subtitle" >{% trans "Ведущие компании Кыргызстана и мира выбирают наших выпускников" %}</p>
+      </div>
+      <div class="features-grid">
+        {% for item in partners %}
+        <div class="feature-card reveal reveal-up" style="text-align:left;">
+          <div class="feature-icon" style="margin:0 0 16px;">
+             <i class="{{ item.icon_class }}" style="font-size: 26px;" ></i>
+          </div>
+
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>{% trans "Станьте частью нашей истории успеха" %}</h2>
+      <p >{% trans "Поступайте в IT COLLEGE и через несколько лет вы тоже будете вдохновлять следующее поколение" %}</p>
+      <div class="cta-btns">
+        <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-lg">{% trans "Поступить сейчас" %}</a>
+        <a href="{% url 'spec-url' %}" class="btn btn-secondary btn-lg">{% trans "Программы обучения" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Graduate Modal -->
+  <div class="modal-overlay" id="grad-modal" role="dialog" aria-modal="true">
+    <div class="modal-box" id="grad-modal-box">
+      <button class="modal-close" id="grad-modal-close" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-grad-header" id="grad-modal-header">
+        <div id="grad-modal-avatar-wrap"></div>
+        <div class="modal-grad-info">
+          <h2 id="grad-modal-name"></h2>
+          <div class="modal-grad-year" id="grad-modal-year"></div>
+          <span class="modal-grad-badge" id="grad-modal-program"></span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-label">{% trans "История" %}</div>
+        <blockquote class="modal-quote" id="grad-modal-quote"></blockquote>
+        <p class="modal-extended" id="grad-modal-extended"></p>
+        <div class="modal-label">{% trans "Достижения" %}</div>
+        <div class="modal-tags" id="grad-modal-tags"></div>
+        <div class="modal-gallery-label">{% trans "Фотографии" %}</div>
+        <div class="modal-gallery" id="grad-modal-gallery"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div><!-- end .pgm-wrap -->
+
+<!-- ─── v2 Footer ─────────────────────────────────────────────────── -->
+
+<script>
+
+// ── Reveal animations ────────────────────────────────────────────────────
+(function() {
+  var els = document.querySelectorAll('.pgm-wrap .reveal, .pgm-wrap .reveal-up, .pgm-wrap .reveal-left, .pgm-wrap .reveal-right');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+// ── Graduate modal ───────────────────────────────────────────────────────
+document.querySelectorAll('.graduate-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var name         = card.dataset.name;
+    var release      = card.dataset.release;
+    var program      = card.dataset.program;
+    var story        = card.dataset.story;
+    var description  = card.dataset.description;
+    var achievements = card.dataset.achievements;
+    var image        = card.dataset.image;
+    var gallery      = card.dataset.gallery ? card.dataset.gallery.split(',') : [];
+
+    // Аватар
+    var avatarWrap = document.getElementById('grad-modal-avatar-wrap');
+    if (image) {
+      avatarWrap.innerHTML = '<img src="' + image + '" alt="' + name + '" style="width:84px;height:84px;border-radius:50%;object-fit:cover;box-shadow:0 8px 28px rgba(11,83,148,0.3);">';
+    } else {
+      avatarWrap.innerHTML = '<div class="modal-grad-avatar avatar-blue">' + name.charAt(0) + '</div>';
+    }
+
+    document.getElementById('grad-modal-name').textContent    = name;
+    document.getElementById('grad-modal-year').textContent    = release;
+    document.getElementById('grad-modal-program').textContent = program;
+    document.getElementById('grad-modal-quote').textContent   = story;
+    document.getElementById('grad-modal-extended').innerHTML  = description;
+
+    // Достижения
+    var tagsEl = document.getElementById('grad-modal-tags');
+    tagsEl.innerHTML = achievements
+      ? achievements.split(',').map(function(t) {
+          return '<span class="modal-tag">' + t.trim() + '</span>';
+        }).join('')
+      : '';
+
+    // Галерея
+    var galleryEl = document.getElementById('grad-modal-gallery');
+    galleryEl.innerHTML = '';
+    gallery.forEach(function(url) {
+      if (url.trim()) {
+        galleryEl.innerHTML += '<div class="modal-gallery-item">' +
+          '<img src="' + url.trim() + '" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">' +
+          '</div>';
+      }
+    });
+
+    document.body.style.overflow = 'hidden';
+    document.getElementById('grad-modal').classList.add('open');
+  });
+});
+
+// Закрытие модалки
+document.getElementById('grad-modal-close').onclick = function() {
+  document.getElementById('grad-modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
+document.getElementById('grad-modal').onclick = function(e) {
+  if (e.target.id === 'grad-modal') {
+    document.getElementById('grad-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('grad-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ── Counter animation ────────────────────────────────────────────────────
+(function() {
+  function animateCounter(el, target, suffix, duration) {
+    var start = performance.now();
+    function update(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(update);
+  }
+  var counters = document.querySelectorAll('[data-counter]');
+  if (!counters.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el     = entry.target;
+        var target = parseInt(el.dataset.counter, 10);
+        var suffix = el.dataset.suffix || '';
+        animateCounter(el, target, suffix, 1800);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c) { io.observe(c); });
+})();
+</script>
+{% endblock %}

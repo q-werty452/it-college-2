@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<!-- ─── Kopiya content ─────────────────────────────────────────────── -->
+<div class="pgm-wrap">
+<main>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="{% trans 'Навигационная цепочка' %}">
+        <a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-item active">{% trans "Абитуриентам" %}</span>
+      </nav>
+      <h1>{% trans "Абитуриентам" %}</h1>
+      <p>{% trans "Всё что нужно знать о поступлении в IT COLLEGE Кыргызстана" %}</p>
+    </div>
+  </section>
+
+  <!-- Advantages -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">{% trans "Почему мы?" %}</div>
+        <h2 class="section-title">{% trans "Преимущества IT COLLEGE" %}</h2>
+      </div>
+      <div class="advantages-grid">
+        <div class="advantage-card reveal reveal-up">
+          <div class="advantage-num">3</div>
+          <h4>{% trans "Диплома одновременно" %}</h4>
+          <p>{% trans "Российский, кыргызский и международный сертификат за годы обучения" %}</p>
+        </div>
+        <div class="advantage-card reveal reveal-up">
+          <div class="advantage-num">{{ stats.employment_percent }}%</div>
+          <h4>{% trans "Трудоустройство" %}</h4>
+          <p>{% trans "Наших выпускников находят работу в течение 3 месяцев после окончания" %}</p>
+        </div>
+        <div class="advantage-card reveal reveal-up">
+          <div class="advantage-num">{{ total_budget }}</div>
+          <h4>{% trans "Льготных мест" %}</h4>
+          <p>{% trans "Ежегодно выделяются бюджетные места для лучших абитуриентов" %}</p>
+        </div>
+        <div class="advantage-card reveal reveal-up">
+          <div class="advantage-num">{{ stats.years_of_experience }}+</div>
+          <h4>{% trans "Лет опыта" %} </h4>
+         <p>
+          {% blocktrans with years=stats.years_of_experience %}
+          Более {{ years }} лет IT COLLEGE готовит востребованных специалистов
+          {% endblocktrans %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="stat-number">
+            <span data-counter="{{ graduates_count }}" data-suffix="+">{{ graduates_count }}+</span>
+          </div>
+          <div class="stat-label">{% trans "выпускников" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="stat-number"><span data-counter="{{ stats.partners_count }}" data-suffix="+">{{ stats.partners_count }}+</span></div>
+          <div class="stat-label">{% trans "партнёров" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="stat-number"><span data-counter="{{ stats.laboratories_count }}" data-suffix="">{{ stats.laboratories_count }}</span></div>
+          <div class="stat-label">{% trans "лабораторий" %}</div>
+        </div>
+        <div class="stat-item reveal reveal-up">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="stat-number"><span data-counter="{{ stats.countries_count }}" data-suffix="+">{{ stats.countries_count }}+</span></div>
+          <div class="stat-label">{% trans "стран-партнёров" %}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Admission Steps -->
+<section class="steps-section">
+  <canvas class="steps-canvas" id="steps-canvas"></canvas>
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="tag">{% trans "Поступление" %}</div>
+      <h2 class="section-title" style="margin-top:12px">{% trans "Как поступить" %}?</h2>
+
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal delay-1">
+        <div class="step-icon-wrap">
+          <span class="step-num">1</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h4>{% trans "Выбор программы" %}</h4>
+        <p>{% trans "Изучите все специальности и выберите подходящую" %}</p>
+      </div>
+      <div class="step-card reveal delay-2">
+        <div class="step-icon-wrap">
+          <span class="step-num">2</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h4>{% trans "Сбор документов" %}</h4>
+        <p>{% trans "Подготовьте все необходимые документы по списку" %}</p>
+      </div>
+      <div class="step-card reveal delay-3">
+        <div class="step-icon-wrap">
+          <span class="step-num">3</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+        </div>
+        <h4>{% trans "Подача заявки" %}</h4>
+        <p>{% trans "Заполните онлайн-форму или принесите документы лично" %}</p>
+      </div>
+      <div class="step-card reveal delay-4">
+        <div class="step-icon-wrap">
+          <span class="step-num">4</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4>{% trans "Зачисление" %}</h4>
+        <p>{% trans "Получите приказ о зачислении и начните учёбу" %}!</p>
+      </div>
+    </div>
+    <div class="steps-cta">
+      <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-lg" style="background:#fff;color:var(--primary)">{% trans "Подать документы" %}</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- Documents -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">{% trans "Документы" %}</div>
+        <h2 class="section-title">{% trans "Необходимые документы" %}</h2>
+        <p class="section-subtitle">{% trans "Подготовьте следующие документы для поступления в IT COLLEGE" %}</p>
+      </div>
+      <div class="docs-grid">
+        {% for doc in documents %}
+      <div class="doc-item reveal {% cycle 'reveal-left' 'reveal-right' %}">
+        <div class="doc-icon">
+          {% if doc.icon_svg %}
+            <img src="{{ doc.icon_svg.url }}" alt="{{ doc.name }}">
+            {% else %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/></svg>{% endif %}
+          </div>
+          <div class="doc-text"><h4>{{ doc.title }}</h4><p>{{ doc.description }}</p></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Budget places table -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">{% trans "Финансирование" %}</div>
+        <h2 class="section-title">{% trans "Льготные места 2025/2026" %}</h2>
+        <p class="section-subtitle">{% trans "Количество бюджетных и платных мест по специальностям" %}</p>
+      </div>
+      <div class="table-wrapper reveal reveal-up">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "Специальность" %}</th>
+              <th>{% trans "Форма обучения" %}</th>
+              <th>{% trans "Срок" %}</th>
+              <th>{% trans "Льгот" %}</th>
+              <th>{% trans "Коммерция" %}</th>
+              <th>{% trans "Стоимость (год)" %}</th>
+              <th>{% trans "Статус" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in programs %}
+            <tr>
+              <td><strong>{{ item.name}}</strong></td>
+              <td>{{ item.get_study_form_display }}</td>
+              <td>
+                {{ item.duration_years }} {% trans "г." %}
+                {{ item.duration_months }} {% trans "мес." %}
+              </td>
+              <td>{% if item.has_budget %}{{ item.budget_seats }}{% else %}—{% endif %}</td>
+              <td>{{ item.paid_seats }}</td>
+              <td>{{ item.price_per_year }} {% trans "сом" %}</td>
+              <td>
+
+                {% if item.status == 'available' %}
+                  <span class="status-badge status-available">{% trans "Есть места" %}</span>
+                {% elif item.status == 'few' %}
+                  <span class="status-badge status-few">{% trans "Мало мест" %}</span>
+                {% elif item.status == 'soon' %}
+                  <span class="status-badge status-soon">{% trans "Скоро" %}</span>
+                {% elif item.status == 'closed' %}
+                  <span class="status-badge status-closed">{% trans "Приём закрыт" %}</span>
+                {% endif %}
+
+              </td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Preview -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">{% trans "Частые вопросы" %}</h2>
+      </div>
+      <div class="accordion" style="max-width:760px;margin:0 auto;">
+        {% for item in faqs %}
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-question">{{ item.question }}</span>
+            <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">{{ item.content|safe }}</div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+      <div class="section-cta">
+        <a href="{% url 'faqs-url' %}" class="btn btn-blue">{% trans "Все вопросы и ответы" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>{% trans "Готов подать документы" %}?</h2>
+      <p>{% trans "Начни своё путешествие в мир IT уже сегодня" %}!</p>
+      <div class="cta-btns">
+        <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-lg" >{% trans "Подать документы онлайн" %}</a>
+        <a href="{% url 'contact-url' %}" class="btn btn-secondary btn-lg">{% trans "Задать вопрос" %}</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div><!-- end .pgm-wrap -->
+
+<!-- ─── v2 Footer ─────────────────────────────────────────────────── -->
+
+
+
+
+
+
+
+<script>
+// ── Reveal animations (kopiya — .revealed) ───────────────────────────────
+(function() {
+  var els = document.querySelectorAll('.pgm-wrap .reveal, .pgm-wrap .reveal-up, .pgm-wrap .reveal-left, .pgm-wrap .reveal-right');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+// ── Counter animation (kopiya) ───────────────────────────────────────────
+(function() {
+  function animateCounter(el, target, suffix, duration) {
+    var start = performance.now();
+    function update(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(update);
+  }
+  var counters = document.querySelectorAll('[data-counter]');
+  if (!counters.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el     = entry.target;
+        var target = parseInt(el.dataset.counter, 10);
+        var suffix = el.dataset.suffix || '';
+        animateCounter(el, target, suffix, 1800);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c) { io.observe(c); });
+})();
+
+// ── Accordion (kopiya) ───────────────────────────────────────────────────
+(function() {
+  var items = document.querySelectorAll('.pgm-wrap .accordion-item');
+  if (!items.length) return;
+  items.forEach(function(item) {
+    var trigger = item.querySelector('.accordion-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function() {
+      var isOpen = item.classList.contains('open');
+      items.forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+})();
+
+// ── Translations handled by i18n.js ──────────────────────────────────────
+</script>
+
+{% endblock %}

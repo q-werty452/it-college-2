@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<!-- ─── Kopiya content ─────────────────────────────────────────────── -->
+<div class="pgm-wrap">
+<main>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">{% trans "Новости" %}</span></nav>
+      <h1>{% trans "Новости" %}</h1>
+      <p>{% trans "Актуальные события, достижения и объявления IT COLLEGE" %}</p>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section bg-light">
+    <div class="container">
+
+      <!-- Filter -->
+      <div class="filter-bar">
+
+  <!-- КНОПКА ВСЕ -->
+  <a href="?" class="filter-btn {% if not request.GET.category %}active{% endif %}">
+    {% trans "Все" %}
+  </a>
+
+  <!-- КАТЕГОРИИ -->
+  {% for item in news_category %}
+    <a href="?category={{ item.id }}"
+       class="filter-btn {% if request.GET.category == item.id|stringformat:'s' %}active{% endif %}">
+       {{ item.title }}
+    </a>
+  {% endfor %}
+</div>
+
+      <!-- News Grid -->
+        <div class="news-grid">
+  {% for item in news %}
+  <div class="news-card reveal reveal-up"
+       style="cursor:pointer;"
+       data-id="{{ item.id }}"
+       data-title="{{ item.title }}"
+       data-text="{{ item.text|escapejs }}"
+       data-date="{{ item.created_at }}"
+       data-category="{{ item.category.title }}"
+       data-image="{% if item.image %}{{ item.image.url }}{% endif %}"
+       data-gallery="{% for img in item.gallery.all %}{{ img.image.url }},{% endfor %}">
+
+    <div class="news-img">
+      {% if item.image %}
+        <img src="{{ item.image.url }}" alt="">
+      {% endif %}
+      <span class="news-category">{{ item.category.title }}</span>
+    </div>
+
+    <div class="news-body">
+      <div class="news-date">{{ item.created_at|date:"d.m.Y" }}</div>
+      <h4 class="news-title">{{ item.title }}</h4>
+      <p class="news-excerpt">{{ item.text|truncatewords:20|safe }}</p>
+      <span class="news-link">{% trans "Читать" %} →</span>
+    </div>
+
+  </div>
+          {% endfor %}
+
+</div>
+
+
+      <!-- Pagination -->
+      {% if news.has_other_pages %}
+<div class="pagination">
+
+  <!-- Кнопка "назад" -->
+  {% if news.has_previous %}
+    <a href="?page={{ news.previous_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+  <!-- Номера страниц -->
+  {% for num in news.paginator.page_range %}
+  {% if news.number == num %}
+    <button class="page-btn active">{{ num }}</button>
+  {% elif num == 1 or num == news.paginator.num_pages %}
+    <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+  {% elif num >= news.number|add:"-2" and num <= news.number|add:"2" %}
+    <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+  {% elif num == news.number|add:"-3" or num == news.number|add:"3" %}
+    <span class="page-btn" style="pointer-events:none">…</span>
+  {% endif %}
+{% endfor %}
+
+  <!-- Кнопка "вперёд" -->
+  {% if news.has_next %}
+    <a href="?page={{ news.next_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="page-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </a>
+  {% else %}
+    <button class="page-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  {% endif %}
+
+</div>
+{% endif %}
+    </div>
+  </section>
+
+  <!-- News Modal -->
+  <div class="modal-overlay" id="news-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="news-modal-close" aria-label="{% trans 'Закрыть' %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-news-banner" id="news-modal-banner">
+        <svg class="modal-news-banner-icon" id="news-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"></svg>
+        <div class="modal-news-banner-content">
+          <div class="modal-news-cat-badge" id="news-modal-cat"></div>
+          <div class="modal-news-htitle" id="news-modal-title"></div>
+          <div class="modal-news-hdate" id="news-modal-date"></div>
+        </div>
+      </div>
+      <div class="modal-news-body">
+        <div class="modal-news-text" id="news-modal-text"></div>
+        <div class="modal-gallery-label">{% trans "Фотографии" %}</div>
+        <div class="modal-gallery" id="news-modal-gallery"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>{% trans "Следите за жизнью колледжа" %}</h2>
+      <p>{% trans "Подпишитесь на наши социальные сети, чтобы не пропустить новости" %}</p>
+      <div class="cta-btns">
+        <a href="https://t.me/{{ contacts.telegram }}" target="_blank" class="btn btn-primary btn-lg">Telegram</a>
+        <a href="https://vk.com/{{ contacts.vkontakte }}" target="_blank" class="btn btn-secondary btn-lg">VK</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div><!-- end .pgm-wrap -->
+
+<!-- ─── v2 Footer ─────────────────────────────────────────────────── -->
+
+
+
+
+
+
+
+
+<script>
+// ── Reveal animations (kopiya — .revealed) ───────────────────────────────
+(function() {
+  var els = document.querySelectorAll('.pgm-wrap .reveal, .pgm-wrap .reveal-up, .pgm-wrap .reveal-left, .pgm-wrap .reveal-right');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+// ── News modal ───────────────────────────────────────────────────────────
+document.querySelectorAll('.news-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+
+    const title = card.dataset.title
+    const text = card.dataset.text
+    const date = card.dataset.date
+    const category = card.dataset.category
+    const image = card.dataset.image
+    const gallery = card.dataset.gallery ? card.dataset.gallery.split(',') : []
+
+    // заголовки
+    document.getElementById('news-modal-title').innerText = title
+    document.getElementById('news-modal-date').innerText = date
+    document.getElementById('news-modal-cat').innerText = category
+    document.getElementById('news-modal-text').innerHTML = text
+
+    // баннер (основная картинка)
+    const banner = document.getElementById('news-modal-banner')
+
+    if (image) {
+      banner.style.backgroundImage = `url(${image})`
+      banner.style.backgroundSize = 'cover'
+      banner.style.backgroundPosition = 'center'
+    } else {
+      banner.style.background = '#0B5394'
+    }
+
+    // галерея
+    const galleryEl = document.getElementById('news-modal-gallery')
+    galleryEl.innerHTML = ''
+
+    gallery.forEach(function(img) {
+      if (img.trim() !== '') {
+        galleryEl.innerHTML += `
+          <img src="${img}" style="width:120px;height:80px;object-fit:cover;border-radius:8px;">
+        `
+      }
+    })
+
+    // открыть модалку
+    document.getElementById('news-modal').classList.add('open')
+    document.body.style.overflow = 'hidden'
+  })
+})
+
+
+// закрытие
+document.getElementById('news-modal-close').onclick = function() {
+  document.getElementById('news-modal').classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+document.getElementById('news-modal').onclick = function(e) {
+  if (e.target.id === 'news-modal') {
+    document.getElementById('news-modal').classList.remove('open')
+    document.body.style.overflow = ''
+  }
+}
+</script>
+{% endblock %}

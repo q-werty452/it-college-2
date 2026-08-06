@@ -1,0 +1,230 @@
+  {% load static %}
+  {% load i18n %}
+
+  <!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IT COLLEGE</title>
+    <link rel="icon" href="{% static 'img/favicon-globe.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/spec-programs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/abitur-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sotrudniki.css' %}">
+    <script src="{% static 'js/i18n.js' %}"></script>
+    <script src="{% static 'js/sotrudniki.js' %}"></script>
+
+  </head>
+  <body>
+
+  <div id="progress-bar"></div>
+
+
+
+
+
+  <!-- ===== НАВИГАЦИЯ ===== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="{% url 'home-url' %}" class="nav-logo">
+        <img src="{% static 'img/favicon.png' %}" alt="IT COLLEGE" width="110" height="38" style="height:38px;width:auto;display:block">
+      </a>
+      <div class="nav-links">
+              <div class="nav-item">
+                <a href="{% url 'abiturientam-url' %}" class="nav-link">{% trans "Абитуриентам" %} <span class="arrow">▾</span></a>
+                <div class="nav-dropdown">
+                  <a href="{% url 'abiturientam-url' %}">{% trans "Главная абитуриента" %}</a>
+                  <a href="{% url 'open-day-url' %}">{% trans "День открытых дверей" %}</a>
+                  <a href="https://2020.edu.gov.kg/">{% trans "Приёмная комиссия" %}</a>
+                  <a href="{% url 'budget-url' %}">{% trans "Бюджетные места" %}</a>
+                  <a href="{% url 'college-url' %}">{% trans "Приём 2025/26" %}</a>
+                  <a href="{% url 'perevod-url' %}">{% trans "Перевод из другого учебного заведения" %}</a>
+                  <a href="{% url 'stoimost-url' %}">{% trans "Стоимость обучения" %}</a>
+                  <a href="{% url 'submit-document-url' %}">{% trans "Подать документы онлайн" %}</a>
+                </div>
+              </div>
+        <div class="nav-item">
+          <a href="{% url 'spec-url' %}" class="nav-link">{% trans "Программы" %}</a>
+      </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link" >{% trans "Сотрудники" %} <span class="arrow">▾</span></a>
+          <div class="nav-dropdown"><a href="{% url 'graduates-url' %}">{% trans "Выпускники" %}</a>
+            <a href="{% url 'news-url' %}">{% trans "Новости" %}</a>
+            <a href="{% url 'director-url' %}">{% trans "Директор" %}</a>
+            <a href="{% url 'sotrudniki-url' %}">{% trans "Сотрудники" %}</a>
+            <a href="{% url 'contact-url' %}">{% trans "Контакты" %}</a>
+            <a href="{% url 'faqs-url' %}">{% trans "Вопросы и ответы" %}</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="{% url 'news-url' %}" class="nav-link">{% trans "Новости" %}</a>
+        </div>
+        <div class="nav-item">
+          <a href="{% url 'contact-url' %}" class="nav-link">{% trans "Контакты" %}</a>
+        </div>
+      </div>
+      {% get_current_language as LANGUAGE_CODE %}
+
+  <form action="{% url 'set_language' %}" method="post" class="lang-switcher">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.path|slice:'3:' }}">
+
+    <button type="submit" name="language" value="ru"
+      class="lang-btn {% if LANGUAGE_CODE == 'ru' %}active{% endif %}">RU</button>
+    <button type="submit" name="language" value="ky"
+      class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}">KY</button>
+    <button type="submit" name="language" value="en"
+      class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+  </form>
+      <div class="nav-btns">
+        <a href="{% url 'submit-document-url' %}" class="btn btn-primary btn-sm" >{% trans "Поступить" %}</a>
+        <a href="http://ebilim.itcollege.kg/Account/Login?ReturnUrl=%2F" target="_blank" class="btn btn-ebilim btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>E-bilim</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <div class="nav-mobile-inner">
+      <button class="nav-mobile-close" id="nav-mobile-close">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div style="margin-top:40px">
+        <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "Абитуриентам" %}</div>
+          <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a>
+          <a href="{% url 'abiturientam-url' %}" class="sub">{% trans "Главная абитуриента" %}</a>
+          <a href="{% url 'open-day-url' %}" class="sub">{% trans "День открытых дверей" %}</a>
+          <a href="https://2020.edu.gov.kg/" class="sub">{% trans "Приёмная комиссия" %}</a>
+          <a href="{% url 'budget-url' %}" class="sub">{% trans "Бюджетные места" %}</a>
+          <a href="{% url 'college-url' %}" class="sub">{% trans "Приём 2025/26" %}</a>
+          <a href="{% url 'perevod-url' %}" class="sub">{% trans "Перевод из другого учебного заведения" %}</a>
+          <a href="{% url 'stoimost-url' %}" class="sub">{% trans "Стоимость обучения" %}</a>
+          <a href="{% url 'submit-document-url' %}" class="sub">{% trans "Подать документы онлайн" %}</a>
+        </div>
+        <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "Программы" %}</div>
+          <a href="{% url 'spec-url' %}">{% trans "Программы" %}</a>
+        </div>
+        <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "Студентам" %}</div>
+          <a href="#">{% trans "Студентам" %}</a>
+          <a href="{% url 'graduates-url' %}" class="sub">{% trans "Выпускники" %}</a>
+          <a href="{% url 'news-url' %}" class="sub">{% trans "Новости" %}</a>
+          <a href="{% url 'director-url' %}" class="sub">{% trans "Директор" %}</a>
+          <a href="{% url 'sotrudniki-url' %}" class="sub">{% trans "Сотрудники" %}</a>
+          <a href="{% url 'contact-url' %}" class="sub">{% trans "Контакты" %}</a>
+          <a href="{% url 'faqs-url' %}" class="sub">{% trans "Вопросы и ответы" %}</a>
+        </div>
+        <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "Новости" %}</div>
+          <a href="{% url 'news-url' %}">{% trans "Новости" %}</a>
+        </div>
+        <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "Контакты" %}</div>
+          <a href="{% url 'contact-url' %}">{% trans "Контакты" %}</a>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;padding:0 4px;">
+          <a href="{% url 'submit-document-url' %}" class="btn btn-primary">{% trans "Поступить" %}</a>
+          <a href="http://ebilim.itcollege.kg/Account/Login?ReturnUrl=%2F" target="_blank" class="btn btn-ebilim">E-bilim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="btt" aria-label="Вверх">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+      <polyline points="5 12 12 5 19 12"/>
+    </svg>
+  </button>
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="{% static 'img/favicon.png' %}" alt="IT COLLEGE" style="height:32px;width:auto;filter:brightness(10)">
+        </div>
+        <p>{% trans "Профессиональное IT-образование в Кыргызстане. Диплом государственного образца. Бюджетные места" %}.</p>
+        <p style="margin-top:8px;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>{{ contacts.address }}</p>
+        <p style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> {{ contacts.phone_admission }}</p>
+        <p style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg> {{ contacts.email }}</p><div class="footer-socials">
+    {% for social in socials %}
+      <a href="{{ social.url }}" target="_blank" class="social-btn">
+        <i class="{{ social.icon_class }}"></i>
+      </a>
+    {% endfor %}
+  </div>
+      </div>
+      <div>
+        <h4>Абитуриентам</h4>
+        <ul>
+          <li><a href="{% url 'abiturientam-url' %}">{% trans "Информация" %}</a></li>
+          <li><a href="{% url 'open-day-url' %}">{% trans "День открытых дверей" %}</a></li>
+          <li><a href="https://2020.edu.gov.kg/">{% trans "Приёмная комиссия" %}</a></li>
+          <li><a href="{% url 'budget-url' %}">{% trans "Бюджетные места" %}</a></li>
+          <li><a href="{% url 'stoimost-url' %}">{% trans "Стоимость обучения" %}</a></li>
+          <li><a href="{% url 'submit-document-url' %}">{% trans "Подать документы" %}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Колледж</h4>
+        <ul>
+          <li><a href="{% url 'spec-url' %}">{% trans "Программы обучения" %}</a></li>
+          <li><a href="{% url 'graduates-url' %}">{% trans "Выпускники" %}</a></li>
+          <li><a href="{% url 'news-url' %}">{% trans "Новости" %}</a></li>
+          <li><a href="{% url 'director-url' %}">{% trans "Руководство" %}</a></li>
+          <li><a href="{% url 'faqs-url' %}">{% trans "FAQ" %}</a></li>
+          <li><a href="{% url 'contact-url' %}">{% trans "Контакты" %}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{% trans "Контакты" %}</h4>
+        <ul>
+          <li>
+            <a href="https://wa.me/{{ contacts.phone_admission|cut:'+'|cut:' ' }}" target="_blank">
+              {{ contacts.phone_admission }}
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/{{ contacts.phone_students|cut:'+'|cut:' ' }}" target="_blank">
+              {{ contacts.phone_students }}
+            </a>
+          </li>
+          <li>
+          <a href="mailto:{{ contacts.email }}">
+            {{ contacts.email }}
+            </a>
+            </li>
+          <li>
+          <a href="https://t.me/{{ contacts.telegram }}" target="_blank">Telegram</a></li>
+          <li><a href="{% url 'contact-url' %}">{% trans "Задать вопрос" %}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>{% trans "© 2026 IT COLLEGE — Все права защищены" %}</span>
+      <span>{% trans "Разработано IT-RUN Studio" %}</span>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/submit-documents.js' %}"></script>
+
+  </body>
+  </html>

@@ -1,0 +1,524 @@
+/* ============================================================
+   IT-College — кастомные стили для Jazzmin Admin
+   ============================================================ */
+
+
+/* ── LOGIN PAGE ─────────────────────────────────────────── */
+
+.login-page {
+    background: #1a1e2e !important;
+    background-image: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+}
+
+/* Скрываем большую фоновую картинку */
+.login-page .login-logo-img-half,
+.login-page [class*="login-logo-img"],
+.login-page .login-card > img:not(.brand-image) {
+    display: none !important;
+}
+
+/* Убираем inline background-image который Jazzmin вставляет */
+.login-page[style*="background"] {
+    background-image: none !important;
+}
+
+/* Контейнер формы */
+.login-page .login-box {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+}
+
+.login-page .login-card-body {
+    background: #252a3d !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+    padding: 32px !important;
+}
+
+/* Иконка/логотип вверху формы */
+.login-page .login-logo {
+    text-align: center !important;
+    margin-bottom: 16px !important;
+}
+
+.login-page .login-logo img {
+    display: block !important;
+    width: 200px !important;  /* было 64px */
+    height: auto !important;
+    margin: 0 auto 16px !important;
+}
+
+.login-page .login-logo a {
+    color: #ffffff !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+/* Скрываем текст под логотипом */
+.login-page .login-box-msg {
+    display: none !important;
+}
+
+/* Поля ввода */
+.login-page .form-control {
+    background: #1a1e2e !important;
+    border: 1px solid #3a3f5c !important;
+    color: #e0e0f0 !important;
+    border-radius: 8px !important;
+}
+
+.login-page .form-control:focus {
+    border-color: #4e6ef2 !important;
+    box-shadow: 0 0 0 3px rgba(78, 110, 242, 0.25) !important;
+}
+
+.login-page .form-control::placeholder {
+    color: #5f6d9e !important;
+}
+
+/* Иконки в полях */
+.login-page .input-group-text {
+    background: #1a1e2e !important;
+    border-color: #3a3f5c !important;
+    color: #7a84a8 !important;
+}
+
+/* Кнопка входа */
+.login-page .btn-primary {
+    background: linear-gradient(135deg, #4e6ef2, #3a56d4) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 10px 0 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: opacity 0.2s !important;
+    width: 100% !important;
+}
+
+.login-page .btn-primary:hover {
+    opacity: 0.9 !important;
+}
+
+/* Текст "Запомнить меня" */
+.login-page .icheck-primary label,
+.login-page .form-check-label {
+    color: #9da5c5 !important;
+}
+
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+
+.main-sidebar {
+    background: #1a1e2e !important;
+}
+
+.brand-link {
+    background: #141728 !important;
+    border-bottom: 1px solid #2a2f45 !important;
+}
+
+.brand-link .brand-text {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+}
+
+.nav-sidebar .nav-link {
+    color: #9da5c5 !important;
+    border-radius: 8px !important;
+    margin: 2px 8px !important;
+    transition: background 0.18s, color 0.18s !important;
+}
+
+.nav-sidebar .nav-link:hover,
+.nav-sidebar .nav-link:focus {
+    background: #2a2f45 !important;
+    color: #ffffff !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background: linear-gradient(135deg, #4e6ef2, #3a56d4) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(78, 110, 242, 0.35) !important;
+}
+
+.nav-sidebar .nav-icon {
+    color: #5f6d9e !important;
+}
+
+.nav-sidebar .nav-link.active .nav-icon,
+.nav-sidebar .nav-link:hover .nav-icon {
+    color: #ffffff !important;
+}
+
+.nav-sidebar .nav-header {
+    color: #4a5278 !important;
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    padding: 10px 16px 4px !important;
+}
+
+
+/* ── NAVBAR (TOP BAR) ────────────────────────────────────── */
+
+.main-header.navbar {
+    background: #141728 !important;
+    border-bottom: 1px solid #2a2f45 !important;
+}
+
+.main-header .nav-link,
+.main-header .navbar-nav .nav-link {
+    color: #9da5c5 !important;
+}
+
+.main-header .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar-search-block .form-control {
+    background: #1a1e2e !important;
+    border-color: #3a3f5c !important;
+    color: #e0e0f0 !important;
+}
+
+
+/* ── CONTENT AREA ────────────────────────────────────────── */
+
+.content-wrapper,
+.main-footer {
+    background: #f0f2f8 !important;
+}
+
+.card {
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    font-weight: 600 !important;
+}
+
+.submit-row input[type="submit"],
+.submit-row a.deletelink {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+
+/* ── TABLES ──────────────────────────────────────────────── */
+
+#result_list th {
+    background: transparent !important; /* убираем белый фон у заголовков */
+    color: #6b7280 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+#result_list td {
+    background: transparent !important; /* убираем белый фон у ячеек */
+}
+
+#result_list tr:hover td {
+    background: rgba(42, 47, 69, 0.2)
+}
+
+
+/* ── BREADCRUMBS ─────────────────────────────────────────── */
+
+.breadcrumb {
+    background: transparent !important;
+    padding-left: 0 !important;
+}
+
+.breadcrumb-item a {
+    color: #4e6ef2 !important;
+}
+
+
+/* ── MISC ────────────────────────────────────────────────── */
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1e2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a3f5c;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4e6ef2;
+}
+
+/* Показываем только первый логотип, остальные скрываем */
+.login-page .login-logo img:not(:first-child) {
+    display: none !important;
+}
+
+/* Или если дублируется сам блок .login-logo */
+.login-page .login-logo + .login-logo {
+    display: none !important;
+}
+/* ── USER DROPDOWN MENU ──────────────────────────────────── */
+
+.navbar-nav .dropdown-menu {
+    background: #1e2235 !important;
+    border: 1px solid #2a2f45 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+    padding: 6px !important;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #9da5c5 !important;
+    border-radius: 6px !important;
+    padding: 8px 14px !important;
+    font-size: 14px !important;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background: #2a2f45 !important;
+    color: #ffffff !important;
+}
+
+.navbar-nav .dropdown-menu .dropdown-header {
+    color: #4a5278 !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.navbar-nav .dropdown-menu .dropdown-divider {
+    border-color: #2a2f45 !important;
+}
+/* ── NAVBAR RIGHT BUTTONS ────────────────────────────────── */
+
+/* Кнопка пользователя и другие иконки справа */
+.main-header .navbar-nav > li > a,
+.main-header .navbar-nav .nav-item > .nav-link {
+    color: #9da5c5 !important;
+    background: transparent !important;
+}
+
+/* Аватар/буква пользователя */
+.main-header .navbar-nav .user-image,
+.main-header .navbar-nav .user-panel img,
+.main-header .navbar-nav > .nav-item > a > img {
+    border: 2px solid #4e6ef2 !important;
+}
+
+/* Кружок с буквой (если нет аватара) */
+.main-header .navbar-nav .nav-item .nav-link span.d-none,
+.main-header .navbar-nav .nav-item > a > span {
+    color: #ffffff !important;
+}
+
+/* Фон кнопки при hover */
+.main-header .navbar-nav .nav-item > .nav-link:hover {
+    background: #2a2f45 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+}
+
+/* Кнопка переключения языка */
+.main-header .navbar-nav .nav-item form button,
+.main-header .navbar-nav .nav-item .btn {
+    color: #9da5c5 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.main-header .navbar-nav .nav-item form button:hover {
+    color: #ffffff !important;
+}
+/* ── USER MENU BUTTON (правый верхний угол) ──────────────── */
+
+/* Иконка пользователя */
+.main-header .navbar-nav .nav-item > a[data-toggle="dropdown"],
+.main-header .navbar-nav .nav-item > a[data-bs-toggle="dropdown"] {
+    color: #9da5c5 !important;
+    background: transparent !important;
+}
+
+/* Текст рядом с иконкой */
+.main-header .navbar-nav .nav-item > a[data-toggle="dropdown"] i,
+.main-header .navbar-nav .nav-item > a[data-bs-toggle="dropdown"] i {
+    color: #9da5c5 !important;
+}
+
+.main-header .navbar-nav .nav-item > a[data-toggle="dropdown"]:hover,
+.main-header .navbar-nav .nav-item > a[data-bs-toggle="dropdown"]:hover {
+    color: #ffffff !important;
+    background: #2a2f45 !important;
+    border-radius: 8px !important;
+}
+/* ── LANGUAGE & USER BUTTONS (navbar right) ─────────────── */
+
+/* Кнопка выбора языка */
+.navbar-nav .nav-item .nav-link.btn[title="Choose language"] {
+    background: #2a2f45 !important;
+    color: #9da5c5 !important;
+    border-radius: 8px !important;
+    border: 1px solid #3a3f5c !important;
+}
+
+.navbar-nav .nav-item .nav-link.btn[title="Choose language"]:hover {
+    background: #3a3f5c !important;
+    color: #ffffff !important;
+}
+
+/* Кнопка пользователя (Temit) */
+.navbar-nav .nav-item .nav-link.btn[data-bs-toggle="dropdown"]:not([title="Choose language"]) {
+    background: #2a2f45 !important;
+    color: #9da5c5 !important;
+    border-radius: 8px !important;
+    border: 1px solid #3a3f5c !important;
+}
+
+.navbar-nav .nav-item .nav-link.btn[data-bs-toggle="dropdown"]:hover {
+    background: #3a3f5c !important;
+    color: #ffffff !important;
+}
+
+/* Иконки внутри кнопок */
+.navbar-nav .nav-item .nav-link.btn i {
+    color: inherit !important;
+}
+/* ── NAVBAR RIGHT BUTTONS — spacing ─────────────────────── */
+
+.navbar-nav.ms-auto .nav-item {
+    margin-left: 6px !important;
+}
+/* ── Убираем синюю линию сверху ──────────────────────────── */
+
+.main-header::before,
+.main-header::after,
+body::before,
+body::after {
+    display: none !important;
+}
+
+.navbar-progress,
+#nprogress .bar,
+#nprogress {
+    display: none !important;
+}
+/* ── Скрываем кнопку "Skip to navigation" ───────────────── */
+
+a[href="#navigation"],
+a[href="#content"],
+.skip-to-content,
+a.skip-link {
+    display: none !important;
+}
+/* ── Убираем белые линии у input в таблице ───────────────── */
+
+#result_list input,
+#result_list .form-control {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* при hover */
+#result_list input:hover,
+#result_list .form-control:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #3a3f5c !important; /* твой цвет */
+}
+
+/* при focus (самое важное) */
+#result_list input:focus,
+#result_list .form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #4e6ef2 !important; /* можно оставить красивый синий */
+}
+
+#result_list tr:hover td {
+    background: transparent !important; /* убираем подсветку */
+}
+
+#result_list input:hover,
+#result_list .form-control:hover {
+    border-color: inherit !important; /* оставляем текущий цвет */
+}
+/* Общий стиль для кнопок */
+.main-header .nav-link,
+.main-header .navbar-nav .nav-link {
+    color: #2a2f45 !important; /* тёмный цвет для светлой темы */
+}
+
+/* Для тёмной темы */
+body.sidebar-dark-primary .main-header .nav-link,
+body.sidebar-dark-primary .main-header .navbar-nav .nav-link {
+    color: #ffffff !important; /* белый цвет для тёмной темы */
+}
+
+/* Иконка "три линии" (бургер-меню) */
+.main-header .navbar-toggler {
+    color: #2a2f45 !important; /* тёмный для светлой темы */
+}
+
+body.sidebar-dark-primary .main-header .navbar-toggler {
+    color: #ffffff !important; /* белый для тёмной темы */
+}
+.main-header.navbar.navbar-light .nav-link {
+    color: #2a2f45 !important;
+}
+
+.main-header.navbar.navbar-dark .nav-link {
+    color: #ffffff !important;
+}
+.main-header.navbar.navbar-light .navbar-toggler {
+    color: #2a2f45 !important;
+}
+
+.main-header.navbar.navbar-dark .navbar-toggler {
+    color: #ffffff !important;
+}
+/* Светлая тема */
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-toggler {
+    color: #2a2f45 !important;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(42,47,69,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+/* Тёмная тема */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-toggler {
+    color: #ffffff !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+/* Hover эффект одинаковый для обеих тем */
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #4e6ef2 !important;
+}

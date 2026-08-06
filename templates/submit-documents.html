@@ -1,0 +1,713 @@
+ <style>
+    /* ============================================================
+       SUBMIT DOCUMENTS — page-specific styles
+       Colour tokens match style.css v2:
+         --primary: #0ea5e9  (sky blue)
+         --accent:  #f59e0b  (amber)
+         --dark:    #0c2340
+         --light:   #f0f9ff
+         --border:  #bae6fd
+    ============================================================ */
+
+
+    /* ---- Progress Bar ---- */
+    .prog-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .prog-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .prog-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--light);
+      border: 2px solid var(--border);
+      color: var(--gray);
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
+    }
+    .prog-step.active .prog-circle {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(14,165,233,.4);
+    }
+    .prog-step.done .prog-circle {
+      background: #4ade80;
+      border-color: #4ade80;
+      color: #fff;
+    }
+    .prog-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      white-space: nowrap;
+      transition: color .3s;
+    }
+    .prog-step.active .prog-label { color: var(--primary); }
+    .prog-step.done  .prog-label  { color: #16a34a; }
+    .prog-line {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      border-radius: 3px;
+      margin: 0 8px;
+      margin-bottom: 24px;
+      transition: background .5s ease;
+    }
+    .prog-line.done { background: var(--primary); }
+
+    /* ---- Form Wrapper ---- */
+    .form-wrapper {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      animation: fadeUp .6s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeUp .45s ease both; }
+
+    .form-step h3 {
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    /* ---- Form Elements ---- */
+    .form-row   { display: grid; grid-template-columns: 1fr 1fr;     gap: 20px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 7px;
+    }
+    .form-group label span { color: var(--primary); }
+    .form-control {
+      width: 100%;
+      padding: 11px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--dark);
+      background: var(--light);
+      transition: border-color .25s, box-shadow .25s, background .25s;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(14,165,233,.15);
+    }
+    .form-control::placeholder { color: #a0aec0; }
+
+    /* ---- File Upload ---- */
+    .file-upload {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .25s, background .25s;
+      background: var(--light);
+      position: relative;
+    }
+    .file-upload:hover {
+      border-color: var(--primary);
+      background: rgba(14,165,233,.04);
+    }
+    .file-upload svg {
+      width: 40px;
+      height: 40px;
+      color: var(--primary);
+      margin: 0 auto 10px;
+      display: block;
+    }
+    .file-upload p   { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+    .file-upload span { font-size: 12px; color: var(--gray); }
+    .file-upload input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* ---- Form Nav ---- */
+    .form-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .form-nav .hint { font-size: 12px; color: var(--gray); }
+
+    .btn-form-outline {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 8px;
+      border: 2px solid var(--primary); color: var(--primary);
+      font-weight: 700; font-size: 14px; background: transparent; cursor: pointer;
+      transition: background .25s, color .25s;
+    }
+    .btn-form-outline:hover { background: var(--primary); color: #fff; }
+
+    .btn-form-next {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 28px; border-radius: 8px; border: none;
+      background: var(--primary); color: #fff;
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 4px 14px rgba(14,165,233,.35);
+    }
+    .btn-form-next:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.5); }
+
+    .btn-form-submit {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 12px 32px; border-radius: 8px; border: none;
+      background: linear-gradient(135deg, var(--primary), #0284c7); color: #fff;
+      font-weight: 800; font-size: 15px; cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 4px 18px rgba(14,165,233,.4);
+    }
+    .btn-form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,.55); }
+
+    /* ---- Info alert ---- */
+    .info-alert {
+      background: rgba(14,165,233,.08);
+      border: 1px solid rgba(14,165,233,.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .info-alert svg { flex-shrink: 0; margin-top: 1px; color: var(--primary); }
+    .info-alert p { font-size: 13px; color: var(--gray); margin: 0; }
+
+    /* ---- Confirmation Screen ---- */
+    .confirmation-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 32px;
+      animation: fadeUp .6s ease both;
+    }
+    .confirmation-screen.active { display: block; }
+    .conf-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, #4ade80, #16a34a);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(74,222,128,.35);
+      animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .conf-icon svg { width: 40px; height: 40px; color: #fff; }
+    .confirmation-screen h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+    .confirmation-screen > p { color: var(--gray); font-size: 15px; max-width: 460px; margin: 0 auto 24px; }
+    .conf-steps {
+      background: var(--light); border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px 28px; display: inline-block; margin-bottom: 32px; text-align: left;
+    }
+    .conf-steps strong { font-size: 14px; color: var(--dark); display: block; margin-bottom: 10px; }
+    .conf-steps ul { font-size: 13px; color: var(--gray); padding-left: 18px; list-style: disc; }
+    .conf-steps ul li { padding: 3px 0; }
+    .conf-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-conf-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 11px 28px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      font-weight: 700; font-size: 14px; border: none; cursor: pointer;
+      transition: transform .25s, box-shadow .25s; text-decoration: none;
+      box-shadow: 0 4px 14px rgba(14,165,233,.35);
+    }
+    .btn-conf-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.5); }
+
+    .btn-conf-outline {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 11px 28px; border-radius: 8px;
+      border: 2px solid var(--primary); color: var(--primary);
+      background: transparent; font-weight: 700; font-size: 14px;
+      text-decoration: none; transition: background .25s, color .25s;
+    }
+    .btn-conf-outline:hover { background: var(--primary); color: #fff; }
+
+    /* ---- Feature Cards ---- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: rgba(14,165,233,.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; color: var(--primary);
+      transition: background var(--transition), color var(--transition);
+    }
+    .feature-card:hover .feature-icon { background: var(--primary); color: #fff; }
+    .feature-icon svg { width: 26px; height: 26px; }
+    .feature-card h4 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .feature-card p  { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* ---- Reveal animations ---- */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal-up.revealed { opacity: 1; transform: translateY(0); }
+
+    /* ---- Responsive ---- */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .form-row-3 { grid-template-columns: 1fr 1fr; }
+      .form-wrapper { padding: 32px; }
+    }
+    @media (max-width: 768px) {
+      .form-row, .form-row-3 { grid-template-columns: 1fr; }
+      .form-wrapper { padding: 24px; }
+      .prog-label { display: none; }
+    }
+    @media (max-width: 640px) {
+      .form-wrapper { padding: 16px; }
+      .prog-bar { gap: 0; }
+      .prog-circle { width: 36px; height: 36px; font-size: 13px; }
+      .step-title { font-size: 1.1rem; }
+      .step-desc  { font-size: 0.85rem; }
+    }
+  </style>
+
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<main>
+
+  <!-- ===================== PAGE HERO ===================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="{% url 'abiturientam-url' %}" class="breadcrumb-item">{% trans "Абитуриентам" %}</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-item active">{% trans "Подача документов" %}</span>
+      </nav>
+      <h1>{% trans "Подать документы онлайн" %}</h1>
+      <p>{% trans "Заполните форму в 3 шага — это займёт не более 10 минут" %}</p>
+    </div>
+  </section>
+
+  <!-- ===================== FORM SECTION ===================== -->
+  <section class="section section-muted">
+    <div class="container" style="max-width: 740px;">
+
+      <!-- Progress Bar -->
+      <div class="prog-bar" id="progressBar">
+        <div class="prog-step active" id="pStep1">
+          <div class="prog-circle">1</div>
+          <span class="prog-label">{% trans "Личные данные" %}</span>
+        </div>
+        <div class="prog-line" id="pLine1"></div>
+        <div class="prog-step" id="pStep2">
+          <div class="prog-circle">2</div>
+          <span class="prog-label">{% trans "Программа" %}</span>
+        </div>
+        <div class="prog-line" id="pLine2"></div>
+        <div class="prog-step" id="pStep3">
+          <div class="prog-circle">3</div>
+          <span class="prog-label">{% trans "Документы" %}</span>
+        </div>
+      </div>
+
+      <!-- Multi-step Form -->
+      <form class="form-wrapper multi-step-form" id="applicationForm" method="post" enctype="multipart/form-data" action="{% url 'submit-document-url' %}">
+        {% csrf_token %}
+
+        <!-- STEP 1 -->
+        <div class="form-step active">
+          <h3>Шаг 1: {% trans "Личные данные" %}</h3>
+          <p class="step-desc">{% trans "Введите ваши персональные данные для заявки"%}</p>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>{% trans "Фамилия" %} <span>*</span></label>
+              <input type="text" name="last_name" class="form-control" placeholder="Иванов" required />
+            </div>
+            <div class="form-group">
+              <label>{% trans "Имя" %} <span>*</span></label>
+              <input type="text" name="first_name" class="form-control" placeholder="Иван" required />
+            </div>
+            <div class="form-group">
+              <label>{% trans "Отчество" %}</label>
+              <input type="text" name="middle_name" class="form-control" placeholder="Иванович" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>{% trans "Телефон" %} <span>*</span></label>
+              <input type="tel" name="phone" class="form-control" placeholder="+996 555 000-000" required />
+            </div>
+            <div class="form-group">
+              <label>{% trans "Email" %} <span>*</span></label>
+              <input type="email" name="email" class="form-control" placeholder="your@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>{% trans "Дата рождения" %} <span>*</span></label>
+              <input type="date" name="birth_date" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label>{% trans "Гражданство" %}</label>
+              <select name="citizenship" class="form-control">
+                <option value="kg">{% trans "Кыргызстан" %}</option>
+                <option value="kz">{% trans "Казахстан" %}</option>
+                <option value="ru">{% trans "Россия" %}</option>
+                <option value="tj">{% trans "Таджикистан" %}</option>
+                <option value="other">{% trans "Другое" %}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Адрес проживания" %}</label>
+            <input type="text"  name="address" class="form-control" placeholder="г. Бишкек, ул. Манаса, 1, кв. 5" />
+          </div>
+
+          <div class="form-nav">
+            <span class="hint">* {% trans "Обязательные поля" %}</span>
+            <button class="btn-form-next" data-next>
+              {% trans "Далее" %}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step">
+          <h3>Шаг 2: {% trans "Выбор программы" %}</h3>
+          <p class="step-desc">{% trans "Выберите специальность и форму обучения" %}</p>
+
+          <div class="form-group">
+            <label>{% trans "Специальность" %} <span>*</span></label>
+            <select name="program" class="form-control" required >
+              <option value="">{% trans "Выберите..." %}</option>
+              {% for program in programs %}
+              <option value="{{ program.id }}">{{ program.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>{% trans "Форма обучения" %} <span>*</span></label>
+              <select name="form_of_study" class="form-control" >
+                <option value="full_time">{% trans "Очная" %}</option>
+                <option value="part_time">{% trans "Заочная" %}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{% trans "Финансирование" %} <span>*</span></label>
+              <select name="study_form" class="form-control" >
+                <option value="budget">{% trans "Бюджет" %}</option>
+                <option value="paid">{% trans "Коммерция" %}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Откуда узнали о нас" %}?</label>
+            <select name="source" class="form-control" required >
+              <option value="">{% trans "Выберите..." %}</option>
+              <option value="site">{% trans "Интернет / сайт" %}</option>
+              <option value="social">{% trans "Социальные сети" %}</option>
+              <option value="friends">{% trans "Друзья" %}</option>
+              <option value="ads">{% trans "Реклама" %}</option>
+              <option value="other">{% trans "Другое" %}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Дополнительные пожелания" %}</label>
+            <textarea name="comment" class="form-control" rows="3" placeholder="Любые вопросы или особые пожелания..."></textarea>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn-form-outline" data-prev>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              {% trans "Назад" %}
+            </button>
+            <button class="btn-form-next" data-next>
+              {% trans "Далее" %}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step">
+          <h3>Шаг 3: {% trans "Загрузка документов" %}</h3>
+          <p class="step-desc">{% trans "Загрузите сканы или фото документов (PDF, JPG, PNG). Оригиналы принесите до 1 сентября." %}</p>
+
+
+          <div class="form-group">
+            <label>{% trans "Паспорт / свидетельство о рождении" %} <span>*</span></label>
+            <div class="file-upload">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+              <p>{% trans "Нажмите для загрузки или перетащите файл" %}</p>
+              <span>PDF, JPG, PNG — {% trans "до" %} 10MB</span>
+              <input type="file" name="passport" accept=".pdf,.jpg,.jpeg,.png" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Аттестат об образовании" %} <span>*</span></label>
+            <div class="file-upload">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+              <p>{% trans "Нажмите для загрузки или перетащите файл" %}</p>
+              <span>PDF, JPG, PNG — {% trans "до" %} 10MB</span>
+              <input type="file" name="education_document" accept=".pdf,.jpg,.jpeg,.png" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Фото 3×4 <span>*</span></label>
+            <div class="file-upload">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <p>{% trans "Нажмите для загрузки или перетащите фото" %}</p>
+              <span>JPG, PNG — {% trans "до" %} 5MB</span>
+              <input type="file" name="photo" accept=".jpg,.jpeg,.png" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Медицинская справка 086-У" %}</label>
+            <div class="file-upload">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <p>{% trans "Нажмите для загрузки или перетащите файл" %}</p>
+              <span>PDF, JPG, PNG — {% trans "до" %} 10MB ({% trans "необязательно" %})</span>
+              <input type="file" name="medical_certificate" accept=".pdf,.jpg,.jpeg,.png" />
+            </div>
+          </div>
+
+          <div class="info-alert">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>{% trans "Ваши данные надёжно защищены и используются только для оформления заявки на поступление" %}.</p>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn-form-outline" data-prev>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              {% trans "Назад" %}
+            </button>
+            <button type="submit" class="btn-form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              {% trans "Отправить заявку" %}
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- /form-wrapper -->
+
+
+      <!-- Confirmation Screen -->
+      <div class="confirmation-screen" id="confirmationScreen">
+        <div class="conf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>{% trans "Заявка отправлена" %}!</h2>
+        <p>{% trans "Спасибо! Ваша заявка успешно принята. Наш специалист свяжется с вами в течение 1–2 рабочих дней для подтверждения документов" %}.</p>
+        <div class="conf-steps">
+          <strong>{% trans "Что делать дальше" %}?</strong>
+          <ul>
+            <li>{% trans "Ожидайте звонка от приёмной комиссии" %}</li>
+            <li>{% trans "Подготовьте оригиналы документов" %}</li>
+            <li>{% trans "Приходите лично для завершения оформления" %}</li>
+          </ul>
+        </div>
+        <div class="conf-btns">
+          <a href="{% url 'home-url' %}" class="btn-conf-primary">{% trans "На главную" %}</a>
+          <a href="{% url 'contact-url' %}" class="btn-conf-outline">{% trans "Контакты" %}</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+   <!-- ===================== INFO SECTION ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom:48px;">
+        <span class="tag">{% trans "Важно знать" %}</span>
+        <h2 class="section-title">{% trans "Полезная информация" %}</h2>
+      </div>
+      <div class="features-grid">
+
+        {% for card in info_cards %}
+        <div class="feature-card reveal-up" {% if not forloop.first %}style="transition-delay:{{ forloop.counter0 }}2s;"{% endif %}>
+          <div class="feature-icon">
+            <i class="{{ card.icon_class }}" style="font-size:26px;"></i>
+          </div>
+          <h4>{{ card.title }}</h4>
+          <p>{{ card.description }}</p>
+        </div>
+        {% empty %}
+        {# Fallback если карточек нет в БД — показываем стандартные #}
+        <div class="feature-card reveal-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>{% trans "Срок рассмотрения" %}</h4>
+          <p>{% trans "Заявки рассматриваются в течение 1–3 рабочих дней. Вы получите ответ по телефону или email" %}.</p>
+        </div>
+        <div class="feature-card reveal-up" style="transition-delay:.12s;">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h4>{% trans "Оригиналы документов" %}</h4>
+          <p>{% trans "После подтверждения заявки необходимо принести оригиналы документов в приёмную комиссию" %}.</p>
+        </div>
+        <div class="feature-card reveal-up" style="transition-delay:.24s;">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h4>{% trans "Безопасность данных" %}</h4>
+          <p>{% trans "Все персональные данные надёжно защищены и обрабатываются только в рамках приёмной кампании" %}.</p>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+
+<script>
+document.querySelectorAll('[data-next]').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const currentStep = btn.closest('.form-step');
+    const inputs = currentStep.querySelectorAll('input, select, textarea');
+
+    let isValid = true;
+
+    inputs.forEach(input => {
+      if (input.hasAttribute('required') && !input.value) {
+        input.style.borderColor = 'red';
+        isValid = false;
+      } else {
+        input.style.borderColor = '';
+      }
+    });
+
+    if (!isValid) return;
+
+    goNextStep();
+  });
+});
+
+const form = document.getElementById('applicationForm');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // 🚨 ВАЖНО
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'success') {
+      document.querySelector('.form-wrapper').style.display = 'none';
+      document.getElementById('confirmationScreen').classList.add('active');
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Ошибка отправки');
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const reveals = document.querySelectorAll('.reveal-up');
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+
+    reveals.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+
+      if (elementTop < windowHeight - 100) {
+        el.classList.add('revealed');
+      }
+    });
+  }
+
+  // запуск
+  revealOnScroll();
+
+  // при скролле
+  window.addEventListener('scroll', revealOnScroll);
+});
+
+</script>
+
+</main>
+
+
+
+{% endblock %}
