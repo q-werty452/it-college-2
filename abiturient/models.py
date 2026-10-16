@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
+from core.storage import PrivateMediaStorage
 from education.models import Program
 
 
@@ -103,21 +104,25 @@ class SubmitDocument(models.Model):
 
     passport = models.FileField(
         upload_to='documents/',
+        storage=PrivateMediaStorage(),
         validators=[FileExtensionValidator(DOCUMENT_EXTENSIONS)],
         verbose_name='Паспорт / свидетельство о рождении',
     )
     education_document = models.FileField(
         upload_to='documents/',
+        storage=PrivateMediaStorage(),
         validators=[FileExtensionValidator(DOCUMENT_EXTENSIONS)],
         verbose_name='Аттестат об образовании ',
     )
     photo = models.ImageField(
         upload_to='photos/',
+        storage=PrivateMediaStorage(),
         validators=[FileExtensionValidator(PHOTO_EXTENSIONS)],
         verbose_name='Фото 3×4',
     )
     medical_certificate = models.FileField(
         upload_to='documents/',
+        storage=PrivateMediaStorage(),
         validators=[FileExtensionValidator(DOCUMENT_EXTENSIONS)],
         blank=True,
         verbose_name='Медицинская справка 086-У',

@@ -143,6 +143,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Документы абитуриентов: не раздаются публично, только через админку
+PRIVATE_MEDIA_URL = '/private-files/'
+PRIVATE_MEDIA_ROOT = BASE_DIR / 'private_media'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

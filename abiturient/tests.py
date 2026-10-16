@@ -22,7 +22,7 @@ def pdf(name='doc.pdf'):
     return SimpleUploadedFile(name, b'%PDF-1.4', content_type='application/pdf')
 
 
-@override_settings(MEDIA_ROOT=MEDIA)
+@override_settings(MEDIA_ROOT=MEDIA, PRIVATE_MEDIA_ROOT=MEDIA + '/private')
 class SubmitDocumentFormTests(TestCase):
     url = '/ru/submit-document/'
 
@@ -77,3 +77,32 @@ class SubmitDocumentFormTests(TestCase):
         self.assertIn('Гражданство', message)
         self.assertIn('Дата рождения', message)
         self.assertNotIn('constraint', message)
+
+    def test_documents_are_private(self):
+        import os
+        from django.conf import settings
+        from django.contrib.auth.models import User
+
+        self.client.post(self.url, self.data())
+        application = SubmitDocument.objects.get()
+        path = application.passport.path
+        self.assertTrue(path.startswith(settings.PRIVATE_MEDIA_ROOT))
+        self.assertFalse(os.path.exists(os.path.join(settings.MEDIA_ROOT, application.passport.name)))
+
+        url = application.passport.url
+        self.assertTrue(url.startswith('/private-files/'))
+        self.assertEqual(self.client.get(f'/media/{application.passport.name}').status_code, 404)
+
+        anonymous = self.client.get(url)
+        self.assertEqual(anonymous.status_code, 302)
+        self.assertIn('/admin/login/', anonymous['Location'])
+
+        self.client.force_login(User.objects.create_user('user', password='x'))
+        self.assertEqual(self.client.get(url).status_code, 302)
+
+        self.client.force_login(User.objects.create_user('staff', password='x', is_staff=True))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['X-Content-Type-Options'], 'nosniff')
+        self.assertEqual(self.client.get('/private-files/../db.sqlite3').status_code, 404)
+        self.assertEqual(self.client.get('/private-files/documents/nope.pdf').status_code, 404)
