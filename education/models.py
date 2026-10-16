@@ -73,6 +73,7 @@ class Program(models.Model):
     )
     benefits = models.TextField(
         default='',
+        blank=True,
         verbose_name='Описание льгот',
     )
     paid_seats = models.PositiveSmallIntegerField(

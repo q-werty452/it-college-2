@@ -123,6 +123,18 @@ class SubmitDocument(models.Model):
         verbose_name='Медицинская справка 086-У',
     )
 
+    STATUS_CHOICES = [
+        ('new', 'Новая'),
+        ('in_progress', 'В работе'),
+        ('done', 'Обработана'),
+    ]
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='new',
+        verbose_name='Статус',
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Время отправки',
@@ -130,8 +142,12 @@ class SubmitDocument(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        ordering = ['-created_at']
         verbose_name = 'Онлайн документ'
         verbose_name_plural = 'Онлайн документы'
+
+    def __str__(self):
+        return f'{self.last_name} {self.first_name}'
 
 
 
