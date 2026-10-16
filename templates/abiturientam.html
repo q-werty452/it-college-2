@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -17,8 +18,9 @@
         <span class="breadcrumb-sep">›</span>
         <span class="breadcrumb-item active">{% trans "Абитуриентам" %}</span>
       </nav>
-      <h1>{% trans "Абитуриентам" %}</h1>
-      <p>{% trans "Всё что нужно знать о поступлении в IT COLLEGE Кыргызстана" %}</p>
+      {% page_hero "abiturientam" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Абитуриентам" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Всё что нужно знать о поступлении в IT COLLEGE Кыргызстана" %}{% endif %}</p>
     </div>
   </section>
 

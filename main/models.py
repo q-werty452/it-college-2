@@ -116,3 +116,47 @@ class CollegeCertificate(models.Model):
         ordering = ['order']
         verbose_name = 'Сертификат колледжа'
         verbose_name_plural = 'Паспорт колледжа'
+
+
+class PageHero(models.Model):
+    PAGE_CHOICES = [
+        ('abiturientam', 'Абитуриентам'),
+        ('admission', 'Приём (правила и этапы)'),
+        ('budget', 'Льготные места'),
+        ('price', 'Стоимость обучения'),
+        ('programs', 'Программы обучения'),
+        ('transfer', 'Перевод'),
+        ('submit_documents', 'Подать документы онлайн'),
+        ('faq', 'Вопросы и ответы'),
+        ('open_day', 'День открытых дверей'),
+        ('news', 'Новости'),
+        ('graduates', 'Выпускники'),
+        ('director', 'Руководство'),
+        ('staff', 'Сотрудники'),
+        ('contacts', 'Контакты'),
+    ]
+
+    page = models.CharField(
+        max_length=30,
+        choices=PAGE_CHOICES,
+        unique=True,
+        verbose_name='Страница',
+    )
+    title = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name='Заголовок',
+        help_text='Пусто — используется стандартный заголовок страницы',
+    )
+    subtitle = models.TextField(
+        blank=True,
+        verbose_name='Подзаголовок',
+        help_text='Пусто — используется стандартный подзаголовок страницы',
+    )
+
+    class Meta:
+        verbose_name = 'Шапка страницы'
+        verbose_name_plural = 'Шапки страниц (заголовки)'
+
+    def __str__(self):
+        return self.get_page_display()

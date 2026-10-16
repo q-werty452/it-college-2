@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
+{% load site_extras %}
 
 
 
@@ -24,8 +26,9 @@
         <span class="breadcrumb-sep">›</span>
         <span class="breadcrumb-item active" data-i18n="spec_breadcrumb">Программы</span>
       </nav>
-      <h1 data-i18n="spec_hero_h1">Программы обучения</h1>
-      <p data-i18n="spec_hero_p">Современные специальности для карьеры в IT, экономике и дизайне</p>
+      {% page_hero "programs" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Программы обучения" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Современные специальности для карьеры в IT, экономике и дизайне" %}{% endif %}</p>
       <div style="margin-top:24px;">
         <form method="get" class="search-bar" style="max-width:480px;">
   <input

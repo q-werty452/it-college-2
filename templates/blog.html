@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -13,8 +14,9 @@
   <section class="page-hero">
     <div class="container">
       <nav class="breadcrumb"><a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">{% trans "Новости" %}</span></nav>
-      <h1>{% trans "Новости" %}</h1>
-      <p>{% trans "Актуальные события, достижения и объявления IT COLLEGE" %}</p>
+      {% page_hero "news" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Новости" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Актуальные события, достижения и объявления IT COLLEGE" %}{% endif %}</p>
     </div>
   </section>
 
@@ -62,7 +64,7 @@
     <div class="news-body">
       <div class="news-date">{{ item.created_at|date:"d.m.Y" }}</div>
       <h4 class="news-title">{{ item.title }}</h4>
-      <p class="news-excerpt">{{ item.text|truncatewords:20|safe }}</p>
+      <p class="news-excerpt">{{ item.text|striptags|truncatewords:20 }}</p>
       <span class="news-link">{% trans "Читать" %} →</span>
     </div>
 

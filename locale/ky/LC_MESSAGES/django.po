@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 16:23+0600\n"
+"POT-Creation-Date: 2026-10-16 15:12+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,383 +18,393 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\abiturient\apps.py:6
-#| msgid "Абитуриентам"
+#: abiturient/apps.py:6
 msgid "Абитуриенты"
 msgstr "Абитуриенттерге"
 
-#: .\contacts\apps.py:6 .\templates\base.html:56 .\templates\base.html:64
-#: .\templates\base.html:132 .\templates\base.html:140
-#: .\templates\base.html:141 .\templates\base.html:197
-#: .\templates\base.html:201 .\templates\kontakty.html:187
-#: .\templates\submit-documents.html:577
+#: contacts/apps.py:6 templates/base.html:60 templates/base.html:68
+#: templates/base.html:129 templates/base.html:137 templates/base.html:138
+#: templates/base.html:194 templates/base.html:198 templates/kontakty.html:188
+#: templates/sotrudniki.html:258 templates/submit-documents.html:579
 msgid "Контакты"
 msgstr "Байланыш"
 
-#: .\core\settings.py:122
+#: core/settings.py:123
 msgid "Russian"
 msgstr "Орусча"
 
-#: .\core\settings.py:123
+#: core/settings.py:124
 msgid "English"
 msgstr "Англисче"
 
-#: .\core\settings.py:124
+#: core/settings.py:125
 msgid "Kyrgyz"
 msgstr "Кыргызча"
 
-#: .\education\apps.py:6
-#| msgid "Финансирование"
+#: education/apps.py:6
 msgid "Образование"
 msgstr "Билим берүү"
 
-#: .\education\models.py:19 .\templates\submit-documents.html:450
+#: education/models.py:19 templates/submit-documents.html:452
 msgid "Очная"
 msgstr "Күндүзгү"
 
-#: .\education\models.py:20 .\templates\submit-documents.html:451
+#: education/models.py:20 templates/submit-documents.html:453
 msgid "Заочная"
 msgstr "Сырттан окуу"
 
-#: .\education\models.py:21
-#| msgid "Заочная"
+#: education/models.py:21
 msgid "Очная и Заочная"
 msgstr "Күндүзгү жана сырттан окуу"
 
-#: .\education\models.py:25 .\templates\abiturientam.html:206
+#: education/models.py:25 templates/abiturientam.html:208
 msgid "Есть места"
 msgstr "Орундар бар"
 
-#: .\education\models.py:26 .\templates\abiturientam.html:208
+#: education/models.py:26 templates/abiturientam.html:210
 msgid "Мало мест"
 msgstr "Орундар аз"
 
-#: .\education\models.py:27 .\templates\abiturientam.html:210
+#: education/models.py:27 templates/abiturientam.html:212
 msgid "Скоро"
 msgstr "Жакында"
 
-#: .\education\models.py:28 .\templates\abiturientam.html:212
+#: education/models.py:28 templates/abiturientam.html:214
 msgid "Приём закрыт"
 msgstr "Кабыл алуу жабык"
 
-#: .\events\apps.py:6
+#: events/apps.py:6
 msgid "События"
 msgstr "Иш-чаралар"
 
-#: .\main\apps.py:7 .\templates\abiturientam.html:16 .\templates\blog.html:15
-#: .\templates\budjet-mesta.html:15 .\templates\college2025-2026.html:16
-#: .\templates\detail_news.html:16 .\templates\director.html:17
-#: .\templates\graduates-full.html:15 .\templates\kontakty.html:185
-#: .\templates\open-day.html:17 .\templates\otvety-na-voprosy.html:17
-#: .\templates\perevod.html:16 .\templates\stoimost.html:17
-#: .\templates\submit-documents.html:332
+#: main/apps.py:7 templates/abiturientam.html:17 templates/blog.html:16
+#: templates/budjet-mesta.html:17 templates/college2025-2026.html:18
+#: templates/detail_news.html:16 templates/director.html:19
+#: templates/graduates-full.html:16 templates/kontakty.html:186
+#: templates/open-day.html:19 templates/otvety-na-voprosy.html:19
+#: templates/perevod.html:18 templates/sotrudniki.html:15
+#: templates/stoimost.html:19 templates/submit-documents.html:333
 msgid "Главная"
 msgstr "Башкы бет"
 
-#: .\news\apps.py:6 .\templates\base.html:54 .\templates\base.html:61
-#: .\templates\base.html:130 .\templates\base.html:136
-#: .\templates\base.html:137 .\templates\base.html:194 .\templates\blog.html:15
-#: .\templates\blog.html:16 .\templates\detail_news.html:16
-#: .\templates\index.html:553
+#: news/apps.py:6 templates/base.html:57 templates/base.html:65
+#: templates/base.html:126 templates/base.html:133 templates/base.html:134
+#: templates/base.html:191 templates/blog.html:16 templates/blog.html:18
+#: templates/detail_news.html:16 templates/index.html:553
 msgid "Новости"
 msgstr "Жаңылыктар"
 
-#: .\people\apps.py:6
-#| msgid "Сотрудничество"
+#: people/apps.py:6 templates/base.html:55 templates/base.html:59
+#: templates/base.html:128 templates/sotrudniki.html:17
 msgid "Сотрудники"
 msgstr "Кызматкерлер"
 
-#: .\templates\abiturientam.html:15
+#: people/models.py:133
+msgid "ИТ-кафедра"
+msgstr "IT кафедрасы"
+
+#: people/models.py:134
+msgid "Общеобразовательные предметы"
+msgstr "Жалпы билим берүүчү сабактар"
+
+#: people/models.py:135
+msgid "Администрация"
+msgstr "Администрация"
+
+#: people/models.py:136
+msgid "Вспомогательный персонал"
+msgstr "Көмөкчү персонал"
+
+#: people/views.py:60 templates/base.html:192 templates/director.html:17
+#: templates/director.html:19 templates/sotrudniki.html:74
+msgid "Руководство"
+msgstr "Жетекчилик"
+
+#: templates/abiturientam.html:16
 msgid "Навигационная цепочка"
 msgstr "Навигация чынжыры"
 
-#: .\templates\abiturientam.html:18 .\templates\abiturientam.html:20
-#: .\templates\base.html:36 .\templates\base.html:111 .\templates\base.html:112
-#: .\templates\budjet-mesta.html:15 .\templates\college2025-2026.html:16
-#: .\templates\kontakty.html:221 .\templates\open-day.html:17
-#: .\templates\perevod.html:16 .\templates\stoimost.html:17
-#: .\templates\submit-documents.html:334
+#: templates/abiturientam.html:19 templates/abiturientam.html:22
+#: templates/base.html:39 templates/base.html:107 templates/base.html:108
+#: templates/budjet-mesta.html:17 templates/college2025-2026.html:18
+#: templates/kontakty.html:223 templates/open-day.html:19
+#: templates/perevod.html:18 templates/stoimost.html:19
+#: templates/submit-documents.html:335
 msgid "Абитуриентам"
 msgstr "Абитуриенттерге"
 
-#: .\templates\abiturientam.html:21
+#: templates/abiturientam.html:23
 msgid "Всё что нужно знать о поступлении в IT COLLEGE Кыргызстана"
 msgstr ""
 "Кыргызстандын IT COLLEGE'ине кабыл алуу жөнүндө билишиңиз керек болгон "
 "нерселердин баары"
 
-#: .\templates\abiturientam.html:29
+#: templates/abiturientam.html:31
 msgid "Почему мы?"
 msgstr "Эмне үчүн биз?"
 
-#: .\templates\abiturientam.html:30
+#: templates/abiturientam.html:32
 msgid "Преимущества IT COLLEGE"
 msgstr "IT COLLEGE'тин артыкчылыктары"
 
-#: .\templates\abiturientam.html:35
+#: templates/abiturientam.html:37
 msgid "Диплома одновременно"
 msgstr "Диплом бир эле убакта"
 
-#: .\templates\abiturientam.html:36
+#: templates/abiturientam.html:38
 msgid "Российский, кыргызский и международный сертификат за годы обучения"
-msgstr "Окуу жылдары ичинде орусиялык, кыргызстандык жана эл аралык сертификат"
+msgstr ""
+"Окуу жылдары ичинде орусиялык, кыргызстандык жана эл аралык сертификат"
 
-#: .\templates\abiturientam.html:40 .\templates\index.html:341
+#: templates/abiturientam.html:42 templates/index.html:341
 msgid "Трудоустройство"
 msgstr "Жумушка орноштуруу"
 
-#: .\templates\abiturientam.html:41
+#: templates/abiturientam.html:43
 msgid "Наших выпускников находят работу в течение 3 месяцев после окончания"
 msgstr "Биздин бүтүрүүчүлөр бүтүргөндөн кийин 3 ай ичинде жумуш табат"
 
-#: .\templates\abiturientam.html:45 .\templates\budjet-mesta.html:34
-msgid "Бюджетных мест"
-msgstr "Бюджеттик орун"
+#: templates/abiturientam.html:47 templates/budjet-mesta.html:36
+msgid "Льготных мест"
+msgstr "Жеңилдетилген орундар"
 
-#: .\templates\abiturientam.html:46
+#: templates/abiturientam.html:48
 msgid "Ежегодно выделяются бюджетные места для лучших абитуриентов"
 msgstr "Мыктыабитуриенттер үчүн жыл сайын бюджеттик орундар бөлүнөт"
 
-#: .\templates\abiturientam.html:50
+#: templates/abiturientam.html:52
 msgid "Лет опыта"
 msgstr "Жылдык тажрыйба"
 
-#: .\templates\abiturientam.html:52
+#: templates/abiturientam.html:54
 #, python-format
 msgid ""
 "\n"
-"          Более %(years)s лет IT COLLEGE готовит востребованных "
-"специалистов\n"
+"          Более %(years)s лет IT COLLEGE готовит востребованных специалистов\n"
 "          "
 msgstr ""
 "\n"
-"          IT COLLEGE %(years)s жылдан ашык убакыттан бери суранычтуу "
-"адистерди даярдап келет\n"
+"          IT COLLEGE %(years)s жылдан ашык убакыттан бери суранычтуу адистерди даярдап келет\n"
 "          "
 
-#: .\templates\abiturientam.html:70 .\templates\graduates-full.html:38
-#: .\templates\index.html:304
+#: templates/abiturientam.html:72 templates/graduates-full.html:40
+#: templates/index.html:304
 msgid "выпускников"
 msgstr "бүтүрүүчү"
 
-#: .\templates\abiturientam.html:75 .\templates\index.html:305
+#: templates/abiturientam.html:77 templates/index.html:305
 msgid "партнёров"
 msgstr "өнөктөш"
 
-#: .\templates\abiturientam.html:80 .\templates\index.html:306
+#: templates/abiturientam.html:82 templates/index.html:306
 msgid "лабораторий"
 msgstr "лаборатория"
 
-#: .\templates\abiturientam.html:85
+#: templates/abiturientam.html:87
 msgid "стран-партнёров"
 msgstr "өнөктөш өлкө"
 
-#: .\templates\abiturientam.html:97 .\templates\index.html:389
+#: templates/abiturientam.html:99 templates/index.html:389
 msgid "Поступление"
 msgstr "Кабыл алуу"
 
-#: .\templates\abiturientam.html:98 .\templates\index.html:390
+#: templates/abiturientam.html:100 templates/index.html:390
 msgid "Как поступить"
 msgstr "Кантип кабыл алынса болот"
 
-#: .\templates\abiturientam.html:107 .\templates\submit-documents.html:433
+#: templates/abiturientam.html:109 templates/submit-documents.html:435
 msgid "Выбор программы"
 msgstr "Программаны тандоо"
 
-#: .\templates\abiturientam.html:108
+#: templates/abiturientam.html:110
 msgid "Изучите все специальности и выберите подходящую"
 msgstr "Бардык адистиктерди изилдеп, өзүңүзгө ылайыктуусун тандаңыз"
 
-#: .\templates\abiturientam.html:115
+#: templates/abiturientam.html:117
 msgid "Сбор документов"
 msgstr "Документтерди чогултуу"
 
-#: .\templates\abiturientam.html:116
+#: templates/abiturientam.html:118
 msgid "Подготовьте все необходимые документы по списку"
 msgstr "Тизме боюнча керектүү документтердин баарын даярдаңыз"
 
-#: .\templates\abiturientam.html:123
+#: templates/abiturientam.html:125
 msgid "Подача заявки"
 msgstr "Арыз берүү"
 
-#: .\templates\abiturientam.html:124
+#: templates/abiturientam.html:126
 msgid "Заполните онлайн-форму или принесите документы лично"
 msgstr "Онлайн форманы толтуруңуз же документтерди жеке алып келиңиз"
 
-#: .\templates\abiturientam.html:131
+#: templates/abiturientam.html:133
 msgid "Зачисление"
 msgstr "Кабыл алынуу"
 
-#: .\templates\abiturientam.html:132
+#: templates/abiturientam.html:134
 msgid "Получите приказ о зачислении и начните учёбу"
 msgstr "Кабыл алуу буйругун алып, окууну баштаңыз"
 
-#: .\templates\abiturientam.html:136 .\templates\base.html:186
-#: .\templates\college2025-2026.html:61 .\templates\index.html:33
-#: .\templates\index.html:81 .\templates\index.html:435
-#: .\templates\index.html:716 .\templates\kontakty.html:375
+#: templates/abiturientam.html:138 templates/base.html:183
+#: templates/college2025-2026.html:63 templates/index.html:33
+#: templates/index.html:81 templates/index.html:435 templates/index.html:716
+#: templates/kontakty.html:377
 msgid "Подать документы"
 msgstr "Документтерди тапшыруу"
 
-#: .\templates\abiturientam.html:148 .\templates\index.html:467
-#: .\templates\index.html:632 .\templates\submit-documents.html:361
+#: templates/abiturientam.html:150 templates/index.html:467
+#: templates/index.html:632 templates/submit-documents.html:363
 msgid "Документы"
 msgstr "Документтер"
 
-#: .\templates\abiturientam.html:149 .\templates\perevod.html:24
+#: templates/abiturientam.html:151 templates/perevod.html:28
 msgid "Необходимые документы"
 msgstr "Зарыл документтер"
 
-#: .\templates\abiturientam.html:150
+#: templates/abiturientam.html:152
 msgid "Подготовьте следующие документы для поступления в IT COLLEGE"
 msgstr "IT COLLEGE'ге кабыл алынуу үчүн төмөнкү документтерди даярдаңыз"
 
-#: .\templates\abiturientam.html:174 .\templates\submit-documents.html:455
+#: templates/abiturientam.html:176 templates/submit-documents.html:457
 msgid "Финансирование"
 msgstr "Каржылоо"
 
-#: .\templates\abiturientam.html:175
-msgid "Бюджетные места 2025/2026"
-msgstr "2025/2026-жылдагы бюджеттик орундар"
+#: templates/abiturientam.html:177
+msgid "Льготные места 2025/2026"
+msgstr "Жеңилдетилген орундар 2025/2026"
 
-#: .\templates\abiturientam.html:176
+#: templates/abiturientam.html:178
 msgid "Количество бюджетных и платных мест по специальностям"
 msgstr "Адистиктер боюнча бюджеттик жана акылуу орундардын саны"
 
-#: .\templates\abiturientam.html:182 .\templates\budjet-mesta.html:32
-#: .\templates\college2025-2026.html:24 .\templates\stoimost.html:23
-#: .\templates\submit-documents.html:437
+#: templates/abiturientam.html:184 templates/budjet-mesta.html:34
+#: templates/college2025-2026.html:26 templates/stoimost.html:25
+#: templates/submit-documents.html:439
 msgid "Специальность"
 msgstr "Адистик"
 
-#: .\templates\abiturientam.html:183 .\templates\submit-documents.html:448
+#: templates/abiturientam.html:185 templates/submit-documents.html:450
 msgid "Форма обучения"
 msgstr "Окуу формасы"
 
-#: .\templates\abiturientam.html:184 .\templates\college2025-2026.html:27
+#: templates/abiturientam.html:186 templates/college2025-2026.html:29
 msgid "Срок"
 msgstr "Мөөнөт"
 
-#: .\templates\abiturientam.html:185 .\templates\college2025-2026.html:25
-#: .\templates\submit-documents.html:457
-msgid "Бюджет"
-msgstr "Бюджет"
+#: templates/abiturientam.html:187
+msgid "Льгот"
+msgstr "Жеңилдиктер"
 
-#: .\templates\abiturientam.html:186 .\templates\submit-documents.html:458
+#: templates/abiturientam.html:188 templates/submit-documents.html:460
 msgid "Коммерция"
 msgstr "Коммерция"
 
-#: .\templates\abiturientam.html:187
+#: templates/abiturientam.html:189
 msgid "Стоимость (год)"
 msgstr "Баасы (жыл)"
 
-#: .\templates\abiturientam.html:188
+#: templates/abiturientam.html:190
 msgid "Статус"
 msgstr "Статус"
 
-#: .\templates\abiturientam.html:197
+#: templates/abiturientam.html:199
 msgid "г."
 msgstr "ж."
 
-#: .\templates\abiturientam.html:198 .\templates\college2025-2026.html:38
+#: templates/abiturientam.html:200 templates/college2025-2026.html:40
 msgid "мес."
 msgstr "ай."
 
-#: .\templates\abiturientam.html:202
+#: templates/abiturientam.html:204
 msgid "сом"
 msgstr "сом"
 
-#: .\templates\abiturientam.html:230 .\templates\kontakty.html:379
+#: templates/abiturientam.html:232 templates/kontakty.html:381
 msgid "Частые вопросы"
 msgstr "Кеп берилүүчү суроолор"
 
-#: .\templates\abiturientam.html:249
+#: templates/abiturientam.html:251
 msgid "Все вопросы и ответы"
 msgstr "Бардык суроолор жана жооптор"
 
-#: .\templates\abiturientam.html:257
+#: templates/abiturientam.html:259
 msgid "Готов подать документы"
 msgstr "Документтерди тапшырууга даярмын"
 
-#: .\templates\abiturientam.html:258
+#: templates/abiturientam.html:260
 msgid "Начни своё путешествие в мир IT уже сегодня"
 msgstr "IT дүйнөсүнө сапарыңызды бүгүн эле баштаңыз"
 
-#: .\templates\abiturientam.html:260 .\templates\base.html:45
-#: .\templates\base.html:120 .\templates\submit-documents.html:338
+#: templates/abiturientam.html:262 templates/base.html:48
+#: templates/base.html:116 templates/submit-documents.html:340
 msgid "Подать документы онлайн"
 msgstr "Документтерди онлайн тапшыруу"
 
-#: .\templates\abiturientam.html:261 .\templates\base.html:220
+#: templates/abiturientam.html:263 templates/base.html:217
 msgid "Задать вопрос"
 msgstr "Суроо берүү"
 
-#: .\templates\base.html:38 .\templates\base.html:113
+#: templates/base.html:41 templates/base.html:109
 msgid "Главная абитуриента"
 msgstr "Абитуриенттин башкы бети"
 
-#: .\templates\base.html:39 .\templates\base.html:114 .\templates\base.html:182
-#: .\templates\index.html:101 .\templates\index.html:448
-#: .\templates\open-day.html:15 .\templates\open-day.html:17
+#: templates/base.html:42 templates/base.html:110 templates/base.html:179
+#: templates/index.html:101 templates/index.html:448
+#: templates/open-day.html:17 templates/open-day.html:19
 msgid "День открытых дверей"
 msgstr "Ачык эшиктер күнү"
 
-#: .\templates\base.html:40 .\templates\base.html:115 .\templates\base.html:183
-#: .\templates\index.html:45 .\templates\index.html:87
+#: templates/base.html:43 templates/base.html:111 templates/base.html:180
+#: templates/index.html:45 templates/index.html:87
 msgid "Приёмная комиссия"
 msgstr "Кабыл алуу комиссиясы"
 
-#: .\templates\base.html:41 .\templates\base.html:116 .\templates\base.html:184
-#: .\templates\budjet-mesta.html:13 .\templates\budjet-mesta.html:15
-#: .\templates\index.html:94
+#: templates/base.html:44 templates/base.html:112 templates/base.html:181
+#: templates/budjet-mesta.html:17 templates/index.html:94
 msgid "Бюджетные места"
 msgstr "Бюджеттик орундар"
 
-#: .\templates\base.html:42 .\templates\base.html:117
+#: templates/base.html:45 templates/base.html:113
 msgid "Приём 2025/26"
 msgstr "2025/26-жылдагы кабыл алуу"
 
-#: .\templates\base.html:43 .\templates\base.html:118
-#: .\templates\perevod.html:14
+#: templates/base.html:46 templates/base.html:114 templates/perevod.html:16
 msgid "Перевод из другого учебного заведения"
 msgstr "Башка окуу жайынан которулуу"
 
-#: .\templates\base.html:44 .\templates\base.html:119 .\templates\base.html:185
-#: .\templates\index.html:125 .\templates\kontakty.html:316
-#: .\templates\stoimost.html:15
+#: templates/base.html:47 templates/base.html:115 templates/base.html:182
+#: templates/index.html:125 templates/kontakty.html:318
+#: templates/stoimost.html:17
 msgid "Стоимость обучения"
 msgstr "Окуу акысы"
 
-#: .\templates\base.html:49 .\templates\base.html:123 .\templates\base.html:124
-#: .\templates\index.html:41
+#: templates/base.html:52 templates/base.html:119 templates/base.html:120
+#: templates/index.html:41
 msgid "Программы"
 msgstr "Программалар"
 
-#: .\templates\base.html:52 .\templates\base.html:127 .\templates\base.html:128
-#: .\templates\kontakty.html:222
-msgid "Студентам"
-msgstr "Студенттерге"
-
-#: .\templates\base.html:53 .\templates\base.html:129 .\templates\base.html:193
-#: .\templates\graduates-full.html:16
+#: templates/base.html:56 templates/base.html:125 templates/base.html:190
+#: templates/graduates-full.html:17
 msgid "Выпускники"
 msgstr "Бүтүрүүчүлөр"
 
-#: .\templates\base.html:55 .\templates\base.html:131
+#: templates/base.html:58 templates/base.html:127
 msgid "Директор"
 msgstr "Директор"
 
-#: .\templates\base.html:57 .\templates\base.html:133
-#: .\templates\otvety-na-voprosy.html:15
+#: templates/base.html:61 templates/base.html:130
+#: templates/otvety-na-voprosy.html:17
 msgid "Вопросы и ответы"
 msgstr "Суроолор жана жооптор"
 
-#: .\templates\base.html:89 .\templates\base.html:144
-#: .\templates\director.html:32
+#: templates/base.html:85 templates/base.html:141 templates/director.html:34
 msgid "Поступить"
 msgstr "Кабыл алынуу"
 
-#: .\templates\base.html:167
+#: templates/base.html:123 templates/base.html:124 templates/kontakty.html:224
+msgid "Студентам"
+msgstr "Студенттерге"
+
+#: templates/base.html:164
 msgid ""
 "Профессиональное IT-образование в Кыргызстане. Диплом государственного "
 "образца. Бюджетные места"
@@ -402,139 +412,144 @@ msgstr ""
 "Кыргызстандагы кесиптик IT-билим берүү. Мамлекеттик үлгүдөгү диплом. "
 "Бюджеттик орундар"
 
-#: .\templates\base.html:181
+#: templates/base.html:178
 msgid "Информация"
 msgstr "Маалымат"
 
-#: .\templates\base.html:192 .\templates\graduates-full.html:188
-#: .\templates\index.html:214
+#: templates/base.html:189 templates/graduates-full.html:190
+#: templates/index.html:214 templates/spec.html:30
 msgid "Программы обучения"
 msgstr "Окуу программалары"
 
-#: .\templates\base.html:195 .\templates\director.html:17
-msgid "Руководство"
-msgstr "Жетекчилик"
-
-#: .\templates\base.html:196
+#: templates/base.html:193
 msgid "FAQ"
 msgstr "КБС"
 
-#: .\templates\base.html:225
+#: templates/base.html:222
 msgid "© 2026 IT COLLEGE — Все права защищены"
 msgstr "© 2026 IT COLLEGE — Бардык укуктар корголгон"
 
-#: .\templates\base.html:226
+#: templates/base.html:223
 msgid "Разработано IT-RUN Studio"
 msgstr "IT-RUN Studio тарабынан иштелип чыккан"
 
-#: .\templates\blog.html:17
+#: templates/blog.html:19
 msgid "Актуальные события, достижения и объявления IT COLLEGE"
 msgstr "IT COLLEGE'тин актуалдуу окуялары, жетишкендиктери жана жарыялары"
 
-#: .\templates\blog.html:30
+#: templates/blog.html:32
 msgid "Все"
 msgstr "Баары"
 
-#: .\templates\blog.html:66
+#: templates/blog.html:68
 msgid "Читать"
 msgstr "Окуу"
 
-#: .\templates\blog.html:130 .\templates\index.html:502
+#: templates/blog.html:132 templates/index.html:502
+#: templates/sotrudniki.html:218
 msgid "Закрыть"
 msgstr "Жабуу"
 
-#: .\templates\blog.html:143 .\templates\graduates-full.html:213
+#: templates/blog.html:145 templates/graduates-full.html:215
 msgid "Фотографии"
 msgstr "Сүрөттөр"
 
-#: .\templates\blog.html:152
+#: templates/blog.html:154
 msgid "Следите за жизнью колледжа"
 msgstr "Колледждин жашоосун байкап туруңуз"
 
-#: .\templates\blog.html:153
+#: templates/blog.html:155
 msgid "Подпишитесь на наши социальные сети, чтобы не пропустить новости"
 msgstr ""
 "Жаңылыктарды өткөрүп жибербөө үчүн биздин социалдык тармактарга жазылыңыз"
 
-#: .\templates\budjet-mesta.html:14
+#: templates/budjet-mesta.html:15
+msgid "Льготные места"
+msgstr "Жеңилдетилген орундар"
+
+#: templates/budjet-mesta.html:16
 msgid "Государственное финансирование на 2025/2026 учебный год"
 msgstr "2025/2026 окуу жылына мамлекеттик каржылоо"
 
-#: .\templates\budjet-mesta.html:23
-msgid "бюджетных мест"
-msgstr "бюджеттик орун"
+#: templates/budjet-mesta.html:25
+msgid "льготных мест"
+msgstr "жеңилдетилген орун"
 
-#: .\templates\budjet-mesta.html:24
+#: templates/budjet-mesta.html:26
 msgid "на 2025/2026 учебный год"
 msgstr "2025/2026 окуу жылына"
 
-#: .\templates\budjet-mesta.html:33 .\templates\stoimost.html:23
+#: templates/budjet-mesta.html:35 templates/stoimost.html:25
 msgid "Код"
 msgstr "Код"
 
-#: .\templates\budjet-mesta.html:53
+#: templates/budjet-mesta.html:55
 msgid "Условия поступления на бюджет"
 msgstr "Бюджетке кабыл алуу шарттары"
 
-#: .\templates\budjet-mesta.html:55
+#: templates/budjet-mesta.html:57
 msgid ""
 "Зачисление по результатам конкурса аттестатов и вступительного испытания"
 msgstr ""
 "Аттестаттар конкурсунун жана кириш сынагынын натыйжалары боюнча кабыл алуу"
 
-#: .\templates\budjet-mesta.html:56
+#: templates/budjet-mesta.html:58
 msgid "Преимущество имеют выпускники текущего года с высокими баллами"
 msgstr "Жогорку балл алган учурдагы жылдын бүтүрүүчүлөрү артыкчылыкка ээ"
 
-#: .\templates\budjet-mesta.html:57
+#: templates/budjet-mesta.html:59
 msgid "При равных результатах — учитывается средний балл аттестата"
 msgstr "Натыйжалар бирдей болгондо — аттестаттын орточо баллы эске алынат"
 
-#: .\templates\budjet-mesta.html:61
+#: templates/budjet-mesta.html:63
 msgid "Подать заявку"
 msgstr "Арыз берүү"
 
-#: .\templates\college2025-2026.html:14 .\templates\college2025-2026.html:16
+#: templates/college2025-2026.html:16 templates/college2025-2026.html:18
 msgid "Приём 2025/2026"
 msgstr "2025/2026-жылдагы кабыл алуу"
 
-#: .\templates\college2025-2026.html:15
+#: templates/college2025-2026.html:17
 msgid "Правила и условия приёма на 2025/2026 учебный год"
 msgstr "2025/2026 окуу жылына кабыл алуунун эрежелери жана шарттары"
 
-#: .\templates\college2025-2026.html:26
+#: templates/college2025-2026.html:27 templates/submit-documents.html:459
+msgid "Бюджет"
+msgstr "Бюджет"
+
+#: templates/college2025-2026.html:28
 msgid "Платно"
 msgstr "Акылуу"
 
-#: .\templates\college2025-2026.html:38 .\templates\stoimost.html:31
+#: templates/college2025-2026.html:40 templates/stoimost.html:33
 msgid "года"
 msgstr "жыл"
 
-#: .\templates\college2025-2026.html:45
+#: templates/college2025-2026.html:47
 msgid "Сроки приёма документов"
 msgstr "Документтерди кабыл алуу мөөнөттөрү"
 
-#: .\templates\college2025-2026.html:56
+#: templates/college2025-2026.html:58
 msgid "Сроки приёма будут объявлены позже"
 msgstr "Кабыл алуу мөөнөттөрү кийинчерээк жарыяланат"
 
-#: .\templates\detail_news.html:15
-msgid "IT COLLEGE открывает новую лабораторию кибербезопасности"
-msgstr "IT COLLEGE жаңы киберкоопсуздук лабораториясын ачат"
-
-#: .\templates\detail_news.html:16
+#: templates/detail_news.html:16
 msgid "Статья"
 msgstr "Макала"
 
-#: .\templates\detail_news.html:38
+#: templates/detail_news.html:51
 msgid "Назад к новостям"
 msgstr "Жаңылыктарга кайтуу"
 
-#: .\templates\director.html:25
+#: templates/director.html:18
+msgid "Команда IT COLLEGE"
+msgstr "IT COLLEGE командасы"
+
+#: templates/director.html:27
 msgid "Директор IT COLLEGE"
 msgstr "IT COLLEGE'тин директору"
 
-#: .\templates\director.html:27
+#: templates/director.html:29
 msgid ""
 "Уважаемые абитуриенты и студенты! Наш колледж — это место, где рождаются IT-"
 "специалисты нового поколения. Мы создаём все условия для вашего "
@@ -543,19 +558,19 @@ msgid ""
 msgstr ""
 "Урматтуу абитуриенттер жана студенттер! Биздин колледж — жаңы муундун IT-"
 "адистери жаралган жер. Биз сиздин кесиптик өсүшүңүз үчүн бардык шарттарды "
-"түзөбүз: заманбап база, тажрыйбалуу окутуучулар жана иш берүүчүлөр менен түз "
-"байланыш."
+"түзөбүз: заманбап база, тажрыйбалуу окутуучулар жана иш берүүчүлөр менен түз"
+" байланыш."
 
-#: .\templates\director.html:31 .\templates\index.html:718
+#: templates/director.html:33 templates/index.html:718
 msgid "Связаться"
 msgstr "Байланышуу"
 
-#: .\templates\graduates-full.html:18 .\templates\graduates-full.html:76
-#: .\templates\index.html:598
+#: templates/graduates-full.html:20 templates/graduates-full.html:78
+#: templates/index.html:598
 msgid "Наши выпускники"
 msgstr "Биздин бүтүрүүчүлөр"
 
-#: .\templates\graduates-full.html:19
+#: templates/graduates-full.html:21
 #, python-format
 msgid ""
 "\n"
@@ -570,45 +585,45 @@ msgstr[1] ""
 "\n"
 "%(count)s дан ашык адистер\n"
 
-#: .\templates\graduates-full.html:47
+#: templates/graduates-full.html:49
 msgid "трудоустройство"
 msgstr "жумушка орноштуруу"
 
-#: .\templates\graduates-full.html:56
+#: templates/graduates-full.html:58
 msgid "стран мира"
 msgstr "дүйнөнүн өлкөсү"
 
-#: .\templates\graduates-full.html:65
+#: templates/graduates-full.html:67
 msgid "компаний-партнёров"
 msgstr "өнөктөш компания"
 
-#: .\templates\graduates-full.html:75
+#: templates/graduates-full.html:77
 msgid "Истории успеха"
 msgstr "Ийгилик окуялары"
 
-#: .\templates\graduates-full.html:77
+#: templates/graduates-full.html:79
 msgid "Реальные люди, реальные истории успеха из IT COLLEGE"
 msgstr "IT COLLEGE'тен чыккан чыныгы адамдар, чыныгы ийгилик окуялары"
 
-#: .\templates\graduates-full.html:162
+#: templates/graduates-full.html:164
 msgid "Партнёры"
 msgstr "Өнөктөштөр"
 
-#: .\templates\graduates-full.html:163
+#: templates/graduates-full.html:165
 msgid "Где работают наши выпускники"
 msgstr "Биздин бүтүрүүчүлөр кайда иштейт"
 
-#: .\templates\graduates-full.html:164
+#: templates/graduates-full.html:166
 msgid "Ведущие компании Кыргызстана и мира выбирают наших выпускников"
 msgstr ""
 "Кыргызстандын жана дүйнөнүн жетекчи компаниялары биздин бүтүрүүчүлөрдү "
 "тандайт"
 
-#: .\templates\graduates-full.html:184
+#: templates/graduates-full.html:186
 msgid "Станьте частью нашей истории успеха"
 msgstr "Биздин ийгилик окуябыздын бир бөлүгү болуңуз"
 
-#: .\templates\graduates-full.html:185
+#: templates/graduates-full.html:187
 msgid ""
 "Поступайте в IT COLLEGE и через несколько лет вы тоже будете вдохновлять "
 "следующее поколение"
@@ -616,102 +631,100 @@ msgstr ""
 "IT COLLEGE'ге кириңиз жана бир нече жылдан кийин сиз да кийинки муунду "
 "шыктандырасыз"
 
-#: .\templates\graduates-full.html:187
+#: templates/graduates-full.html:189
 msgid "Поступить сейчас"
 msgstr "Азыр кабыл алынуу"
 
-#: .\templates\graduates-full.html:208
+#: templates/graduates-full.html:210
 msgid "История"
 msgstr "Тарых"
 
-#: .\templates\graduates-full.html:211
+#: templates/graduates-full.html:213 templates/sotrudniki.html:246
 msgid "Достижения"
 msgstr "Жетишкендиктер"
 
-#: .\templates\index.html:19
+#: templates/index.html:19
 msgid "Приём 2025/2026 открыт"
 msgstr "2025/2026-жылдагы кабыл алуу ачык"
 
-#: .\templates\index.html:21
+#: templates/index.html:21
 msgid "Начни карьеру"
 msgstr "Карьераңды баштагын"
 
-#: .\templates\index.html:22
+#: templates/index.html:22
 msgid "в IT уже сегодня"
 msgstr "IT чөйрөсүндө бүгүн эле"
 
-#: .\templates\index.html:23
+#: templates/index.html:23
 msgid ""
 "\n"
-"      IT COLLEGE — современное профессиональное образование в сфере "
-"информационных технологий.\n"
+"      IT COLLEGE — современное профессиональное образование в сфере информационных технологий.\n"
 "      Диплом государственного образца. Бюджетные места. Трудоустройство\n"
 "      "
 msgstr ""
 "\n"
-"      IT COLLEGE — маалыматтык технологиялар чөйрөсүндөгү заманбап кесиптик "
-"билим берүү.\n"
+"      IT COLLEGE — маалыматтык технологиялар чөйрөсүндөгү заманбап кесиптик билим берүү.\n"
 "      Мамлекеттик үлгүдөгү диплом. Бюджеттик орундар. Жумушка орноштуруу\n"
 "      "
 
-#: .\templates\index.html:110
+#: templates/index.html:110
 msgid "НПА"
 msgstr "НУА"
 
-#: .\templates\index.html:119 .\templates\perevod.html:16
+#: templates/index.html:119 templates/perevod.html:18
 msgid "Перевод"
 msgstr "Которулуу"
 
-#: .\templates\index.html:170
+#: templates/index.html:170
 msgid "лет опыта"
 msgstr "жылдык тажрыйба"
 
-#: .\templates\index.html:179
+#: templates/index.html:179
 msgid "программ"
 msgstr "программа"
 
-#: .\templates\index.html:190
+#: templates/index.html:190
 msgid "студентов"
 msgstr "студент"
 
-#: .\templates\index.html:199
+#: templates/index.html:199
 msgid "преподавателей"
 msgstr "окутуучу"
 
-#: .\templates\index.html:215
+#: templates/index.html:215
 msgid "Выберите свою специальность"
 msgstr "Өзүңүздүн адистигиңизди тандаңыз"
 
-#: .\templates\index.html:216
+#: templates/index.html:216
 msgid "Современные программы, разработанные с учётом требований рынка труда"
 msgstr ""
 "Эмгек рыногунун талаптарын эске алып иштелип чыккан заманбап программалар"
 
-#: .\templates\index.html:219
+#: templates/index.html:219 templates/index.html:253
 msgid "Все программы"
 msgstr "Бардык программалар"
 
-#: .\templates\index.html:239
+#: templates/index.html:239
 msgid "г"
 msgstr "ж"
 
-#: .\templates\index.html:239 .\templates\stoimost.html:31
+#: templates/index.html:239 templates/stoimost.html:33
 msgid "мес"
 msgstr "ай"
 
-#: .\templates\index.html:248
+#: templates/index.html:248
 msgid "Подробнее"
 msgstr "Толугураак"
 
-#: .\templates\index.html:268
+#: templates/index.html:268
 msgid "О колледже"
 msgstr "Колледж жөнүндө"
 
-#: .\templates\index.html:269
+#: templates/index.html:269
 msgid "Образование нового поколения в сердце Кыргызстана"
 msgstr "Кыргызстандын жүрөгүндөгү жаңы муундун билим берүүсү"
 
-#: .\templates\index.html:270
+#: templates/index.html:270
 msgid ""
 "IT COLLEGE — ведущее учебное заведение в области информационных технологий, "
 "экономики и дизайна. Мы готовим специалистов, востребованных на рынке труда"
@@ -719,40 +732,40 @@ msgstr ""
 "IT COLLEGE — маалыматтык технологиялар, экономика жана дизайн чөйрөсүндөгү "
 "жетекчи окуу жайы. Биз эмгек рыногунда суранычтуу адистерди даярдайбыз"
 
-#: .\templates\index.html:275
+#: templates/index.html:275
 msgid "Три диплома одновременно"
 msgstr "Бир эле убакта үч диплом"
 
-#: .\templates\index.html:276
+#: templates/index.html:276
 msgid "Государственный диплом РФ, Кыргызстана и международный сертификат"
 msgstr "РФтин, Кыргызстандын мамлекеттик диплому жана эл аралык сертификат"
 
-#: .\templates\index.html:282
+#: templates/index.html:282
 #, python-format
 msgid " %(percent)s%% трудоустройство "
 msgstr " %(percent)s%% жумушка орноштуруу "
 
-#: .\templates\index.html:283
+#: templates/index.html:283
 msgid "Наши выпускники работают в ведущих IT-компаниях мира"
 msgstr "Биздин бүтүрүүчүлөр дүйнөнүн жетекчи IT-компанияларында иштейт"
 
-#: .\templates\index.html:289
+#: templates/index.html:289
 msgid "Международные связи"
 msgstr "Эл аралык байланыштар"
 
-#: .\templates\index.html:290
+#: templates/index.html:290
 msgid "Партнёрство с университетами России, Германии и Турции"
 msgstr "Россия, Германия жана Түркиянын университеттери менен өнөктөштүк"
 
-#: .\templates\index.html:299
+#: templates/index.html:299
 msgid "ТОП-1 колледж Манас"
 msgstr "ТОП-1 Манас колледжи"
 
-#: .\templates\index.html:301
+#: templates/index.html:301
 msgid "IT COLLEGE Манас"
 msgstr "IT COLLEGE Манас"
 
-#: .\templates\index.html:302
+#: templates/index.html:302
 msgid ""
 "Современный кампус, лаборатории с новейшим оборудованием, опытные "
 "преподаватели-практики"
@@ -760,75 +773,76 @@ msgstr ""
 "Заманбап кампус, эң жаңы жабдуулар менен жабдылган лабораториялар, "
 "тажрыйбалуу практик-окутуучулар"
 
-#: .\templates\index.html:307
+#: templates/index.html:307
 msgid "диплома"
 msgstr "диплом"
 
-#: .\templates\index.html:312
+#: templates/index.html:312
 msgid "Рейтинг #1"
 msgstr "Рейтинг #1"
 
-#: .\templates\index.html:312
+#: templates/index.html:312
 msgid "IT Колледж Кыргызстана"
 msgstr "Кыргызстандын IT Колледжи"
 
-#: .\templates\index.html:331
+#: templates/index.html:331
 msgid "Студентов обучаются"
 msgstr "Студент окуп жатат"
 
-#: .\templates\index.html:336
+#: templates/index.html:336
 msgid "Специальностей"
 msgstr "Адистик"
 
-#: .\templates\index.html:346
+#: templates/index.html:346
 msgid "Партнёров"
 msgstr "Өнөктөш"
 
-#: .\templates\index.html:360
+#: templates/index.html:360
 msgid "Преимущества"
 msgstr "Артыкчылыктар"
 
-#: .\templates\index.html:361
+#: templates/index.html:361
 msgid "IT COLLEGE — это"
 msgstr "IT COLLEGE — бул"
 
-#: .\templates\index.html:362
+#: templates/index.html:362
 msgid "Почему тысячи студентов выбирают нас"
 msgstr "Эмне үчүн миңдеген студенттер бизди тандайт"
 
-#: .\templates\index.html:398
+#: templates/index.html:398
 msgid "Выберите программу"
 msgstr "Программаны тандаңыз"
 
-#: .\templates\index.html:399
+#: templates/index.html:399
 msgid "Ознакомьтесь с нашими специальностями и выберите подходящую для вас"
-msgstr "Биздин адистиктер менен таанышыңыз жана өзүңүзгө ылайыктуусун тандаңыз"
+msgstr ""
+"Биздин адистиктер менен таанышыңыз жана өзүңүзгө ылайыктуусун тандаңыз"
 
-#: .\templates\index.html:406
+#: templates/index.html:406
 msgid "Подготовьте документы"
 msgstr "Документтерди даярдаңыз"
 
-#: .\templates\index.html:408 .\templates\submit-documents.html:499
+#: templates/index.html:408 templates/submit-documents.html:501
 msgid "Паспорт / свидетельство о рождении"
 msgstr "Паспорт / туулгандык тууралуу күбөлүк"
 
-#: .\templates\index.html:409 .\templates\submit-documents.html:509
+#: templates/index.html:409 templates/submit-documents.html:511
 msgid "Аттестат об образовании"
 msgstr "Билим жөнүндө аттестат"
 
-#: .\templates\index.html:410
+#: templates/index.html:410
 msgid "Фото 3×4 (4 штуки)"
 msgstr "3×4 сүрөт (4 даана)"
 
-#: .\templates\index.html:411
+#: templates/index.html:411
 msgid "Мед. справка 086-У"
 msgstr "Мед. маалымкат 086-У"
 
-#: .\templates\index.html:419
+#: templates/index.html:419
 msgid "Подайте заявку онлайн"
 msgstr "Онлайн арыз бериңиз"
 
-#: .\templates\index.html:420
+#: templates/index.html:420
 #, python-format
 msgid ""
 "\n"
@@ -839,21 +853,22 @@ msgstr ""
 "          Сайттагы форманы толтуруңуз же жеке келиңиз: %(address)s\n"
 "          "
 
-#: .\templates\index.html:430
+#: templates/index.html:430
 msgid "Получите приказ о зачислении"
 msgstr "Кабыл алуу буйругун алыңыз"
 
-#: .\templates\index.html:431
+#: templates/index.html:431
 msgid ""
-"После проверки документов вы получите приказ о зачислении и станете студентом"
+"После проверки документов вы получите приказ о зачислении и станете "
+"студентом"
 msgstr ""
 "Документтер текшерилгенден кийин кабыл алуу буйругун алып, студент болосуз"
 
-#: .\templates\index.html:451
+#: templates/index.html:451
 msgid "Каждую субботу, 10:00–13:00"
 msgstr "Ар ишемби, 10:00–13:00"
 
-#: .\templates\index.html:453
+#: templates/index.html:453
 msgid ""
 "Приходите познакомиться с колледжем, преподавателями и будущими "
 "однокурсниками. Экскурсия по кампусу, ответы на все вопросы"
@@ -861,201 +876,203 @@ msgstr ""
 "Колледж, окутуучулар жана келечектеги курсташтарыңыз менен таанышуу үчүн "
 "келиңиз. Кампус боюнча экскурсия, бардык суроолорго жооп"
 
-#: .\templates\index.html:454
+#: templates/index.html:454
 msgid "Записаться"
 msgstr "Жазылуу"
 
-#: .\templates\index.html:468
+#: templates/index.html:468
 msgid "Нормативно-правовые акты"
 msgstr "Ченемдик-укуктук актылар"
 
-#: .\templates\index.html:469
+#: templates/index.html:469
 msgid "Официальные документы, лицензии и нормативная база IT COLLEGE"
 msgstr "IT COLLEGE'тин расмий документтери, лицензиялары жана ченемдик базасы"
 
-#: .\templates\index.html:501 .\templates\index.html:503
+#: templates/index.html:501 templates/index.html:503
 msgid "Открыть"
 msgstr "Ачуу"
 
-#: .\templates\index.html:516 .\templates\index.html:532
+#: templates/index.html:516 templates/index.html:532
 msgid "Документы не добавлены"
 msgstr "Документтер кошулган жок"
 
-#: .\templates\index.html:533
+#: templates/index.html:533
 msgid "Нормативно-правовые акты появятся здесь после добавления в систему"
-msgstr "Ченемдик-укуктук актылар системага кошулгандан кийин бул жерде пайда болот"
+msgstr ""
+"Ченемдик-укуктук актылар системага кошулгандан кийин бул жерде пайда болот"
 
-#: .\templates\index.html:552
+#: templates/index.html:552
 msgid "Медиа"
 msgstr "Медиа"
 
-#: .\templates\index.html:555
+#: templates/index.html:555
 msgid "Все новости"
 msgstr "Бардык жаңылыктар"
 
-#: .\templates\index.html:579
+#: templates/index.html:579
 msgid "Читать далее"
 msgstr "Андан ары окуу"
 
-#: .\templates\index.html:597
+#: templates/index.html:597
 msgid "Успех"
 msgstr "Ийгилик"
 
-#: .\templates\index.html:599
+#: templates/index.html:599
 msgid "Они уже работают в крупнейших компаниях страны"
 msgstr "Алар мурунтан эле өлкөнүн ири компанияларында иштешет"
 
-#: .\templates\index.html:618
+#: templates/index.html:618
 msgid "Все выпускники"
 msgstr "Бардык бүтүрүүчүлөр"
 
-#: .\templates\index.html:633
+#: templates/index.html:633
 msgid "Паспорт колледжа"
 msgstr "Колледждин паспорту"
 
-#: .\templates\index.html:634
+#: templates/index.html:634
 msgid "Лицензии, аккредитации и сертификаты качества IT COLLEGE"
 msgstr ""
 "IT COLLEGE'тин лицензиялары, аккредитациялары жана сапат сертификаттары"
 
-#: .\templates\index.html:655
+#: templates/index.html:655
 msgid "Выдана"
 msgstr "Берилген"
 
-#: .\templates\index.html:683
+#: templates/index.html:683
 msgid "Часто задаваемые вопросы"
 msgstr "Кеп берилүүчү суроолор"
 
-#: .\templates\index.html:695
+#: templates/index.html:695
 msgid "Все вопросы"
 msgstr "Бардык суроолор"
 
-#: .\templates\index.html:708
+#: templates/index.html:708
 msgid "Готов начать? Поступай сейчас"
 msgstr "Баштоого даярмысыз? Азыр кириңиз"
 
-#: .\templates\index.html:709
+#: templates/index.html:709
 msgid "Приём документов открыт. Бюджетные и платные места"
 msgstr "Документтерди кабыл алуу ачык. Бюджеттик жана акылуу орундар"
 
-#: .\templates\kontakty.html:189
+#: templates/kontakty.html:191
 msgid "Контакты IT COLLEGE"
 msgstr "IT COLLEGE'тин байланыш маалыматтары"
 
-#: .\templates\kontakty.html:190
+#: templates/kontakty.html:192
 msgid ""
 "Мы всегда готовы ответить на ваши вопросы — пишите, звоните или приходите"
 msgstr ""
 "Биз дайыма сиздин суроолоруңузга жооп берүүгө даярбыз — жазыңыз, чалыңыз же "
 "келиңиз"
 
-#: .\templates\kontakty.html:202
+#: templates/kontakty.html:204
 msgid "Наши контакты"
 msgstr "Биздин байланыш маалыматтарыбыз"
 
-#: .\templates\kontakty.html:209
+#: templates/kontakty.html:211
 msgid "Адрес"
 msgstr "Дарек"
 
-#: .\templates\kontakty.html:210 .\templates\submit-documents.html:408
+#: templates/kontakty.html:212 templates/submit-documents.html:410
 msgid "Кыргызстан"
 msgstr "Кыргызстан"
 
-#: .\templates\kontakty.html:219 .\templates\kontakty.html:302
-#: .\templates\submit-documents.html:391
+#: templates/kontakty.html:221 templates/kontakty.html:304
+#: templates/sotrudniki.html:110 templates/sotrudniki.html:171
+#: templates/submit-documents.html:393
 msgid "Телефон"
 msgstr "Телефон"
 
-#: .\templates\kontakty.html:232 .\templates\submit-documents.html:395
+#: templates/kontakty.html:234 templates/submit-documents.html:397
 msgid "Email"
 msgstr "Email"
 
-#: .\templates\kontakty.html:266
+#: templates/kontakty.html:268
 msgid "Режим работы"
 msgstr "Иш режими"
 
-#: .\templates\kontakty.html:286
+#: templates/kontakty.html:288
 msgid "Написать нам"
 msgstr "Бизге жазуу"
 
-#: .\templates\kontakty.html:287
+#: templates/kontakty.html:289
 msgid "Заполните форму, и мы свяжемся с вами в течение рабочего дня"
 msgstr "Форманы толтуруңуз, биз сиз менен жумуш күнү ичинде байланышабыз"
 
-#: .\templates\kontakty.html:292 .\templates\submit-documents.html:380
+#: templates/kontakty.html:294 templates/submit-documents.html:382
 msgid "Имя"
 msgstr "Аты"
 
-#: .\templates\kontakty.html:293
+#: templates/kontakty.html:295
 msgid "Ваше имя"
 msgstr "Сиздин атыңыз"
 
-#: .\templates\kontakty.html:296 .\templates\submit-documents.html:376
+#: templates/kontakty.html:298 templates/submit-documents.html:378
 msgid "Фамилия"
 msgstr "Фамилиясы"
 
-#: .\templates\kontakty.html:297
+#: templates/kontakty.html:299
 msgid "Ваша фамилия"
 msgstr "Сиздин фамилияңыз"
 
-#: .\templates\kontakty.html:311
+#: templates/kontakty.html:313
 msgid "Тема обращения"
 msgstr "Кайрылуунун темасы"
 
-#: .\templates\kontakty.html:313
+#: templates/kontakty.html:315
 msgid "Выберите тему"
 msgstr "Теманы тандаңыз"
 
-#: .\templates\kontakty.html:314
+#: templates/kontakty.html:316
 msgid "Вопрос о поступлении"
 msgstr "Кабыл алуу жөнүндө суроо"
 
-#: .\templates\kontakty.html:315
+#: templates/kontakty.html:317
 msgid "Информация о программах"
 msgstr "Программалар жөнүндө маалымат"
 
-#: .\templates\kontakty.html:317
+#: templates/kontakty.html:319
 msgid "Сотрудничество"
 msgstr "Кызматташуу"
 
-#: .\templates\kontakty.html:318 .\templates\submit-documents.html:412
-#: .\templates\submit-documents.html:471
+#: templates/kontakty.html:320 templates/submit-documents.html:414
+#: templates/submit-documents.html:473
 msgid "Другое"
 msgstr "Башка"
 
-#: .\templates\kontakty.html:323
+#: templates/kontakty.html:325
 msgid "Напишите ваш вопрос или комментарий"
 msgstr "Суроонузду же комментарийиңизди жазыңыз"
 
-#: .\templates\kontakty.html:328
+#: templates/kontakty.html:330
 msgid "Отправляем..."
 msgstr "Жөнөтүлүүдө..."
 
-#: .\templates\kontakty.html:329
+#: templates/kontakty.html:331
 msgid "Сообщение отправлено!"
 msgstr "Билдирүү жөнөтүлдү!"
 
-#: .\templates\kontakty.html:330
+#: templates/kontakty.html:332
 msgid "Ошибка. Попробуйте снова."
 msgstr "Ката. Кайра аракет кылыңыз."
 
-#: .\templates\kontakty.html:333
+#: templates/kontakty.html:335
 msgid "Отправить сообщение"
 msgstr "Билдирүү жөнөтүү"
 
-#: .\templates\kontakty.html:347
+#: templates/kontakty.html:349
 msgid "Отделы"
 msgstr "Бөлүмдөр"
 
-#: .\templates\kontakty.html:348
+#: templates/kontakty.html:350
 msgid "Контакты отделов"
 msgstr "Бөлүмдөрдүн байланыш маалыматтары"
 
-#: .\templates\kontakty.html:370
+#: templates/kontakty.html:372
 msgid "Есть вопросы о поступлении"
 msgstr "Кабыл алуу жөнүндө суроолор барбы"
 
-#: .\templates\kontakty.html:371
+#: templates/kontakty.html:373
 msgid ""
 "Наши специалисты готовы помочь вам выбрать программу и ответить на все "
 "вопросы"
@@ -1063,185 +1080,275 @@ msgstr ""
 "Биздин адистер сизге программаны тандоого жана бардык суроолорго жооп "
 "берүүгө даярдар"
 
-#: .\templates\open-day.html:16
+#: templates/open-day.html:18
 msgid "Приходи познакомиться с IT COLLEGE лично"
 msgstr "IT COLLEGE менен жеке таанышуу үчүн кел"
 
-#: .\templates\open-day.html:22
+#: templates/open-day.html:24
 msgid "Мероприятия"
 msgstr "Иш-чаралар"
 
-#: .\templates\open-day.html:23
+#: templates/open-day.html:25
 msgid "Ближайшие дни открытых дверей"
 msgstr "Жакынкы ачык эшиктер күндөрү"
 
-#: .\templates\open-day.html:34
+#: templates/open-day.html:36
 msgid "Зарегистрироваться"
 msgstr "Катталуу"
 
-#: .\templates\open-day.html:46
+#: templates/open-day.html:48
 msgid "Что вас ждёт"
 msgstr "Сизди эмне күтөт"
 
-#: .\templates\otvety-na-voprosy.html:16
+#: templates/otvety-na-voprosy.html:18
 msgid "Ответы на самые частые вопросы"
 msgstr "Эң кеп берилүүчү суроолорго жооптор"
 
-#: .\templates\otvety-na-voprosy.html:37
+#: templates/otvety-na-voprosy.html:39
 msgid "Не нашли ответ"
 msgstr "Жооп таба алмак эмессизби"
 
-#: .\templates\otvety-na-voprosy.html:37
+#: templates/otvety-na-voprosy.html:39
 msgid "Свяжитесь с нами"
 msgstr "Биз менен байланышыңыз"
 
-#: .\templates\perevod.html:15
+#: templates/perevod.html:17
 msgid "Условия и порядок перевода"
 msgstr "Которулуунун шарттары жана тартиби"
 
-#: .\templates\perevod.html:21
-#| msgid "Полезная информация"
+#: templates/perevod.html:24
 msgid "Общая информация"
 msgstr "Жалпы маалымат"
 
-#: .\templates\perevod.html:35
+#: templates/perevod.html:39
 msgid "Подать заявку на перевод"
 msgstr "Которулуу үчүн арыз берүү"
 
-#: .\templates\perevod.html:36
+#: templates/perevod.html:40 templates/sotrudniki.html:202
 msgid "Связаться с нами"
 msgstr "Биз менен байланышуу"
 
-#: .\templates\stoimost.html:16
+#: templates/sotrudniki.html:20
+msgid "Наши сотрудники"
+msgstr "Биздин кызматкерлер"
+
+#: templates/sotrudniki.html:21
+msgid ""
+"Профессиональная команда преподавателей и специалистов, которая каждый день "
+"помогает студентам расти"
+msgstr ""
+"Студенттерге күн сайын өсүүгө жардам берген мугалимдер жана адистердин "
+"кесипкөй командасы"
+
+#: templates/sotrudniki.html:40
+msgid "Руководитель колледжа"
+msgstr "Колледждин жетекчиси"
+
+#: templates/sotrudniki.html:43 templates/sotrudniki.html:105
+#: templates/sotrudniki.html:168
+msgid "Стаж"
+msgstr "Иш стажы"
+
+#: templates/sotrudniki.html:75
+msgid "Руководящий состав"
+msgstr "Жетекчилик курам"
+
+#: templates/sotrudniki.html:76
+msgid "Опытные управленцы с многолетней практикой в сфере образования и IT"
+msgstr "Билим берүү жана IT тармагында көп жылдык тажрыйбасы бар жетекчилер"
+
+#: templates/sotrudniki.html:129
+msgid "Коллектив"
+msgstr "Жамаат"
+
+#: templates/sotrudniki.html:130
+msgid "Преподаватели и специалисты"
+msgstr "Мугалимдер жана адистер"
+
+#: templates/sotrudniki.html:131
+msgid ""
+"Нажмите на фильтр или воспользуйтесь поиском, чтобы найти нужного сотрудника"
+msgstr "Керектүү кызматкерди табуу үчүн чыпканы же издөөнү колдонуңуз"
+
+#: templates/sotrudniki.html:137
+msgid "Поиск по имени или должности…"
+msgstr "Аты же кызматы боюнча издөө…"
+
+#: templates/sotrudniki.html:142
+msgid "Все сотрудники"
+msgstr "Бардык кызматкерлер"
+
+#: templates/sotrudniki.html:151
+msgid "Сотрудники не найдены. Попробуйте изменить запрос."
+msgstr "Кызматкерлер табылган жок. Сурамды өзгөртүп көрүңүз."
+
+#: templates/sotrudniki.html:184
+msgid "Информация о сотрудниках скоро появится."
+msgstr "Кызматкерлер жөнүндө маалымат жакында жарыяланат."
+
+#: templates/sotrudniki.html:191
+msgid "Хотите работать в нашем коллективе?"
+msgstr "Биздин жамаатта иштегиңиз келеби?"
+
+#: templates/sotrudniki.html:192
+msgid ""
+"Мы всегда рады талантливым преподавателям и специалистам. Отправьте резюме —"
+" рассмотрим в течение 3 рабочих дней"
+msgstr ""
+"Биз таланттуу мугалимдерге жана адистерге дайыма кубанычтабыз. Резюмеңизди "
+"жөнөтүңүз — 3 иш күндүн ичинде карап чыгабыз"
+
+#: templates/sotrudniki.html:197
+msgid "Отправить резюме"
+msgstr "Резюме жөнөтүү"
+
+#: templates/sotrudniki.html:234
+msgid "О сотруднике"
+msgstr "Кызматкер жөнүндө"
+
+#: templates/sotrudniki.html:240
+msgid "Преподаваемые дисциплины"
+msgstr "Окутулган сабактар"
+
+#: templates/sotrudniki.html:252
+msgid "Галерея"
+msgstr "Галерея"
+
+#: templates/spec.html:31
+msgid "Современные специальности для карьеры в IT, экономике и дизайне"
+msgstr ""
+"IT, экономика жана дизайн чөйрөсүндөгү карьера үчүн заманбап адистиктер"
+
+#: templates/stoimost.html:18
 msgid "Тарифы на 2025/2026 учебный год"
 msgstr "2025/2026 окуу жылынын тарифтери"
 
-#: .\templates\stoimost.html:17 .\templates\stoimost.html:23
+#: templates/stoimost.html:19 templates/stoimost.html:25
 msgid "Стоимость"
 msgstr "Баасы"
 
-#: .\templates\stoimost.html:23
+#: templates/stoimost.html:25
 msgid "Срок обучения"
 msgstr "Окуу мөөнөтү"
 
-#: .\templates\stoimost.html:32
+#: templates/stoimost.html:34
 msgid "сом/год"
 msgstr "сом/жыл"
 
-#: .\templates\stoimost.html:39
+#: templates/stoimost.html:41
 msgid "Условия оплаты"
 msgstr "Төлөм шарттары"
 
-#: .\templates\stoimost.html:41
+#: templates/stoimost.html:43
 msgid "Возможна оплата в рассрочку (2 раза в год)"
 msgstr "Бөлүп төлөө мүмкүнчүлүгү бар (жылына 2 жолу)"
 
-#: .\templates\stoimost.html:42
+#: templates/stoimost.html:44
 msgid "Скидки для отличников и льготных категорий"
 msgstr "Үздүктөр жана жеңилдетилген категориялар үчүн арзандатуу"
 
-#: .\templates\stoimost.html:43
+#: templates/stoimost.html:45
 #, python-format
 msgid "Первый год — скидка 10%% при ранней подаче документов"
 msgstr "Биринчи жыл — документтерди эрте тапшырганда 10%% арзандатуу"
 
-#: .\templates\submit-documents.html:336
+#: templates/submit-documents.html:337
 msgid "Подача документов"
 msgstr "Документтерди тапшыруу"
 
-#: .\templates\submit-documents.html:339
+#: templates/submit-documents.html:341
 msgid "Заполните форму в 3 шага — это займёт не более 10 минут"
 msgstr "Форманы 3 кадамда толтуруңуз — бул 10 мүнөттөн ашпайт"
 
-#: .\templates\submit-documents.html:351 .\templates\submit-documents.html:371
+#: templates/submit-documents.html:353 templates/submit-documents.html:373
 msgid "Личные данные"
 msgstr "Жеке маалыматтар"
 
-#: .\templates\submit-documents.html:356
+#: templates/submit-documents.html:358
 msgid "Программа"
 msgstr "Программа"
 
-#: .\templates\submit-documents.html:372
+#: templates/submit-documents.html:374
 msgid "Введите ваши персональные данные для заявки"
 msgstr "Арыз үчүн жеке маалыматтарыңызды киргизиңиз"
 
-#: .\templates\submit-documents.html:384
+#: templates/submit-documents.html:386
 msgid "Отчество"
 msgstr "Атасынын аты"
 
-#: .\templates\submit-documents.html:402
+#: templates/submit-documents.html:404
 msgid "Дата рождения"
 msgstr "Туулган күнү"
 
-#: .\templates\submit-documents.html:406
+#: templates/submit-documents.html:408
 msgid "Гражданство"
 msgstr "Жарандыгы"
 
-#: .\templates\submit-documents.html:409
+#: templates/submit-documents.html:411
 msgid "Казахстан"
 msgstr "Казакстан"
 
-#: .\templates\submit-documents.html:410
+#: templates/submit-documents.html:412
 msgid "Россия"
 msgstr "Россия"
 
-#: .\templates\submit-documents.html:411
+#: templates/submit-documents.html:413
 msgid "Таджикистан"
 msgstr "Тажикстан"
 
-#: .\templates\submit-documents.html:418
+#: templates/submit-documents.html:420
 msgid "Адрес проживания"
 msgstr "Жашаган жери"
 
-#: .\templates\submit-documents.html:423
+#: templates/submit-documents.html:425
 msgid "Обязательные поля"
 msgstr "Милдеттүү талаалар"
 
-#: .\templates\submit-documents.html:425 .\templates\submit-documents.html:486
+#: templates/submit-documents.html:427 templates/submit-documents.html:488
 msgid "Далее"
 msgstr "Андан ары"
 
-#: .\templates\submit-documents.html:434
+#: templates/submit-documents.html:436
 msgid "Выберите специальность и форму обучения"
 msgstr "Адистикти жана окуу формасын тандаңыз"
 
-#: .\templates\submit-documents.html:439 .\templates\submit-documents.html:466
+#: templates/submit-documents.html:441 templates/submit-documents.html:468
 msgid "Выберите..."
 msgstr "Тандаңыз..."
 
-#: .\templates\submit-documents.html:464
+#: templates/submit-documents.html:466
 msgid "Откуда узнали о нас"
 msgstr "Биз жөнүндө кайдан билдиңиз"
 
-#: .\templates\submit-documents.html:467
+#: templates/submit-documents.html:469
 msgid "Интернет / сайт"
 msgstr "Интернет / сайт"
 
-#: .\templates\submit-documents.html:468
+#: templates/submit-documents.html:470
 msgid "Социальные сети"
 msgstr "Социалдык тармактар"
 
-#: .\templates\submit-documents.html:469
+#: templates/submit-documents.html:471
 msgid "Друзья"
 msgstr "Досторум"
 
-#: .\templates\submit-documents.html:470
+#: templates/submit-documents.html:472
 msgid "Реклама"
 msgstr "Жарнама"
 
-#: .\templates\submit-documents.html:476
+#: templates/submit-documents.html:478
 msgid "Дополнительные пожелания"
 msgstr "Кошумча каалоолор"
 
-#: .\templates\submit-documents.html:483 .\templates\submit-documents.html:546
+#: templates/submit-documents.html:485 templates/submit-documents.html:548
 msgid "Назад"
 msgstr "Артка"
 
-#: .\templates\submit-documents.html:494
+#: templates/submit-documents.html:496
 msgid "Загрузка документов"
 msgstr "Документтерди жүктөө"
 
-#: .\templates\submit-documents.html:495
+#: templates/submit-documents.html:497
 msgid ""
 "Загрузите сканы или фото документов (PDF, JPG, PNG). Оригиналы принесите до "
 "1 сентября."
@@ -1249,45 +1356,45 @@ msgstr ""
 "Документтердин скандарын же сүрөттөрүн жүктөңүз (PDF, JPG, PNG). "
 "Оригиналдарын 1-сентябрга чейин алып келиңиз."
 
-#: .\templates\submit-documents.html:502 .\templates\submit-documents.html:512
-#: .\templates\submit-documents.html:532
+#: templates/submit-documents.html:504 templates/submit-documents.html:514
+#: templates/submit-documents.html:534
 msgid "Нажмите для загрузки или перетащите файл"
 msgstr "Жүктөө үчүн басыңыз же файлды сүйрөңүз"
 
-#: .\templates\submit-documents.html:503 .\templates\submit-documents.html:513
-#: .\templates\submit-documents.html:523 .\templates\submit-documents.html:533
+#: templates/submit-documents.html:505 templates/submit-documents.html:515
+#: templates/submit-documents.html:525 templates/submit-documents.html:535
 msgid "до"
 msgstr "чейин"
 
-#: .\templates\submit-documents.html:522
+#: templates/submit-documents.html:524
 msgid "Нажмите для загрузки или перетащите фото"
 msgstr "Жүктөө үчүн басыңыз же сүрөттү сүйрөңүз"
 
-#: .\templates\submit-documents.html:529
+#: templates/submit-documents.html:531
 msgid "Медицинская справка 086-У"
 msgstr "Медициналык маалымкат 086-У"
 
-#: .\templates\submit-documents.html:533
+#: templates/submit-documents.html:535
 msgid "необязательно"
 msgstr "милдеттүү эмес"
 
-#: .\templates\submit-documents.html:540
+#: templates/submit-documents.html:542
 msgid ""
 "Ваши данные надёжно защищены и используются только для оформления заявки на "
 "поступление"
 msgstr ""
-"Сиздин маалыматтарыңыз ишенимдүү корголгон жана кабыл алуу арызын тариздетүү "
-"үчүн гана колдонулат"
+"Сиздин маалыматтарыңыз ишенимдүү корголгон жана кабыл алуу арызын тариздетүү"
+" үчүн гана колдонулат"
 
-#: .\templates\submit-documents.html:550
+#: templates/submit-documents.html:552
 msgid "Отправить заявку"
 msgstr "Арызды жөнөтүү"
 
-#: .\templates\submit-documents.html:565
+#: templates/submit-documents.html:567
 msgid "Заявка отправлена"
 msgstr "Арыз жөнөтүлдү"
 
-#: .\templates\submit-documents.html:566
+#: templates/submit-documents.html:568
 msgid ""
 "Спасибо! Ваша заявка успешно принята. Наш специалист свяжется с вами в "
 "течение 1–2 рабочих дней для подтверждения документов"
@@ -1295,39 +1402,39 @@ msgstr ""
 "Рахмат! Сиздин арызыңыз ийгиликтүү кабыл алынды. Биздин адис документтерди "
 "тастыктоо үчүн 1–2 жумуш күнү ичинде сиз менен байланышат"
 
-#: .\templates\submit-documents.html:568
+#: templates/submit-documents.html:570
 msgid "Что делать дальше"
 msgstr "Андан ары эмне кылуу керек"
 
-#: .\templates\submit-documents.html:570
+#: templates/submit-documents.html:572
 msgid "Ожидайте звонка от приёмной комиссии"
 msgstr "Кабыл алуу комиссиясынан чалууну күтүңүз"
 
-#: .\templates\submit-documents.html:571
+#: templates/submit-documents.html:573
 msgid "Подготовьте оригиналы документов"
 msgstr "Документтердин оригиналдарын даярдаңыз"
 
-#: .\templates\submit-documents.html:572
+#: templates/submit-documents.html:574
 msgid "Приходите лично для завершения оформления"
 msgstr "Тариздетүүнү аяктоо үчүн жеке келиңиз"
 
-#: .\templates\submit-documents.html:576
+#: templates/submit-documents.html:578
 msgid "На главную"
 msgstr "Башкы бетке"
 
-#: .\templates\submit-documents.html:588
+#: templates/submit-documents.html:590
 msgid "Важно знать"
 msgstr "Билүү маанилүү"
 
-#: .\templates\submit-documents.html:589
+#: templates/submit-documents.html:591
 msgid "Полезная информация"
 msgstr "Пайдалуу маалымат"
 
-#: .\templates\submit-documents.html:607
+#: templates/submit-documents.html:609
 msgid "Срок рассмотрения"
 msgstr "Кароо мөөнөтү"
 
-#: .\templates\submit-documents.html:608
+#: templates/submit-documents.html:610
 msgid ""
 "Заявки рассматриваются в течение 1–3 рабочих дней. Вы получите ответ по "
 "телефону или email"
@@ -1335,11 +1442,11 @@ msgstr ""
 "Арыздар 1–3 жумуш күнү ичинде каралат. Сиз телефон же email аркылуу жооп "
 "аласыз"
 
-#: .\templates\submit-documents.html:614
+#: templates/submit-documents.html:616
 msgid "Оригиналы документов"
 msgstr "Документтердин оригиналдары"
 
-#: .\templates\submit-documents.html:615
+#: templates/submit-documents.html:617
 msgid ""
 "После подтверждения заявки необходимо принести оригиналы документов в "
 "приёмную комиссию"
@@ -1347,58 +1454,14 @@ msgstr ""
 "Арыз тастыкталгандан кийин документтердин оригиналдарын кабыл алуу "
 "комиссиясына алып келүү зарыл"
 
-#: .\templates\submit-documents.html:621
+#: templates/submit-documents.html:623
 msgid "Безопасность данных"
 msgstr "Маалыматтардын коопсуздугу"
 
-#: .\templates\submit-documents.html:622
+#: templates/submit-documents.html:624
 msgid ""
 "Все персональные данные надёжно защищены и обрабатываются только в рамках "
 "приёмной кампании"
 msgstr ""
 "Бардык жеке маалыматтар ишенимдүү корголгон жана кабыл алуу кампаниясы "
 "чегинде гана иштетилет"
-
-#~ msgid "Нет доступных категорий."
-#~ msgstr "Жеткиликтүү категориялар жок."
-
-#~ msgid "Современные специальности для карьеры в IT, экономике и дизайне"
-#~ msgstr ""
-#~ "IT, экономика жана дизайн чөйрөсүндөгү карьера үчүн заманбап адистиктер"
-
-#~ msgid "Направление"
-#~ msgstr "Багыт"
-
-#~ msgid "Сортировка"
-#~ msgstr "Иреттөө"
-
-#~ msgid "По умолчанию"
-#~ msgstr "Демейки боюнча"
-
-#~ msgid "По популярности"
-#~ msgstr "Популярдуулугу боюнча"
-
-#~ msgid "По сроку (возрастание)"
-#~ msgstr "Мөөнөтү боюнча (өсүү)"
-
-#~ msgid "По сроку (убывание)"
-#~ msgstr "Мөөнөтү боюнча (кемүү)"
-
-#~ msgid "По названию"
-#~ msgstr "Аталышы боюнча"
-
-#~ msgid "Есть бюджет"
-#~ msgstr "Бюджет бар"
-
-#~ msgid "Нашли свою программу"
-#~ msgstr "Өзүңүздүн программаңызды таптыңызбы"
-
-#~ msgid "Подайте документы онлайн и станьте студентом IT COLLEGE уже сегодня"
-#~ msgstr ""
-#~ "Документтерди онлайн тапшырып, бүгүн эле IT COLLEGE студенти болуңуз"
-
-#~ msgid "Лицензия и аккредитация"
-#~ msgstr "Лицензия жана аккредитация"
-
-#~ msgid "Простые шаги к вашему будущему в IT"
-#~ msgstr "IT чөйрөсүндөгү келечегиңизге жеңил кадамдар"

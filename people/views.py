@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
 from people.models import Director, Graduates, Partner, SiteStats, Staff
@@ -56,7 +57,7 @@ class SotrudnikiView(TemplateView):
             f'staff-{person.pk}': {
                 'name': person.full_name,
                 'position': person.position,
-                'dept': 'Руководство' if person.is_leadership else labels[person.department],
+                'dept': _('Руководство') if person.is_leadership else str(labels[person.department]),
                 'photo': person.photo.url if person.photo else '',
                 'exp': person.experience,
                 'edu': person.education,

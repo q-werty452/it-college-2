@@ -73,3 +73,30 @@ class AdminTests(TestCase):
         page = self.client.get(f'/admin/contacts/contactform/{request.pk}/change/').content.decode()
         self.assertIn('name="status"', page)
         self.assertNotIn('name="text"', page)
+
+
+class PageHeroTests(TestCase):
+    def test_default_and_admin_hero(self):
+        from main.models import PageHero
+        self.assertContains(self.client.get('/ru/news/'), '<h1>Новости</h1>')
+        PageHero.objects.create(page='news', title_ru='События колледжа', subtitle_ru='Строка 1\nСтрока 2')
+        response = self.client.get('/ru/news/')
+        self.assertContains(response, '<h1>События колледжа</h1>')
+        self.assertContains(response, 'Строка 1<br>Строка 2')
+
+    def test_every_hero_page_renders(self):
+        for url in ['abiturientam/', 'news/', 'budjet/', 'college2025-2026/', 'director/',
+                    'contact/', 'open-day/', 'faqs/', 'perevod/', 'sotrudniki/', 'spec/',
+                    'stoimost/', 'submit-document/', 'graduates/']:
+            for lang in ['ru', 'en', 'ky']:
+                self.assertEqual(self.client.get(f'/{lang}/{url}').status_code, 200, url)
+
+
+class NewsDetailTests(TestCase):
+    def test_title_html_and_gallery(self):
+        category = NewsCategory.objects.create(title='c')
+        news = News.objects.create(category=category, title='Моя новость', text='<p><b>жирный</b></p>')
+        response = self.client.get(f'/ru/news/{news.pk}/')
+        self.assertContains(response, '<h1>Моя новость</h1>')
+        self.assertContains(response, '<b>жирный</b>')
+        self.assertNotContains(response, 'кибербезопасности')

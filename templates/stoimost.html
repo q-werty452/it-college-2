@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -12,8 +13,9 @@
 
 <!-- ===== ЗАГОЛОВОК СТРАНИЦЫ ===== -->
 <div class="page-header">
-  <h1>{% trans "Стоимость обучения" %}</h1>
-  <p>{% trans "Тарифы на 2025/2026 учебный год" %}</p>
+  {% page_hero "price" as hero %}
+  <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Стоимость обучения" %}{% endif %}</h1>
+  <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Тарифы на 2025/2026 учебный год" %}{% endif %}</p>
   <div class="breadcrumb"><a href="{% url 'home-url' %}">{% trans "Главная" %}</a> / <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a> / {% trans "Стоимость" %}</div>
 </div>
 <section class="section">
