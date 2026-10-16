@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 
 
@@ -22,7 +22,7 @@ class News(models.Model):
         verbose_name='Категория новости'
     )
     title = models.CharField(max_length=255, verbose_name='Названия новости')
-    text = RichTextField(verbose_name='Описание')
+    text = CKEditor5Field(config_name='default', verbose_name='Описание')
     image = models.ImageField(
         upload_to='news/',
         blank=True,

@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
@@ -182,7 +182,7 @@ class InfoCard(models.Model):
 
 class FAQ(models.Model):
     question = models.CharField(max_length=200, verbose_name='Вопрос')
-    content = RichTextField(verbose_name='Ответ на вопрос')
+    content = CKEditor5Field(config_name='default', verbose_name='Ответ на вопрос')
     order = models.PositiveIntegerField(verbose_name='Порядок')
     is_popular = models.BooleanField(default=False, verbose_name='Популярен ли?')
 
