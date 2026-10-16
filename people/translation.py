@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from people.models import Graduates, Partner, Director
+from people.models import Graduates, Partner, Director, Staff
 
 
 @register(Graduates)
@@ -17,3 +17,9 @@ class Partner(TranslationOptions):
 @register(Director)
 class Director(TranslationOptions):
     fields = ('name', 'description',)
+
+
+@register(Staff)
+class StaffTranslationOptions(TranslationOptions):
+    fields = ('full_name', 'position', 'experience', 'education', 'tags',
+              'short_bio', 'bio', 'courses', 'achievements')
