@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -56,7 +56,7 @@ class Graduates(models.Model):
     short_description = models.TextField(
         verbose_name='Короткая описания',
     )
-    full_description = RichTextField(verbose_name='Полное описание')
+    full_description = CKEditor5Field(config_name='default', verbose_name='Полное описание')
     achievements = models.CharField(max_length=100, verbose_name='Достижения', default='')
     story = models.TextField(verbose_name='История', default='')
     image = models.ImageField(
@@ -113,7 +113,7 @@ class GraduateGallery(models.Model):
 
 class Director(models.Model):
     name = models.CharField(max_length=255, verbose_name='Имя директора')
-    description = RichTextField(verbose_name='Описание')
+    description = CKEditor5Field(config_name='default', verbose_name='Описание')
     photo = models.ImageField(
         upload_to='directors/',
         verbose_name='Изображения директора',

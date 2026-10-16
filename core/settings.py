@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'ckeditor',
+    'django_ckeditor_5',
 
     'main.apps.MainConfig',
     'contacts.apps.ContactsConfig',
@@ -259,4 +259,29 @@ JAZZMIN_UI_TWEAKS = {
     "accent": "accent-primary",
     "no_navbar_border": True,
     "actions_sticky_top": True,
+}
+
+
+# === CKEditor 5 (визуальный редактор в админке) ===
+# поле редактора нужно явно разрешить для django-modeltranslation
+MODELTRANSLATION_CUSTOM_FIELDS = ('CKEditor5Field',)
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = 'staff'
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': {
+            'items': [
+                'heading', '|', 'bold', 'italic', 'underline', 'link', '|',
+                'bulletedList', 'numberedList', 'blockQuote', '|',
+                'insertImage', 'insertTable', 'mediaEmbed', '|', 'undo', 'redo',
+            ],
+        },
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter'],
+        },
+        'table': {
+            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells'],
+        },
+        'language': 'ru',
+    },
 }

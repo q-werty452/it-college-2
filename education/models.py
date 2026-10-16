@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -54,7 +54,8 @@ class Program(models.Model):
         verbose_name='Сколько длится обучения в месяцах',
     )
 
-    description = RichTextField(
+    description = CKEditor5Field(
+        config_name='default',
         blank=True,
         verbose_name='Описание',
     )
