@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
 
-from abiturient.models import FAQ, RequiredDocument, SubmitDocument, InfoCard
+from abiturient.forms import SubmitDocumentForm
+from abiturient.models import FAQ, RequiredDocument, InfoCard
+from core.utils import form_errors_message
 from education.models import Program
 from people.models import SiteStats, Graduates
 
@@ -44,57 +46,19 @@ class SubmitDocumentFormView(View):
         })
 
     def post(self, request, *args, **kwargs):
-        data = request.POST
-        files = request.FILES
-
-        program = None
-        program_id = data.get('program')
-
-        if program_id:
-            try:
-                program = Program.objects.get(id=program_id)
-            except Program.DoesNotExist:
-                pass
-
-        try:
-            submit = SubmitDocument.objects.create(
-                # ========= ШАГ 1 =========
-                first_name=data.get('first_name'),
-                last_name=data.get('last_name'),
-                middle_name=data.get('middle_name'),
-
-                phone=data.get('phone'),
-                email=data.get('email'),
-
-                birth_date=data.get('birth_date'),
-                address=data.get('address'),
-                citizenship=data.get('citizenship'),
-
-                # ========= ШАГ 2 =========
-                program=program,
-                form_of_study=data.get('form_of_study'),
-                study_form=data.get('study_form'),
-                source=data.get('source'),
-                comment=data.get('comment'),
-
-                # ========= ШАГ 3 =========
-                passport=files.get('passport'),
-                education_document=files.get('education_document'),
-                photo=files.get('photo'),
-                medical_certificate=files.get('medical_certificate'),
-            )
-
-            return JsonResponse({
-                'status': 'success',
-                'message': 'Заявка успешно отправлена',
-                'id': submit.id
-            })
-
-        except Exception as e:
+        form = SubmitDocumentForm(request.POST, request.FILES)
+        if not form.is_valid():
             return JsonResponse({
                 'status': 'error',
-                'message': str(e)
+                'message': form_errors_message(form),
             }, status=400)
+
+        submit = form.save()
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Заявка успешно отправлена',
+            'id': submit.id
+        })
 
 
 

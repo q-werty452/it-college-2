@@ -65,7 +65,7 @@ class ContactForm(models.Model):
         max_length=20,
         verbose_name='номер телефона',
     )
-    email = models.EmailField(verbose_name='Электроннач почта')
+    email = models.EmailField(blank=True, verbose_name='Электронная почта')
     contact_form = models.CharField(
         max_length=20,
         choices=FORM_CHOICES,
