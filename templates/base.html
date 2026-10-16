@@ -1,5 +1,6 @@
   {% load static %}
   {% load i18n %}
+  {% load site_extras %}
 
   <!DOCTYPE html>
   <html lang="ru">
@@ -197,12 +198,12 @@
         <h4>{% trans "Контакты" %}</h4>
         <ul>
           <li>
-            <a href="https://wa.me/{{ contacts.phone_admission|cut:'+'|cut:' ' }}" target="_blank">
+            <a href="https://wa.me/{{ contacts.phone_admission|phone_digits }}" target="_blank">
               {{ contacts.phone_admission }}
             </a>
           </li>
           <li>
-            <a href="https://wa.me/{{ contacts.phone_students|cut:'+'|cut:' ' }}" target="_blank">
+            <a href="https://wa.me/{{ contacts.phone_students|phone_digits }}" target="_blank">
               {{ contacts.phone_students }}
             </a>
           </li>

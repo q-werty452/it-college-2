@@ -8,10 +8,10 @@ class GraduatesView(TemplateView):
     template_name = 'graduates-full.html'
 
     def get_context_data(self, **kwargs):
-        graduates_qs = Graduates.objects.all()
+        graduates_qs = Graduates.objects.order_by('-id')
         stats = SiteStats.objects.first()
 
-        paginator = Paginator(graduates_qs, 1)
+        paginator = Paginator(graduates_qs, 6)
         page = self.request.GET.get('page')
         graduates = paginator.get_page(page)
 

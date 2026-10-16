@@ -13,13 +13,13 @@ class NewsView(TemplateView):
         category_id = self.request.GET.get('category')
         news = News.objects.all().order_by('-created_at')
 
-        if category_id:
+        if category_id and category_id.isdigit():
             news = news.filter(category_id=category_id)
 
         news_categories = NewsCategory.objects.all()
         news_gallery = NewsGallery.objects.all()
 
-        paginator = Paginator(news, 1)
+        paginator = Paginator(news, 9)
         page = self.request.GET.get('page')
         news = paginator.get_page(page)
 
