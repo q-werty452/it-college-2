@@ -12,7 +12,7 @@
 
 <!-- ===== ЗАГОЛОВОК СТРАНИЦЫ ===== -->
 <div class="page-header">
-  <h1>{% trans "IT COLLEGE открывает новую лабораторию кибербезопасности" %}</h1>
+  <h1>{{ news.title }}</h1>
   <div class="breadcrumb"><a href="{% url 'home-url' %}">{% trans "Главная" %}</a> / <a href="{% url 'news-url' %}">{% trans "Новости" %}</a> / {% trans "Статья" %}</div>
 </div>
 <section class="section">
@@ -31,7 +31,20 @@
           <path d="M16 2v4M8 2v4M3 10h18"/>
         </svg> {{ news.created_at|date:"d.m.Y" }}
       </div>
-      <p style="font-size:16px;line-height:1.8;color:#374151;margin-bottom:16px">{{ news.text }}</p>
+      <div style="font-size:16px;line-height:1.8;color:#374151;margin-bottom:16px">{{ news.text|safe }}</div>
+
+      {% with gallery=news.gallery.all %}
+      {% if gallery %}
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:24px">
+        {% for img in gallery %}
+        <a href="{{ img.image.url }}" target="_blank">
+          <img src="{{ img.image.url }}" alt="{{ news.title }}" loading="lazy"
+               style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
 
 
       <div style="margin-top:32px">

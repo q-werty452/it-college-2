@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from modeltranslation.admin import TranslationAdmin
 
 from main.models import DeadlineDocument, Advantage, NPACategory, NPADocument, \
-    CollegeCertificate, Banner
+    CollegeCertificate, Banner, PageHero
 
 
 @admin.register(Banner)
@@ -45,3 +45,8 @@ class NPADocumentAdmin(TranslationAdmin):
 @admin.register(CollegeCertificate)
 class CollegeCertificateAdmin(TranslationAdmin):
     list_display = ('ribbon_text', 'org_name',)
+
+
+@admin.register(PageHero)
+class PageHeroAdmin(TranslationAdmin):
+    list_display = ('page', 'title')

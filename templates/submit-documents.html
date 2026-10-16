@@ -319,6 +319,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -335,8 +336,9 @@
         <span class="breadcrumb-sep">›</span>
         <span class="breadcrumb-item active">{% trans "Подача документов" %}</span>
       </nav>
-      <h1>{% trans "Подать документы онлайн" %}</h1>
-      <p>{% trans "Заполните форму в 3 шага — это займёт не более 10 минут" %}</p>
+      {% page_hero "submit_documents" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Подать документы онлайн" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Заполните форму в 3 шага — это займёт не более 10 минут" %}{% endif %}</p>
     </div>
   </section>
 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -12,8 +13,9 @@
 
 <!-- ===== ЗАГОЛОВОК СТРАНИЦЫ ===== -->
 <div class="page-header">
-  <h1>{% trans "День открытых дверей" %}</h1>
-  <p>{% trans "Приходи познакомиться с IT COLLEGE лично" %}</p>
+  {% page_hero "open_day" as hero %}
+  <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "День открытых дверей" %}{% endif %}</h1>
+  <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Приходи познакомиться с IT COLLEGE лично" %}{% endif %}</p>
   <div class="breadcrumb"><a href="{% url 'home-url' %}">{% trans "Главная" %}</a> / <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a> / {% trans "День открытых дверей" %}</div>
 </div>
 <section class="section">

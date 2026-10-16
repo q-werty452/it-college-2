@@ -573,7 +573,7 @@
       {{ item.created_at|date:"d.m.Y" }}
     </div>
     <div class="card-title">{{ item.title }}</div>
-    <div class="card-text">{{ item.text|truncatewords:20|safe }}</div>
+    <div class="card-text">{{ item.text|striptags|truncatewords:20 }}</div>
   </div>
   <div class="card-footer">
     <a href="{% url 'news-detail-url' item.pk %}" class="btn btn-outline btn-sm">{% trans "Читать далее" %} →</a>

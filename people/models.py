@@ -1,5 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from education.models import Program
 
@@ -129,10 +130,10 @@ class Director(models.Model):
 
 class Staff(models.Model):
     DEPARTMENT_CHOICES = [
-        ('it', 'ИТ-кафедра'),
-        ('general', 'Общеобразовательные предметы'),
-        ('admin', 'Администрация'),
-        ('support', 'Вспомогательный персонал'),
+        ('it', _('ИТ-кафедра')),
+        ('general', _('Общеобразовательные предметы')),
+        ('admin', _('Администрация')),
+        ('support', _('Вспомогательный персонал')),
     ]
 
     full_name = models.CharField(max_length=200, verbose_name='ФИО')

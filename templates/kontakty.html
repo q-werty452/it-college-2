@@ -187,8 +187,9 @@
         <span class="breadcrumb-sep">›</span>
         <span class="breadcrumb-item active">{% trans "Контакты" %}</span>
       </nav>
-      <h1>{% trans "Контакты IT COLLEGE" %}</h1>
-      <p>{% trans "Мы всегда готовы ответить на ваши вопросы — пишите, звоните или приходите" %}</p>
+      {% page_hero "contacts" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Контакты IT COLLEGE" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Мы всегда готовы ответить на ваши вопросы — пишите, звоните или приходите" %}{% endif %}</p>
     </div>
   </section>
 

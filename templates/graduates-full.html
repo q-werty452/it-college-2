@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -15,12 +16,13 @@
       <nav class="breadcrumb"><a href="{% url 'home-url' %}" class="breadcrumb-item">{% trans "Главная" %}</a>
         <span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">{% trans "Выпускники" %}</span>
       </nav>
-      <h1>{% trans "Наши выпускники" %}</h1>
-      <p>{% blocktrans count count=graduates_count %}
+      {% page_hero "graduates" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Наши выпускники" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% blocktrans count count=graduates_count %}
 Более {{ count }} специалист
 {% plural %}
 Более {{ count }} специалистов
-{% endblocktrans %}</p>
+{% endblocktrans %}{% endif %}</p>
     </div>
   </section>
 

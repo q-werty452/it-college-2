@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -12,8 +13,9 @@
 
 <!-- ===== ЗАГОЛОВОК СТРАНИЦЫ ===== -->
 <div class="page-header">
-  <h1>{% trans "Вопросы и ответы" %}</h1>
-  <p>{% trans "Ответы на самые частые вопросы" %}</p>
+  {% page_hero "faq" as hero %}
+  <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Вопросы и ответы" %}{% endif %}</h1>
+  <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Ответы на самые частые вопросы" %}{% endif %}</p>
   <div class="breadcrumb"><a href="{% url 'home-url' %}">{% trans "Главная" %}</a> / FAQ</div>
 </div>
 

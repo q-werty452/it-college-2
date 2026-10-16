@@ -16,8 +16,9 @@
         <span class="breadcrumb-sep">›</span>
         <span class="breadcrumb-item active">{% trans "Сотрудники" %}</span>
       </nav>
-      <h1>{% trans "Наши сотрудники" %}</h1>
-      <p>{% trans "Профессиональная команда преподавателей и специалистов, которая каждый день помогает студентам расти" %}</p>
+      {% page_hero "staff" as hero %}
+      <h1>{% if hero.title %}{{ hero.title }}{% else %}{% trans "Наши сотрудники" %}{% endif %}</h1>
+      <p>{% if hero.subtitle %}{{ hero.subtitle|linebreaksbr }}{% else %}{% trans "Профессиональная команда преподавателей и специалистов, которая каждый день помогает студентам расти" %}{% endif %}</p>
     </div>
   </section>
 
@@ -140,7 +141,7 @@
       <div class="staff-filter-bar reveal-up delay-3">
         <button class="staff-filter-btn active" data-filter="all">{% trans "Все сотрудники" %}</button>
         {% for dept in departments %}
-        <button class="staff-filter-btn" data-filter="{{ dept.code }}">{% trans dept.label %}</button>
+        <button class="staff-filter-btn" data-filter="{{ dept.code }}">{{ dept.label }}</button>
         {% endfor %}
       </div>
 
@@ -155,7 +156,7 @@
         <div class="dept-icon-wrap dept-icon-{{ dept.code }}">
           {% if dept.code == 'it' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>{% elif dept.code == 'general' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>{% elif dept.code == 'admin' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>{% endif %}
         </div>
-        {% trans dept.label %}
+        {{ dept.label }}
       </div>
       <div class="staff-grid"{% if not forloop.last %} style="margin-bottom:40px"{% endif %}>
         {% for person in dept.members %}
@@ -163,7 +164,7 @@
           <img src="{% if person.photo %}{{ person.photo.url }}{% else %}{% static 'img/staff-placeholder.svg' %}{% endif %}" alt="{{ person.full_name }}" class="staff-photo">
           <div class="staff-name">{{ person.full_name }}</div>
           <div class="staff-position">{{ person.position }}</div>
-          <span class="staff-dept dept-{{ dept.code }}">{% trans dept.label %}</span>
+          <span class="staff-dept dept-{{ dept.code }}">{{ dept.label }}</span>
           {% if person.experience %}<div class="staff-exp">{% trans "Стаж" %}: <strong>{{ person.experience }}</strong></div>{% endif %}
           <div class="staff-card-contacts">
             {% if person.email %}<a href="mailto:{{ person.email }}" class="staff-contact-btn" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>{% endif %}
