@@ -2,17 +2,22 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
 from abiturient.models import FAQ, RequiredDocument, SubmitDocument, InfoCard
+from core.admin_mixins import ReadOnlySubmissionAdminMixin
 
 
 @admin.register(RequiredDocument)
-class RequiredDocument(TranslationAdmin):
+class RequiredDocumentAdmin(TranslationAdmin):
     list_display = ('title', 'order')
 
 
 
 @admin.register(SubmitDocument)
-class SubmitDocument(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'phone', 'email')
+class SubmitDocumentAdmin(ReadOnlySubmissionAdminMixin, admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'program', 'study_form', 'phone', 'status', 'created_at')
+    list_editable = ('status',)
+    list_filter = ('status', 'program', 'study_form', 'form_of_study', 'citizenship', 'created_at')
+    search_fields = ('first_name', 'last_name', 'middle_name', 'phone', 'email')
+    date_hierarchy = 'created_at'
 
 
 

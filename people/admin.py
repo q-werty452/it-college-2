@@ -4,13 +4,15 @@ from people.models import Director, Graduates, GraduateGallery, Partner, \
     SiteStats
 from modeltranslation.admin import TranslationAdmin
 
+from core.admin_mixins import SingletonAdminMixin
+
 class GraduateGalleryInlineAdmin(admin.TabularInline):
     model = GraduateGallery
     extra = 1
 
 
 @admin.register(SiteStats)
-class SiteStatsAdmin(admin.ModelAdmin):
+class SiteStatsAdmin(SingletonAdminMixin, admin.ModelAdmin):
     list_display = ('employment_percent','countries_count', 'partners_count')
 
 
@@ -35,5 +37,5 @@ class PartnerAdmin(TranslationAdmin):
 
 
 @admin.register(Director)
-class DirectorAdmin(TranslationAdmin):
+class DirectorAdmin(SingletonAdminMixin, TranslationAdmin):
     list_display = ('name','description')

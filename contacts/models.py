@@ -73,6 +73,17 @@ class ContactForm(models.Model):
         verbose_name='Тема обращения',
     )
     text = models.TextField(verbose_name='Сообщение ')
+    STATUS_CHOICES = [
+        ('new', 'Новая'),
+        ('in_progress', 'В работе'),
+        ('done', 'Обработана'),
+    ]
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='new',
+        verbose_name='Статус',
+    )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -81,8 +92,12 @@ class ContactForm(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        ordering = ['-created_at']
         verbose_name = 'Заявка для обратной связи'
         verbose_name_plural = 'Заявки для обратной связи'
+
+    def __str__(self):
+        return f'{self.last_name} {self.first_name}'
 
 
 class SocialLink(models.Model):

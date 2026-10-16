@@ -2,11 +2,12 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
 from contacts.models import Contacts, Department, ContactForm, SocialLink
+from core.admin_mixins import SingletonAdminMixin, ReadOnlySubmissionAdminMixin
 
 
 
 @admin.register(Contacts)
-class ContactsAdmin(TranslationAdmin):
+class ContactsAdmin(SingletonAdminMixin, TranslationAdmin):
     list_display = (
         'email',
         'phone_admission',
@@ -36,13 +37,19 @@ class DepartmentAdmin(TranslationAdmin):
 
 
 @admin.register(ContactForm)
-class ContactFormAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'email', 'phone_number', 'created_at',)
+class ContactFormAdmin(ReadOnlySubmissionAdminMixin, admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'phone_number', 'email', 'contact_form', 'status', 'created_at')
+    list_editable = ('status',)
+    list_filter = ('status', 'contact_form', 'created_at')
+    search_fields = ('first_name', 'last_name', 'phone_number', 'email', 'text')
+    date_hierarchy = 'created_at'
 
 
 
 @admin.register(SocialLink)
 class SocialLinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url', 'is_active')
+    list_editable = ('is_active',)
 
     class Media:
         css = {

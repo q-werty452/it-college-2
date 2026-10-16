@@ -44,3 +44,32 @@ class PagesTests(TestCase):
         self.assertIn('href="tel:+996700112233"', html)
         self.assertIn('href="tel:+996555444333"', html)
         self.assertNotIn('tel:+996507022202', html)
+
+
+class AdminTests(TestCase):
+    def setUp(self):
+        from django.contrib.auth.models import User
+        self.client.force_login(User.objects.create_superuser('admin', 'a@a.kg', 'x'))
+
+    def test_every_admin_page_opens(self):
+        from django.contrib import admin
+        from django.urls import reverse
+        for model in admin.site._registry:
+            info = (model._meta.app_label, model._meta.model_name)
+            response = self.client.get(reverse('admin:%s_%s_changelist' % info))
+            self.assertEqual(response.status_code, 200, model)
+
+    def test_singletons_allow_only_one_record(self):
+        from people.models import SiteStats
+        url = '/admin/people/sitestats/add/'
+        self.assertEqual(self.client.get(url).status_code, 200)
+        SiteStats.objects.create()
+        self.assertEqual(self.client.get(url).status_code, 403)
+
+    def test_submissions_are_read_only_except_status(self):
+        from contacts.models import ContactForm
+        request = ContactForm.objects.create(first_name='И', last_name='И', phone_number='1', text='t')
+        self.assertEqual(self.client.get('/admin/contacts/contactform/add/').status_code, 403)
+        page = self.client.get(f'/admin/contacts/contactform/{request.pk}/change/').content.decode()
+        self.assertIn('name="status"', page)
+        self.assertNotIn('name="text"', page)

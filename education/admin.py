@@ -1,6 +1,8 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
+from core.admin_mixins import SingletonAdminMixin
+
 from education.models import TransferInfo, TransferDocument, ProgramCategory, \
     Program, License
 
@@ -75,7 +77,7 @@ class LicenseAdmin(TranslationAdmin):
 
 
 @admin.register(TransferInfo)
-class TransferInfoAdmin(TranslationAdmin):
+class TransferInfoAdmin(SingletonAdminMixin, TranslationAdmin):
     list_display = ('description',)
 
 
