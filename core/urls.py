@@ -5,11 +5,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from core.views import private_file
 from main.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('private-files/<path:path>', private_file, name='private-file'),
 ]
 
 urlpatterns += i18n_patterns(
