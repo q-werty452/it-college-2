@@ -106,3 +106,23 @@ class SubmitDocumentFormTests(TestCase):
         self.assertEqual(response['X-Content-Type-Options'], 'nosniff')
         self.assertEqual(self.client.get('/private-files/../db.sqlite3').status_code, 404)
         self.assertEqual(self.client.get('/private-files/documents/nope.pdf').status_code, 404)
+
+    def test_move_applicant_files_command(self):
+        import os
+        from django.conf import settings
+        from django.core.management import call_command
+
+        os.makedirs(os.path.join(settings.MEDIA_ROOT, 'documents'), exist_ok=True)
+        for name in ('old.pdf', 'icon.svg'):
+            with open(os.path.join(settings.MEDIA_ROOT, 'documents', name), 'wb') as f:
+                f.write(b'x')
+        application = SubmitDocument.objects.create(
+            first_name='a', last_name='b', phone='1', email='a@a.kg', birth_date='2008-01-01',
+            citizenship='kg', program=self.program, form_of_study='full_time', study_form='budget',
+            passport='documents/old.pdf', education_document='', photo='')
+
+        call_command('move_applicant_files', stdout=open(os.devnull, 'w'))
+        self.assertTrue(os.path.exists(os.path.join(settings.PRIVATE_MEDIA_ROOT, 'documents', 'old.pdf')))
+        self.assertFalse(os.path.exists(os.path.join(settings.MEDIA_ROOT, 'documents', 'old.pdf')))
+        # чужие файлы (иконки документов для поступления) не трогаются
+        self.assertTrue(os.path.exists(os.path.join(settings.MEDIA_ROOT, 'documents', 'icon.svg')))
