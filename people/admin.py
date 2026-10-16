@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from people.models import Director, Graduates, GraduateGallery, Partner, \
-    SiteStats
+    SiteStats, Staff, StaffGallery
 from modeltranslation.admin import TranslationAdmin
 
 from core.admin_mixins import SingletonAdminMixin
@@ -39,3 +39,18 @@ class PartnerAdmin(TranslationAdmin):
 @admin.register(Director)
 class DirectorAdmin(SingletonAdminMixin, TranslationAdmin):
     list_display = ('name','description')
+
+
+
+class StaffGalleryInlineAdmin(admin.TabularInline):
+    model = StaffGallery
+    extra = 1
+
+
+@admin.register(Staff)
+class StaffAdmin(TranslationAdmin):
+    list_display = ('full_name', 'position', 'department', 'is_leadership', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    list_filter = ('department', 'is_leadership', 'is_active')
+    search_fields = ('full_name', 'position', 'email')
+    inlines = [StaffGalleryInlineAdmin]
