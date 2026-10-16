@@ -41,7 +41,7 @@ class HomeView(TemplateView):
             'news': news,
             'faqs': FAQ.objects.filter(is_popular=True),
             'graduates': graduates,
-            'graduates_count': graduates.count(),
+            'graduates_count': Graduates.objects.count(),
             'banner': Banner.objects.all(),
             'contact': Contacts.objects.first()
         }

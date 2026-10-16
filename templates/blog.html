@@ -96,9 +96,9 @@
   {% if news.number == num %}
     <button class="page-btn active">{{ num }}</button>
   {% elif num == 1 or num == news.paginator.num_pages %}
-    <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+    <a href="?page={{ num }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="page-btn">{{ num }}</a>
   {% elif num >= news.number|add:"-2" and num <= news.number|add:"2" %}
-    <a href="?page={{ num }}" class="page-btn">{{ num }}</a>
+    <a href="?page={{ num }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="page-btn">{{ num }}</a>
   {% elif num == news.number|add:"-3" or num == news.number|add:"3" %}
     <span class="page-btn" style="pointer-events:none">…</span>
   {% endif %}

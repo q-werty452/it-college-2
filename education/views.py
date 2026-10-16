@@ -21,7 +21,7 @@ class SpecView(TemplateView):
             )
 
         category_id = self.request.GET.get('category')
-        if category_id:
+        if category_id and category_id.isdigit():
             programs = programs.filter(category_id=category_id)
 
         budget = self.request.GET.get('budget')

@@ -172,6 +172,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load site_extras %}
 
 
 {% block content %}
@@ -218,8 +219,8 @@
               <div class="contact-detail-body">
                 <h4>{% trans "Телефон" %}</h4>
                 <p>
-                  <a href="tel:+996507022202" style="color:inherit">{{ contact.phone_admission }}</a> ({% trans "Абитуриентам" %})<br>
-                  <a href="tel:+996755022202" style="color:inherit">{{ contact.phone_students }}</a> ({% trans "Студентам" %})
+                  <a href="tel:+{{ contact.phone_admission|phone_digits }}" style="color:inherit">{{ contact.phone_admission }}</a> ({% trans "Абитуриентам" %})<br>
+                  <a href="tel:+{{ contact.phone_students|phone_digits }}" style="color:inherit">{{ contact.phone_students }}</a> ({% trans "Студентам" %})
                 </p>
               </div>
             </div>
