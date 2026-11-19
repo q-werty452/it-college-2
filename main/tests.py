@@ -56,7 +56,8 @@ class AdminTests(TestCase):
         from django.urls import reverse
         for model in admin.site._registry:
             info = (model._meta.app_label, model._meta.model_name)
-            response = self.client.get(reverse('admin:%s_%s_changelist' % info))
+            # страница «О нас» из списка сразу ведёт на форму редактирования
+            response = self.client.get(reverse('admin:%s_%s_changelist' % info), follow=True)
             self.assertEqual(response.status_code, 200, model)
 
     def test_singletons_allow_only_one_record(self):

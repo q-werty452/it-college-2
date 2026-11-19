@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IT COLLEGE</title>
+    <title>{% block title %}IT COLLEGE{% endblock %}</title>
     <link rel="icon" href="{% static 'img/favicon-globe.png' %}">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -107,10 +107,10 @@
       </button>
       <div style="margin-top:40px">
         <div class="nav-mobile-section">
-          <div class="nav-mobile-section">
-            <div class="nav-mobile-label">{% trans "О колледже" %}</div>
-            <a href="{% url 'about-url' %}">{% trans "О колледже" %}</a>
-          </div>
+          <div class="nav-mobile-label">{% trans "О колледже" %}</div>
+          <a href="{% url 'about-url' %}">{% trans "О колледже" %}</a>
+        </div>
+        <div class="nav-mobile-section">
           <div class="nav-mobile-label">{% trans "Абитуриентам" %}</div>
           <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a>
           <a href="{% url 'abiturientam-url' %}" class="sub">{% trans "Главная абитуриента" %}</a>
