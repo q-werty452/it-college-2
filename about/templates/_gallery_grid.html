@@ -1,0 +1,106 @@
+{% load i18n %}
+<style>
+  /* ===== Мозаичная сетка галереи ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 16px;
+  }
+  .g-item {
+    position: relative; overflow: hidden; 
+    /* border-radius: 16px;  */
+    cursor: zoom-in;
+    background: var(--light, #f1f5f9); border: 0; padding: 0; display: block;
+  }
+  .g-item.normal { grid-column: span 1; grid-row: span 1; }
+  .g-item.wide   { grid-column: span 2; grid-row: span 1; }
+  .g-item.tall   { grid-column: span 1; grid-row: span 2; }
+  .g-item.big    { grid-column: span 2; grid-row: span 2; }
+  .g-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
+  }
+  .g-item:hover img { transform: scale(1.08); }
+  .g-item .g-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 16px 12px;
+    background: linear-gradient(to top, rgba(2, 6, 23, .75), transparent);
+    color: #fff; font-size: .88rem; font-weight: 600; text-align: left;
+    opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s;
+  }
+  .g-item:hover .g-cap { opacity: 1; transform: none; }
+  .gallery-more { text-align: center; margin-top: 36px; }
+  .gallery-empty { text-align: center; color: var(--gray); padding: 40px 0; }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9999; display: none;
+    align-items: center; justify-content: center; flex-direction: column;
+    background: rgba(2, 6, 23, .92); padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 95vw; max-height: 82vh;
+     /* border-radius: 12px; */
+     }
+  .lightbox-cap { color: #fff; margin-top: 14px; font-size: .95rem; text-align: center; }
+  .lightbox-btn {
+    position: absolute; background: rgba(255, 255, 255, .12); color: #fff; border: 0;
+    width: 46px; height: 46px; border-radius: 50%; font-size: 24px; cursor: pointer;
+  }
+  .lightbox-btn:hover { background: rgba(255, 255, 255, .25); }
+  .lightbox-close { top: 20px; right: 20px; }
+  .lightbox-prev { left: 20px; top: 50%; }
+  .lightbox-next { right: 20px; top: 50%; }
+
+  @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; } }
+  @media (max-width: 640px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; gap: 10px; }
+    .g-item.wide, .g-item.big { grid-column: span 2; }
+  }
+</style>
+
+<div class="gallery-grid">
+  {% for img in gallery_images %}
+    <button type="button" class="g-item {{ img.css_class }}" data-full="{{ img.image.url }}" data-caption="{{ img.title }}">
+      <img src="{{ img.image.url }}" alt="{{ img.title|default:'IT COLLEGE' }}" loading="lazy">
+      {% if img.title %}<span class="g-cap">{{ img.title }}</span>{% endif %}
+    </button>
+  {% endfor %}
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button type="button" class="lightbox-btn lightbox-close" aria-label="{% trans 'Закрыть' %}">×</button>
+  <button type="button" class="lightbox-btn lightbox-prev" aria-label="{% trans 'Назад' %}">‹</button>
+  <button type="button" class="lightbox-btn lightbox-next" aria-label="{% trans 'Вперёд' %}">›</button>
+  <img src="" alt="">
+  <div class="lightbox-cap"></div>
+</div>
+
+<script>
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-grid .g-item'));
+    var box = document.getElementById('lightbox');
+    if (!items.length || !box) return;
+    var img = box.querySelector('img'), cap = box.querySelector('.lightbox-cap'), cur = 0;
+
+    function show(i) {
+      cur = (i + items.length) % items.length;
+      img.src = items[cur].dataset.full;
+      cap.textContent = items[cur].dataset.caption || '';
+    }
+    function open(i) { show(i); box.classList.add('open'); box.setAttribute('aria-hidden', 'false'); }
+    function close() { box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); }
+
+    items.forEach(function (el, i) { el.addEventListener('click', function () { open(i); }); });
+    box.querySelector('.lightbox-close').addEventListener('click', close);
+    box.querySelector('.lightbox-prev').addEventListener('click', function () { show(cur - 1); });
+    box.querySelector('.lightbox-next').addEventListener('click', function () { show(cur + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+  })();
+</script>
