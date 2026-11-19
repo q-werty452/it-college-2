@@ -2,7 +2,7 @@ import json
 
 from django.test import TestCase
 
-from people.models import Staff
+from people.models import Graduates, Staff
 
 
 class StaffPageTests(TestCase):
@@ -36,3 +36,36 @@ class StaffPageTests(TestCase):
         self.assertEqual(data[f'staff-{director.pk}']['achievements'], ['Первое', 'Второе'])
         self.assertEqual(data[f'staff-{teacher.pk}']['courses'], ['Python', 'Django'])
         self.assertEqual(data[f'staff-{teacher.pk}']['dept'], 'ИТ-кафедра')
+
+
+class GraduatesPageTests(TestCase):
+    url = '/ru/graduates/'
+
+    def setUp(self):
+        from education.models import Program, ProgramCategory
+
+        category = ProgramCategory.objects.create(title='IT')
+        self.program = Program.objects.create(category=category, name='Программирование',
+                                              price_per_year=1000)
+        self.graduate = Graduates.objects.create(
+            name='Асан', release='2024', program=self.program,
+            short_description='Коротко',
+            full_description='<p>Работает в <a href="https://example.com">компании</a></p>',
+            achievements='Хакатон, Олимпиада', story='Моя история')
+
+    def test_modal_data_attributes(self):
+        response = self.client.get(self.url)
+        self.assertContains(response, 'data-story="Моя история"')
+        self.assertContains(response, 'data-achievements="Хакатон, Олимпиада"')
+        # HTML описания экранирован внутри атрибута и не ломает разметку
+        self.assertContains(
+            response,
+            'data-description="&lt;p&gt;Работает в &lt;a href=&quot;https://example.com&quot;&gt;'
+            'компании&lt;/a&gt;&lt;/p&gt;"')
+
+    def test_deleting_program_keeps_graduate(self):
+        self.program.delete()
+        self.graduate.refresh_from_db()
+        self.assertIsNone(self.graduate.program)
+        self.assertEqual(self.client.get(self.url).status_code, 200)
+        self.assertEqual(self.client.get('/ru/').status_code, 200)
