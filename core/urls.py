@@ -24,6 +24,7 @@ urlpatterns += i18n_patterns(
     path('', include("abiturient.urls")),
     path('', include("education.urls")),
     path('', include("people.urls")),
+    path('', include('about.urls')),
 )
 
 

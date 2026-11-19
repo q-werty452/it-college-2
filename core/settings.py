@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'abiturient.apps.AbiturientConfig',
     'education.apps.EducationConfig',
     'people.apps.PeopleConfig',
+    'about.apps.AboutConfig',
 ]
 
 MIDDLEWARE = [
@@ -196,6 +197,7 @@ JAZZMIN_SETTINGS = {
         "abiturient",
         "people",
         "contacts",
+        "about",
     ],
 
     # === Пользовательские иконки (Font Awesome 5) ===
@@ -225,6 +227,9 @@ JAZZMIN_SETTINGS = {
 
         # contacts
         "contacts": "fas fa-address-book",
+
+        # about
+        "about": "fas fa-info-circle",
     },
 
     "default_icon_parents": "fas fa-chevron-circle-right",

@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IT COLLEGE</title>
+    <title>{% block title %}IT COLLEGE{% endblock %}</title>
     <link rel="icon" href="{% static 'img/favicon-globe.png' %}">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -35,6 +35,9 @@
         <img src="{% static 'img/favicon.png' %}" alt="IT COLLEGE" width="110" height="38" style="height:38px;width:auto;display:block">
       </a>
       <div class="nav-links">
+          <div class="nav-item">
+              <a href="{% url 'about-url' %}" class="nav-link">{% trans "О колледже" %}</a>
+          </div>
               <div class="nav-item">
                 <a href="{% url 'abiturientam-url' %}" class="nav-link">{% trans "Абитуриентам" %} <span class="arrow">▾</span></a>
                 <div class="nav-dropdown">
@@ -42,7 +45,7 @@
                   <a href="{% url 'open-day-url' %}">{% trans "День открытых дверей" %}</a>
                   <a href="https://2020.edu.gov.kg/">{% trans "Приёмная комиссия" %}</a>
                   <a href="{% url 'budget-url' %}">{% trans "Бюджетные места" %}</a>
-                  <a href="{% url 'college-url' %}">{% trans "Приём 2025/26" %}</a>
+                  <a href="{% url 'college-url' %}">{% trans "Приём 2027/28" %}</a>
                   <a href="{% url 'perevod-url' %}">{% trans "Перевод из другого учебного заведения" %}</a>
                   <a href="{% url 'stoimost-url' %}">{% trans "Стоимость обучения" %}</a>
                   <a href="{% url 'submit-document-url' %}">{% trans "Подать документы онлайн" %}</a>
@@ -104,13 +107,17 @@
       </button>
       <div style="margin-top:40px">
         <div class="nav-mobile-section">
+          <div class="nav-mobile-label">{% trans "О колледже" %}</div>
+          <a href="{% url 'about-url' %}">{% trans "О колледже" %}</a>
+        </div>
+        <div class="nav-mobile-section">
           <div class="nav-mobile-label">{% trans "Абитуриентам" %}</div>
           <a href="{% url 'abiturientam-url' %}">{% trans "Абитуриентам" %}</a>
           <a href="{% url 'abiturientam-url' %}" class="sub">{% trans "Главная абитуриента" %}</a>
           <a href="{% url 'open-day-url' %}" class="sub">{% trans "День открытых дверей" %}</a>
           <a href="https://2020.edu.gov.kg/" class="sub">{% trans "Приёмная комиссия" %}</a>
           <a href="{% url 'budget-url' %}" class="sub">{% trans "Бюджетные места" %}</a>
-          <a href="{% url 'college-url' %}" class="sub">{% trans "Приём 2025/26" %}</a>
+          <a href="{% url 'college-url' %}" class="sub">{% trans "Приём 2027/28" %}</a>
           <a href="{% url 'perevod-url' %}" class="sub">{% trans "Перевод из другого учебного заведения" %}</a>
           <a href="{% url 'stoimost-url' %}" class="sub">{% trans "Стоимость обучения" %}</a>
           <a href="{% url 'submit-document-url' %}" class="sub">{% trans "Подать документы онлайн" %}</a>
