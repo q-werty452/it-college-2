@@ -85,10 +85,10 @@
      data-id="{{ item.id }}"
      data-name="{{ item.name }}"
      data-release="{{ item.release }}"
-     data-program="{{ item.program.name }}"
-     data-story="{{ item.Story|escapejs }}"
-     data-description="{{ item.full_description|safe }}"
-     data-achievements="{{ item.Achievements }}"
+     data-program="{{ item.program.name|default:'' }}"
+     data-story="{{ item.story }}"
+     data-description="{{ item.full_description }}"
+     data-achievements="{{ item.achievements }}"
      data-image="{% if item.image %}{{ item.image.url }}{% endif %}"
      data-gallery="{% for img in item.graduategallery_set.all %}{{ img.image.url }},{% endfor %}">
 
@@ -265,11 +265,14 @@ document.querySelectorAll('.graduate-card').forEach(function(card) {
 
     // Достижения
     var tagsEl = document.getElementById('grad-modal-tags');
-    tagsEl.innerHTML = achievements
-      ? achievements.split(',').map(function(t) {
-          return '<span class="modal-tag">' + t.trim() + '</span>';
-        }).join('')
-      : '';
+    tagsEl.innerHTML = '';
+    (achievements || '').split(',').forEach(function(t) {
+      if (!t.trim()) return;
+      var tag = document.createElement('span');
+      tag.className = 'modal-tag';
+      tag.textContent = t.trim();
+      tagsEl.appendChild(tag);
+    });
 
     // Галерея
     var galleryEl = document.getElementById('grad-modal-gallery');

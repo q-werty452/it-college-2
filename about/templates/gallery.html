@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ page.gallery_title }} — IT COLLEGE{% endblock %}
+
+{% block content %}
+<div class="about-page">
+  <header class="page-header" style="text-align:left">
+    <div class="container" style="padding:0 24px">
+      <h1>{{ page.gallery_title }}</h1>
+      {% if page.gallery_subtitle %}<p style="max-width:620px">{{ page.gallery_subtitle }}</p>{% endif %}
+      <div class="breadcrumb">
+        <a href="{% url 'home-url' %}">{% trans "Главная" %}</a><span>/</span>
+        <a href="{% url 'about-url' %}">{{ page.hero_title }}</a><span>/</span>
+        <span>{{ page.gallery_title }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {% if gallery_images %}
+        {% include '_gallery_grid.html' %}
+      {% else %}
+        <p class="gallery-empty">{% trans "Фотографий пока нет." %}</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}

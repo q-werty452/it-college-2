@@ -362,8 +362,8 @@ msgid "Бюджетные места"
 msgstr "State-funded places"
 
 #: templates/base.html:45 templates/base.html:113
-msgid "Приём 2025/26"
-msgstr "Admissions 2025/26"
+msgid "Приём 2027/28"
+msgstr "Admissions 2027/28"
 
 #: templates/base.html:46 templates/base.html:114 templates/perevod.html:16
 msgid "Перевод из другого учебного заведения"
@@ -1463,3 +1463,12 @@ msgid ""
 msgstr ""
 "All personal data is securely protected and processed solely within the "
 "scope of the admissions campaign"
+
+msgid "Смотреть всю галерею"
+msgstr "View the full gallery"
+
+msgid "Смотреть программы"
+msgstr "View programs"
+
+msgid "Фотографий пока нет."
+msgstr "No photos yet."

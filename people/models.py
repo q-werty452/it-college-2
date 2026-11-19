@@ -50,7 +50,9 @@ class Graduates(models.Model):
     release = models.CharField(max_length=50, verbose_name='Год выпуска')
     program = models.ForeignKey(
         Program,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         verbose_name='Специальность',
     )
     short_description = models.TextField(
